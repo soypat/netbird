@@ -3,8 +3,10 @@
 package proto
 
 import (
+	"bytes"
 	"testing"
 
+	"google.golang.org/protobuf/encoding/protowire"
 	goproto "google.golang.org/protobuf/proto"
 )
 
@@ -75,5 +77,37 @@ func TestEncryptedMessageFastPathRoundTrip(t *testing.T) {
 	}
 	if !goproto.Equal(msg, &out) {
 		t.Fatalf("roundtrip mismatch: %#v != %#v", msg, &out)
+	}
+}
+
+func TestSignalFastPathPreservesUnknownFields(t *testing.T) {
+	msg := &EncryptedMessage{
+		Key:       "local",
+		RemoteKey: "remote",
+		Body:      []byte{1, 2, 3, 4},
+	}
+
+	wire, err := goproto.Marshal(msg)
+	if err != nil {
+		t.Fatalf("marshal encrypted message: %v", err)
+	}
+	unknown := protowire.AppendTag(nil, 99, protowire.VarintType)
+	unknown = protowire.AppendVarint(unknown, 12345)
+	wire = append(wire, unknown...)
+
+	var out EncryptedMessage
+	if err := goproto.Unmarshal(wire, &out); err != nil {
+		t.Fatalf("unmarshal encrypted message with unknown field: %v", err)
+	}
+	if got := out.ProtoReflect().GetUnknown(); !bytes.Equal(got, unknown) {
+		t.Fatalf("unknown fields mismatch: got %x want %x", got, unknown)
+	}
+
+	roundtrip, err := goproto.Marshal(&out)
+	if err != nil {
+		t.Fatalf("marshal encrypted message after unknown field: %v", err)
+	}
+	if !bytes.Equal(roundtrip, wire) {
+		t.Fatalf("wire mismatch after unknown field roundtrip: got %x want %x", roundtrip, wire)
 	}
 }

@@ -245,8 +245,8 @@ func emitReflect(b *bytes.Buffer, m message) {
 	fmt.Fprintf(b, "func (r %s) Mutable(protoreflect.FieldDescriptor) protoreflect.Value { panic(protoCanary(\"Mutable\")) }\n", w)
 	fmt.Fprintf(b, "func (r %s) NewField(protoreflect.FieldDescriptor) protoreflect.Value { panic(protoCanary(\"NewField\")) }\n", w)
 	fmt.Fprintf(b, "func (r %s) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor { panic(protoCanary(\"WhichOneof\")) }\n", w)
-	fmt.Fprintf(b, "func (r %s) GetUnknown() protoreflect.RawFields { return nil }\n", w)
-	fmt.Fprintf(b, "func (r %s) SetUnknown(protoreflect.RawFields) {}\n", w)
+	fmt.Fprintf(b, "func (r %s) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }\n", w)
+	fmt.Fprintf(b, "func (r %s) SetUnknown(f protoreflect.RawFields) { r.m.unknownFields = append(r.m.unknownFields[:0], f...) }\n", w)
 	fmt.Fprintf(b, "func (r %s) IsValid() bool { return r.m != nil }\n", w)
 	fmt.Fprintf(b, "func (r %s) ProtoMethods() *protoiface.Methods { return &%s }\n\n", w, methods)
 }
@@ -287,6 +287,7 @@ func emitSize(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tif m.%s != nil { n += protowire.SizeTag(%d) + protowire.SizeVarint(protowire.EncodeBool(*m.%s)) }\n", f.Name, f.Number, f.Name)
 		}
 	}
+	fmt.Fprintln(b, "\tn += len(m.unknownFields)")
 	fmt.Fprintln(b, "\treturn n\n}\n")
 }
 
@@ -312,17 +313,19 @@ func emitMarshal(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tif m.%s != nil { b = protowire.AppendTag(b, %d, protowire.VarintType); b = protowire.AppendVarint(b, protowire.EncodeBool(*m.%s)) }\n", f.Name, f.Number, f.Name)
 		}
 	}
+	fmt.Fprintln(b, "\tb = append(b, m.unknownFields...)")
 	fmt.Fprintln(b, "\treturn b\n}\n")
 }
 
 func emitUnmarshal(b *bytes.Buffer, m message) {
-	fmt.Fprintf(b, "func unmarshal%s(m *%s, b []byte) error {\n\t*m = %s{}\n\tfor len(b) > 0 {\n\t\tnum, typ, n := protowire.ConsumeTag(b)\n\t\tif n < 0 { return protowire.ParseError(n) }\n\t\tb = b[n:]\n\t\tswitch {\n", m.Name, m.Name, m.Name)
+	fmt.Fprintf(b, "func unmarshal%s(m *%s, b []byte) error {\n\t*m = %s{}\n\tfor len(b) > 0 {\n\t\tfieldStart := b\n\t\tnum, typ, n := protowire.ConsumeTag(b)\n\t\tif n < 0 { return protowire.ParseError(n) }\n\t\tb = b[n:]\n\t\tswitch {\n", m.Name, m.Name, m.Name)
 	for _, f := range m.Fields {
 		emitUnmarshalCase(b, f)
 	}
 	fmt.Fprintln(b, "\t\tdefault:")
 	fmt.Fprintln(b, "\t\t\tskip := protowire.ConsumeFieldValue(num, typ, b)")
 	fmt.Fprintln(b, "\t\t\tif skip < 0 { return protowire.ParseError(skip) }")
+	fmt.Fprintln(b, "\t\t\tm.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)")
 	fmt.Fprintln(b, "\t\t\tb = b[skip:]")
 	fmt.Fprintln(b, "\t\t}")
 	fmt.Fprintln(b, "\t}")
@@ -375,6 +378,7 @@ func emitMerge(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tif src.%s != nil { dst.%s = append(dst.%s[:0], src.%s...) }\n", f.Name, f.Name, f.Name, f.Name)
 		}
 	}
+	fmt.Fprintln(b, "\tif len(src.unknownFields) > 0 { dst.unknownFields = append(dst.unknownFields, src.unknownFields...) }")
 	fmt.Fprintln(b, "}\n")
 }
 
@@ -400,6 +404,7 @@ func emitEqual(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tif !bytes.Equal(a.%s, b.%s) { return false }\n", f.Name, f.Name)
 		}
 	}
+	fmt.Fprintln(b, "\tif !bytes.Equal(a.unknownFields, b.unknownFields) { return false }")
 	fmt.Fprintln(b, "\treturn true\n}\n")
 }
 

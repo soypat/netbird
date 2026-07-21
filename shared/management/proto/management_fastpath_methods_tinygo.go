@@ -46,10 +46,12 @@ func (r encryptedMessageReflect) NewField(protoreflect.FieldDescriptor) protoref
 func (r encryptedMessageReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	panic(protoCanary("WhichOneof"))
 }
-func (r encryptedMessageReflect) GetUnknown() protoreflect.RawFields { return nil }
-func (r encryptedMessageReflect) SetUnknown(protoreflect.RawFields)  {}
-func (r encryptedMessageReflect) IsValid() bool                      { return r.m != nil }
-func (r encryptedMessageReflect) ProtoMethods() *protoiface.Methods  { return &encryptedMessageMethods }
+func (r encryptedMessageReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r encryptedMessageReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r encryptedMessageReflect) IsValid() bool                     { return r.m != nil }
+func (r encryptedMessageReflect) ProtoMethods() *protoiface.Methods { return &encryptedMessageMethods }
 
 var encryptedMessageMethods = protoiface.Methods{
 	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
@@ -86,6 +88,7 @@ func sizeEncryptedMessage(m *EncryptedMessage) int {
 	if m.Version != 0 {
 		n += protowire.SizeTag(3) + protowire.SizeVarint(uint64(m.Version))
 	}
+	n += len(m.unknownFields)
 	return n
 }
 
@@ -102,12 +105,14 @@ func marshalEncryptedMessage(b []byte, m *EncryptedMessage) []byte {
 		b = protowire.AppendTag(b, 3, protowire.VarintType)
 		b = protowire.AppendVarint(b, uint64(m.Version))
 	}
+	b = append(b, m.unknownFields...)
 	return b
 }
 
 func unmarshalEncryptedMessage(m *EncryptedMessage, b []byte) error {
 	*m = EncryptedMessage{}
 	for len(b) > 0 {
+		fieldStart := b
 		num, typ, n := protowire.ConsumeTag(b)
 		if n < 0 {
 			return protowire.ParseError(n)
@@ -140,6 +145,7 @@ func unmarshalEncryptedMessage(m *EncryptedMessage, b []byte) error {
 			if skip < 0 {
 				return protowire.ParseError(skip)
 			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
 			b = b[skip:]
 		}
 	}
@@ -156,6 +162,9 @@ func mergeEncryptedMessage(dst, src *EncryptedMessage) {
 	if src.Version != 0 {
 		dst.Version = src.Version
 	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
 }
 
 func equalEncryptedMessage(a, b *EncryptedMessage) bool {
@@ -166,6 +175,9 @@ func equalEncryptedMessage(a, b *EncryptedMessage) bool {
 		return false
 	}
 	if a.Version != b.Version {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
 		return false
 	}
 	return true

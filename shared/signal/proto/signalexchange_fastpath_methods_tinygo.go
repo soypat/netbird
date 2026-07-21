@@ -50,10 +50,12 @@ func (r encryptedMessageReflect) NewField(protoreflect.FieldDescriptor) protoref
 func (r encryptedMessageReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	panic(protoCanary("WhichOneof"))
 }
-func (r encryptedMessageReflect) GetUnknown() protoreflect.RawFields { return nil }
-func (r encryptedMessageReflect) SetUnknown(protoreflect.RawFields)  {}
-func (r encryptedMessageReflect) IsValid() bool                      { return r.m != nil }
-func (r encryptedMessageReflect) ProtoMethods() *protoiface.Methods  { return &encryptedMessageMethods }
+func (r encryptedMessageReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r encryptedMessageReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r encryptedMessageReflect) IsValid() bool                     { return r.m != nil }
+func (r encryptedMessageReflect) ProtoMethods() *protoiface.Methods { return &encryptedMessageMethods }
 
 func (r messageReflect) Descriptor() protoreflect.MessageDescriptor { panic(protoCanary("Descriptor")) }
 func (r messageReflect) Type() protoreflect.MessageType             { panic(protoCanary("Type")) }
@@ -79,10 +81,12 @@ func (r messageReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Valu
 func (r messageReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	panic(protoCanary("WhichOneof"))
 }
-func (r messageReflect) GetUnknown() protoreflect.RawFields { return nil }
-func (r messageReflect) SetUnknown(protoreflect.RawFields)  {}
-func (r messageReflect) IsValid() bool                      { return r.m != nil }
-func (r messageReflect) ProtoMethods() *protoiface.Methods  { return &messageMethods }
+func (r messageReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r messageReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r messageReflect) IsValid() bool                     { return r.m != nil }
+func (r messageReflect) ProtoMethods() *protoiface.Methods { return &messageMethods }
 
 func (r bodyReflect) Descriptor() protoreflect.MessageDescriptor { panic(protoCanary("Descriptor")) }
 func (r bodyReflect) Type() protoreflect.MessageType             { panic(protoCanary("Type")) }
@@ -104,10 +108,12 @@ func (r bodyReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
 func (r bodyReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	panic(protoCanary("WhichOneof"))
 }
-func (r bodyReflect) GetUnknown() protoreflect.RawFields { return nil }
-func (r bodyReflect) SetUnknown(protoreflect.RawFields)  {}
-func (r bodyReflect) IsValid() bool                      { return r.m != nil }
-func (r bodyReflect) ProtoMethods() *protoiface.Methods  { return &bodyMethods }
+func (r bodyReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r bodyReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r bodyReflect) IsValid() bool                     { return r.m != nil }
+func (r bodyReflect) ProtoMethods() *protoiface.Methods { return &bodyMethods }
 
 func (r modeReflect) Descriptor() protoreflect.MessageDescriptor { panic(protoCanary("Descriptor")) }
 func (r modeReflect) Type() protoreflect.MessageType             { panic(protoCanary("Type")) }
@@ -129,10 +135,12 @@ func (r modeReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
 func (r modeReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	panic(protoCanary("WhichOneof"))
 }
-func (r modeReflect) GetUnknown() protoreflect.RawFields { return nil }
-func (r modeReflect) SetUnknown(protoreflect.RawFields)  {}
-func (r modeReflect) IsValid() bool                      { return r.m != nil }
-func (r modeReflect) ProtoMethods() *protoiface.Methods  { return &modeMethods }
+func (r modeReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r modeReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r modeReflect) IsValid() bool                     { return r.m != nil }
+func (r modeReflect) ProtoMethods() *protoiface.Methods { return &modeMethods }
 
 func (r rosenpassConfigReflect) Descriptor() protoreflect.MessageDescriptor {
 	panic(protoCanary("Descriptor"))
@@ -162,10 +170,12 @@ func (r rosenpassConfigReflect) NewField(protoreflect.FieldDescriptor) protorefl
 func (r rosenpassConfigReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	panic(protoCanary("WhichOneof"))
 }
-func (r rosenpassConfigReflect) GetUnknown() protoreflect.RawFields { return nil }
-func (r rosenpassConfigReflect) SetUnknown(protoreflect.RawFields)  {}
-func (r rosenpassConfigReflect) IsValid() bool                      { return r.m != nil }
-func (r rosenpassConfigReflect) ProtoMethods() *protoiface.Methods  { return &rosenpassConfigMethods }
+func (r rosenpassConfigReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r rosenpassConfigReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r rosenpassConfigReflect) IsValid() bool                     { return r.m != nil }
+func (r rosenpassConfigReflect) ProtoMethods() *protoiface.Methods { return &rosenpassConfigMethods }
 
 var encryptedMessageMethods = protoiface.Methods{
 	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
@@ -298,6 +308,7 @@ func sizeEncryptedMessage(m *EncryptedMessage) int {
 	if len(m.Body) > 0 {
 		n += protowire.SizeTag(4) + protowire.SizeBytes(len(m.Body))
 	}
+	n += len(m.unknownFields)
 	return n
 }
 
@@ -314,12 +325,14 @@ func marshalEncryptedMessage(b []byte, m *EncryptedMessage) []byte {
 		b = protowire.AppendTag(b, 4, protowire.BytesType)
 		b = protowire.AppendBytes(b, m.Body)
 	}
+	b = append(b, m.unknownFields...)
 	return b
 }
 
 func unmarshalEncryptedMessage(m *EncryptedMessage, b []byte) error {
 	*m = EncryptedMessage{}
 	for len(b) > 0 {
+		fieldStart := b
 		num, typ, n := protowire.ConsumeTag(b)
 		if n < 0 {
 			return protowire.ParseError(n)
@@ -352,6 +365,7 @@ func unmarshalEncryptedMessage(m *EncryptedMessage, b []byte) error {
 			if skip < 0 {
 				return protowire.ParseError(skip)
 			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
 			b = b[skip:]
 		}
 	}
@@ -368,6 +382,9 @@ func mergeEncryptedMessage(dst, src *EncryptedMessage) {
 	if len(src.Body) > 0 {
 		dst.Body = append(dst.Body[:0], src.Body...)
 	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
 }
 
 func equalEncryptedMessage(a, b *EncryptedMessage) bool {
@@ -378,6 +395,9 @@ func equalEncryptedMessage(a, b *EncryptedMessage) bool {
 		return false
 	}
 	if !bytes.Equal(a.Body, b.Body) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
 		return false
 	}
 	return true
@@ -395,6 +415,7 @@ func sizeMessage(m *Message) int {
 		s := sizeBody(m.Body)
 		n += protowire.SizeTag(4) + protowire.SizeBytes(s)
 	}
+	n += len(m.unknownFields)
 	return n
 }
 
@@ -412,12 +433,14 @@ func marshalMessage(b []byte, m *Message) []byte {
 		b = protowire.AppendVarint(b, uint64(sizeBody(m.Body)))
 		b = marshalBody(b, m.Body)
 	}
+	b = append(b, m.unknownFields...)
 	return b
 }
 
 func unmarshalMessage(m *Message, b []byte) error {
 	*m = Message{}
 	for len(b) > 0 {
+		fieldStart := b
 		num, typ, n := protowire.ConsumeTag(b)
 		if n < 0 {
 			return protowire.ParseError(n)
@@ -455,6 +478,7 @@ func unmarshalMessage(m *Message, b []byte) error {
 			if skip < 0 {
 				return protowire.ParseError(skip)
 			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
 			b = b[skip:]
 		}
 	}
@@ -474,6 +498,9 @@ func mergeMessage(dst, src *Message) {
 		}
 		mergeBody(dst.Body, src.Body)
 	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
 }
 
 func equalMessage(a, b *Message) bool {
@@ -487,6 +514,9 @@ func equalMessage(a, b *Message) bool {
 		return false
 	}
 	if a.Body != nil && !equalBody(a.Body, b.Body) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
 		return false
 	}
 	return true
@@ -530,6 +560,7 @@ func sizeBody(m *Body) int {
 	if m.RelayServerIP != nil {
 		n += protowire.SizeTag(11) + protowire.SizeBytes(len(m.RelayServerIP))
 	}
+	n += len(m.unknownFields)
 	return n
 }
 
@@ -583,12 +614,14 @@ func marshalBody(b []byte, m *Body) []byte {
 		b = protowire.AppendTag(b, 11, protowire.BytesType)
 		b = protowire.AppendBytes(b, m.RelayServerIP)
 	}
+	b = append(b, m.unknownFields...)
 	return b
 }
 
 func unmarshalBody(m *Body, b []byte) error {
 	*m = Body{}
 	for len(b) > 0 {
+		fieldStart := b
 		num, typ, n := protowire.ConsumeTag(b)
 		if n < 0 {
 			return protowire.ParseError(n)
@@ -700,6 +733,7 @@ func unmarshalBody(m *Body, b []byte) error {
 			if skip < 0 {
 				return protowire.ParseError(skip)
 			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
 			b = b[skip:]
 		}
 	}
@@ -743,6 +777,9 @@ func mergeBody(dst, src *Body) {
 	}
 	if src.RelayServerIP != nil {
 		dst.RelayServerIP = append(dst.RelayServerIP[:0], src.RelayServerIP...)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
 	}
 }
 
@@ -797,6 +834,9 @@ func equalBody(a, b *Body) bool {
 	if !bytes.Equal(a.RelayServerIP, b.RelayServerIP) {
 		return false
 	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
 	return true
 }
 
@@ -805,6 +845,7 @@ func sizeMode(m *Mode) int {
 	if m.Direct != nil {
 		n += protowire.SizeTag(1) + protowire.SizeVarint(protowire.EncodeBool(*m.Direct))
 	}
+	n += len(m.unknownFields)
 	return n
 }
 
@@ -813,12 +854,14 @@ func marshalMode(b []byte, m *Mode) []byte {
 		b = protowire.AppendTag(b, 1, protowire.VarintType)
 		b = protowire.AppendVarint(b, protowire.EncodeBool(*m.Direct))
 	}
+	b = append(b, m.unknownFields...)
 	return b
 }
 
 func unmarshalMode(m *Mode, b []byte) error {
 	*m = Mode{}
 	for len(b) > 0 {
+		fieldStart := b
 		num, typ, n := protowire.ConsumeTag(b)
 		if n < 0 {
 			return protowire.ParseError(n)
@@ -838,6 +881,7 @@ func unmarshalMode(m *Mode, b []byte) error {
 			if skip < 0 {
 				return protowire.ParseError(skip)
 			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
 			b = b[skip:]
 		}
 	}
@@ -849,6 +893,9 @@ func mergeMode(dst, src *Mode) {
 		v := *src.Direct
 		dst.Direct = &v
 	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
 }
 
 func equalMode(a, b *Mode) bool {
@@ -856,6 +903,9 @@ func equalMode(a, b *Mode) bool {
 		return false
 	}
 	if a.Direct != nil && *a.Direct != *b.Direct {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
 		return false
 	}
 	return true
@@ -869,6 +919,7 @@ func sizeRosenpassConfig(m *RosenpassConfig) int {
 	if m.RosenpassServerAddr != "" {
 		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.RosenpassServerAddr))
 	}
+	n += len(m.unknownFields)
 	return n
 }
 
@@ -881,12 +932,14 @@ func marshalRosenpassConfig(b []byte, m *RosenpassConfig) []byte {
 		b = protowire.AppendTag(b, 2, protowire.BytesType)
 		b = protowire.AppendString(b, m.RosenpassServerAddr)
 	}
+	b = append(b, m.unknownFields...)
 	return b
 }
 
 func unmarshalRosenpassConfig(m *RosenpassConfig, b []byte) error {
 	*m = RosenpassConfig{}
 	for len(b) > 0 {
+		fieldStart := b
 		num, typ, n := protowire.ConsumeTag(b)
 		if n < 0 {
 			return protowire.ParseError(n)
@@ -912,6 +965,7 @@ func unmarshalRosenpassConfig(m *RosenpassConfig, b []byte) error {
 			if skip < 0 {
 				return protowire.ParseError(skip)
 			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
 			b = b[skip:]
 		}
 	}
@@ -925,6 +979,9 @@ func mergeRosenpassConfig(dst, src *RosenpassConfig) {
 	if src.RosenpassServerAddr != "" {
 		dst.RosenpassServerAddr = src.RosenpassServerAddr
 	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
 }
 
 func equalRosenpassConfig(a, b *RosenpassConfig) bool {
@@ -932,6 +989,9 @@ func equalRosenpassConfig(a, b *RosenpassConfig) bool {
 		return false
 	}
 	if a.RosenpassServerAddr != b.RosenpassServerAddr {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
 		return false
 	}
 	return true
