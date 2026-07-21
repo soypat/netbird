@@ -10,9 +10,42 @@ import (
 	"google.golang.org/protobuf/encoding/protowire"
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/runtime/protoiface"
+	"google.golang.org/protobuf/types/known/durationpb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type encryptedMessageReflect struct{ m *EncryptedMessage }
+type syncRequestReflect struct{ m *SyncRequest }
+type syncMetaRequestReflect struct{ m *SyncMetaRequest }
+type loginRequestReflect struct{ m *LoginRequest }
+type peerKeysReflect struct{ m *PeerKeys }
+type environmentReflect struct{ m *Environment }
+type fileReflect struct{ m *File }
+type flagsReflect struct{ m *Flags }
+type peerSystemMetaReflect struct{ m *PeerSystemMeta }
+type loginResponseReflect struct{ m *LoginResponse }
+type extendAuthSessionRequestReflect struct{ m *ExtendAuthSessionRequest }
+type extendAuthSessionResponseReflect struct{ m *ExtendAuthSessionResponse }
+type serverKeyResponseReflect struct{ m *ServerKeyResponse }
+type emptyReflect struct{ m *Empty }
+type netbirdConfigReflect struct{ m *NetbirdConfig }
+type hostConfigReflect struct{ m *HostConfig }
+type relayConfigReflect struct{ m *RelayConfig }
+type flowConfigReflect struct{ m *FlowConfig }
+type jWTConfigReflect struct{ m *JWTConfig }
+type protectedHostConfigReflect struct{ m *ProtectedHostConfig }
+type peerConfigReflect struct{ m *PeerConfig }
+type autoUpdateSettingsReflect struct{ m *AutoUpdateSettings }
+type networkAddressReflect struct{ m *NetworkAddress }
+type sSHConfigReflect struct{ m *SSHConfig }
+type checksReflect struct{ m *Checks }
+type deviceAuthorizationFlowRequestReflect struct {
+	m *DeviceAuthorizationFlowRequest
+}
+type deviceAuthorizationFlowReflect struct{ m *DeviceAuthorizationFlow }
+type pKCEAuthorizationFlowRequestReflect struct{ m *PKCEAuthorizationFlowRequest }
+type pKCEAuthorizationFlowReflect struct{ m *PKCEAuthorizationFlow }
+type providerConfigReflect struct{ m *ProviderConfig }
 
 func protoCanary(method string) string {
 	return "management proto fast-path: unexpected protoreflect.Message." + method
@@ -53,6 +86,1039 @@ func (r encryptedMessageReflect) SetUnknown(f protoreflect.RawFields) {
 func (r encryptedMessageReflect) IsValid() bool                     { return r.m != nil }
 func (r encryptedMessageReflect) ProtoMethods() *protoiface.Methods { return &encryptedMessageMethods }
 
+func (r syncRequestReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r syncRequestReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r syncRequestReflect) New() protoreflect.Message {
+	return syncRequestReflect{m: new(SyncRequest)}
+}
+func (r syncRequestReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r syncRequestReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r syncRequestReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r syncRequestReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r syncRequestReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r syncRequestReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r syncRequestReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r syncRequestReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r syncRequestReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r syncRequestReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r syncRequestReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r syncRequestReflect) IsValid() bool                     { return r.m != nil }
+func (r syncRequestReflect) ProtoMethods() *protoiface.Methods { return &syncRequestMethods }
+
+func (r syncMetaRequestReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r syncMetaRequestReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r syncMetaRequestReflect) New() protoreflect.Message {
+	return syncMetaRequestReflect{m: new(SyncMetaRequest)}
+}
+func (r syncMetaRequestReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r syncMetaRequestReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r syncMetaRequestReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r syncMetaRequestReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r syncMetaRequestReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r syncMetaRequestReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r syncMetaRequestReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r syncMetaRequestReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r syncMetaRequestReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r syncMetaRequestReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r syncMetaRequestReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r syncMetaRequestReflect) IsValid() bool                     { return r.m != nil }
+func (r syncMetaRequestReflect) ProtoMethods() *protoiface.Methods { return &syncMetaRequestMethods }
+
+func (r loginRequestReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r loginRequestReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r loginRequestReflect) New() protoreflect.Message {
+	return loginRequestReflect{m: new(LoginRequest)}
+}
+func (r loginRequestReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r loginRequestReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r loginRequestReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r loginRequestReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r loginRequestReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r loginRequestReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r loginRequestReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r loginRequestReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r loginRequestReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r loginRequestReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r loginRequestReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r loginRequestReflect) IsValid() bool                     { return r.m != nil }
+func (r loginRequestReflect) ProtoMethods() *protoiface.Methods { return &loginRequestMethods }
+
+func (r peerKeysReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r peerKeysReflect) Type() protoreflect.MessageType       { panic(protoCanary("Type")) }
+func (r peerKeysReflect) New() protoreflect.Message            { return peerKeysReflect{m: new(PeerKeys)} }
+func (r peerKeysReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r peerKeysReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r peerKeysReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r peerKeysReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r peerKeysReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r peerKeysReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r peerKeysReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r peerKeysReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r peerKeysReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r peerKeysReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r peerKeysReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r peerKeysReflect) IsValid() bool                     { return r.m != nil }
+func (r peerKeysReflect) ProtoMethods() *protoiface.Methods { return &peerKeysMethods }
+
+func (r environmentReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r environmentReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r environmentReflect) New() protoreflect.Message {
+	return environmentReflect{m: new(Environment)}
+}
+func (r environmentReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r environmentReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r environmentReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r environmentReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r environmentReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r environmentReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r environmentReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r environmentReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r environmentReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r environmentReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r environmentReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r environmentReflect) IsValid() bool                     { return r.m != nil }
+func (r environmentReflect) ProtoMethods() *protoiface.Methods { return &environmentMethods }
+
+func (r fileReflect) Descriptor() protoreflect.MessageDescriptor { panic(protoCanary("Descriptor")) }
+func (r fileReflect) Type() protoreflect.MessageType             { panic(protoCanary("Type")) }
+func (r fileReflect) New() protoreflect.Message                  { return fileReflect{m: new(File)} }
+func (r fileReflect) Interface() protoreflect.ProtoMessage       { return r.m }
+func (r fileReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r fileReflect) Has(protoreflect.FieldDescriptor) bool                { panic(protoCanary("Has")) }
+func (r fileReflect) Clear(protoreflect.FieldDescriptor)                   { panic(protoCanary("Clear")) }
+func (r fileReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value  { panic(protoCanary("Get")) }
+func (r fileReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) { panic(protoCanary("Set")) }
+func (r fileReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r fileReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r fileReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r fileReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r fileReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r fileReflect) IsValid() bool                     { return r.m != nil }
+func (r fileReflect) ProtoMethods() *protoiface.Methods { return &fileMethods }
+
+func (r flagsReflect) Descriptor() protoreflect.MessageDescriptor { panic(protoCanary("Descriptor")) }
+func (r flagsReflect) Type() protoreflect.MessageType             { panic(protoCanary("Type")) }
+func (r flagsReflect) New() protoreflect.Message                  { return flagsReflect{m: new(Flags)} }
+func (r flagsReflect) Interface() protoreflect.ProtoMessage       { return r.m }
+func (r flagsReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r flagsReflect) Has(protoreflect.FieldDescriptor) bool               { panic(protoCanary("Has")) }
+func (r flagsReflect) Clear(protoreflect.FieldDescriptor)                  { panic(protoCanary("Clear")) }
+func (r flagsReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value { panic(protoCanary("Get")) }
+func (r flagsReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r flagsReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r flagsReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r flagsReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r flagsReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r flagsReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r flagsReflect) IsValid() bool                     { return r.m != nil }
+func (r flagsReflect) ProtoMethods() *protoiface.Methods { return &flagsMethods }
+
+func (r peerSystemMetaReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r peerSystemMetaReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r peerSystemMetaReflect) New() protoreflect.Message {
+	return peerSystemMetaReflect{m: new(PeerSystemMeta)}
+}
+func (r peerSystemMetaReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r peerSystemMetaReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r peerSystemMetaReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r peerSystemMetaReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r peerSystemMetaReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r peerSystemMetaReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r peerSystemMetaReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r peerSystemMetaReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r peerSystemMetaReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r peerSystemMetaReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r peerSystemMetaReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r peerSystemMetaReflect) IsValid() bool                     { return r.m != nil }
+func (r peerSystemMetaReflect) ProtoMethods() *protoiface.Methods { return &peerSystemMetaMethods }
+
+func (r loginResponseReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r loginResponseReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r loginResponseReflect) New() protoreflect.Message {
+	return loginResponseReflect{m: new(LoginResponse)}
+}
+func (r loginResponseReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r loginResponseReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r loginResponseReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r loginResponseReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r loginResponseReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r loginResponseReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r loginResponseReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r loginResponseReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r loginResponseReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r loginResponseReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r loginResponseReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r loginResponseReflect) IsValid() bool                     { return r.m != nil }
+func (r loginResponseReflect) ProtoMethods() *protoiface.Methods { return &loginResponseMethods }
+
+func (r extendAuthSessionRequestReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r extendAuthSessionRequestReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r extendAuthSessionRequestReflect) New() protoreflect.Message {
+	return extendAuthSessionRequestReflect{m: new(ExtendAuthSessionRequest)}
+}
+func (r extendAuthSessionRequestReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r extendAuthSessionRequestReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r extendAuthSessionRequestReflect) Has(protoreflect.FieldDescriptor) bool {
+	panic(protoCanary("Has"))
+}
+func (r extendAuthSessionRequestReflect) Clear(protoreflect.FieldDescriptor) {
+	panic(protoCanary("Clear"))
+}
+func (r extendAuthSessionRequestReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r extendAuthSessionRequestReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r extendAuthSessionRequestReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r extendAuthSessionRequestReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r extendAuthSessionRequestReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r extendAuthSessionRequestReflect) GetUnknown() protoreflect.RawFields {
+	return r.m.unknownFields
+}
+func (r extendAuthSessionRequestReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r extendAuthSessionRequestReflect) IsValid() bool { return r.m != nil }
+func (r extendAuthSessionRequestReflect) ProtoMethods() *protoiface.Methods {
+	return &extendAuthSessionRequestMethods
+}
+
+func (r extendAuthSessionResponseReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r extendAuthSessionResponseReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r extendAuthSessionResponseReflect) New() protoreflect.Message {
+	return extendAuthSessionResponseReflect{m: new(ExtendAuthSessionResponse)}
+}
+func (r extendAuthSessionResponseReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r extendAuthSessionResponseReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r extendAuthSessionResponseReflect) Has(protoreflect.FieldDescriptor) bool {
+	panic(protoCanary("Has"))
+}
+func (r extendAuthSessionResponseReflect) Clear(protoreflect.FieldDescriptor) {
+	panic(protoCanary("Clear"))
+}
+func (r extendAuthSessionResponseReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r extendAuthSessionResponseReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r extendAuthSessionResponseReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r extendAuthSessionResponseReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r extendAuthSessionResponseReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r extendAuthSessionResponseReflect) GetUnknown() protoreflect.RawFields {
+	return r.m.unknownFields
+}
+func (r extendAuthSessionResponseReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r extendAuthSessionResponseReflect) IsValid() bool { return r.m != nil }
+func (r extendAuthSessionResponseReflect) ProtoMethods() *protoiface.Methods {
+	return &extendAuthSessionResponseMethods
+}
+
+func (r serverKeyResponseReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r serverKeyResponseReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r serverKeyResponseReflect) New() protoreflect.Message {
+	return serverKeyResponseReflect{m: new(ServerKeyResponse)}
+}
+func (r serverKeyResponseReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r serverKeyResponseReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r serverKeyResponseReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r serverKeyResponseReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r serverKeyResponseReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r serverKeyResponseReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r serverKeyResponseReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r serverKeyResponseReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r serverKeyResponseReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r serverKeyResponseReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r serverKeyResponseReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r serverKeyResponseReflect) IsValid() bool { return r.m != nil }
+func (r serverKeyResponseReflect) ProtoMethods() *protoiface.Methods {
+	return &serverKeyResponseMethods
+}
+
+func (r emptyReflect) Descriptor() protoreflect.MessageDescriptor { panic(protoCanary("Descriptor")) }
+func (r emptyReflect) Type() protoreflect.MessageType             { panic(protoCanary("Type")) }
+func (r emptyReflect) New() protoreflect.Message                  { return emptyReflect{m: new(Empty)} }
+func (r emptyReflect) Interface() protoreflect.ProtoMessage       { return r.m }
+func (r emptyReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r emptyReflect) Has(protoreflect.FieldDescriptor) bool               { panic(protoCanary("Has")) }
+func (r emptyReflect) Clear(protoreflect.FieldDescriptor)                  { panic(protoCanary("Clear")) }
+func (r emptyReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value { panic(protoCanary("Get")) }
+func (r emptyReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r emptyReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r emptyReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r emptyReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r emptyReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r emptyReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r emptyReflect) IsValid() bool                     { return r.m != nil }
+func (r emptyReflect) ProtoMethods() *protoiface.Methods { return &emptyMethods }
+
+func (r netbirdConfigReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r netbirdConfigReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r netbirdConfigReflect) New() protoreflect.Message {
+	return netbirdConfigReflect{m: new(NetbirdConfig)}
+}
+func (r netbirdConfigReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r netbirdConfigReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r netbirdConfigReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r netbirdConfigReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r netbirdConfigReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r netbirdConfigReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r netbirdConfigReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r netbirdConfigReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r netbirdConfigReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r netbirdConfigReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r netbirdConfigReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r netbirdConfigReflect) IsValid() bool                     { return r.m != nil }
+func (r netbirdConfigReflect) ProtoMethods() *protoiface.Methods { return &netbirdConfigMethods }
+
+func (r hostConfigReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r hostConfigReflect) Type() protoreflect.MessageType       { panic(protoCanary("Type")) }
+func (r hostConfigReflect) New() protoreflect.Message            { return hostConfigReflect{m: new(HostConfig)} }
+func (r hostConfigReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r hostConfigReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r hostConfigReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r hostConfigReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r hostConfigReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r hostConfigReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r hostConfigReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r hostConfigReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r hostConfigReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r hostConfigReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r hostConfigReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r hostConfigReflect) IsValid() bool                     { return r.m != nil }
+func (r hostConfigReflect) ProtoMethods() *protoiface.Methods { return &hostConfigMethods }
+
+func (r relayConfigReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r relayConfigReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r relayConfigReflect) New() protoreflect.Message {
+	return relayConfigReflect{m: new(RelayConfig)}
+}
+func (r relayConfigReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r relayConfigReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r relayConfigReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r relayConfigReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r relayConfigReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r relayConfigReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r relayConfigReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r relayConfigReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r relayConfigReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r relayConfigReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r relayConfigReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r relayConfigReflect) IsValid() bool                     { return r.m != nil }
+func (r relayConfigReflect) ProtoMethods() *protoiface.Methods { return &relayConfigMethods }
+
+func (r flowConfigReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r flowConfigReflect) Type() protoreflect.MessageType       { panic(protoCanary("Type")) }
+func (r flowConfigReflect) New() protoreflect.Message            { return flowConfigReflect{m: new(FlowConfig)} }
+func (r flowConfigReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r flowConfigReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r flowConfigReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r flowConfigReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r flowConfigReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r flowConfigReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r flowConfigReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r flowConfigReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r flowConfigReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r flowConfigReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r flowConfigReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r flowConfigReflect) IsValid() bool                     { return r.m != nil }
+func (r flowConfigReflect) ProtoMethods() *protoiface.Methods { return &flowConfigMethods }
+
+func (r jWTConfigReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r jWTConfigReflect) Type() protoreflect.MessageType       { panic(protoCanary("Type")) }
+func (r jWTConfigReflect) New() protoreflect.Message            { return jWTConfigReflect{m: new(JWTConfig)} }
+func (r jWTConfigReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r jWTConfigReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r jWTConfigReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r jWTConfigReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r jWTConfigReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r jWTConfigReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r jWTConfigReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r jWTConfigReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r jWTConfigReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r jWTConfigReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r jWTConfigReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r jWTConfigReflect) IsValid() bool                     { return r.m != nil }
+func (r jWTConfigReflect) ProtoMethods() *protoiface.Methods { return &jWTConfigMethods }
+
+func (r protectedHostConfigReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r protectedHostConfigReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r protectedHostConfigReflect) New() protoreflect.Message {
+	return protectedHostConfigReflect{m: new(ProtectedHostConfig)}
+}
+func (r protectedHostConfigReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r protectedHostConfigReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r protectedHostConfigReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r protectedHostConfigReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r protectedHostConfigReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r protectedHostConfigReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r protectedHostConfigReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r protectedHostConfigReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r protectedHostConfigReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r protectedHostConfigReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r protectedHostConfigReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r protectedHostConfigReflect) IsValid() bool { return r.m != nil }
+func (r protectedHostConfigReflect) ProtoMethods() *protoiface.Methods {
+	return &protectedHostConfigMethods
+}
+
+func (r peerConfigReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r peerConfigReflect) Type() protoreflect.MessageType       { panic(protoCanary("Type")) }
+func (r peerConfigReflect) New() protoreflect.Message            { return peerConfigReflect{m: new(PeerConfig)} }
+func (r peerConfigReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r peerConfigReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r peerConfigReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r peerConfigReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r peerConfigReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r peerConfigReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r peerConfigReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r peerConfigReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r peerConfigReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r peerConfigReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r peerConfigReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r peerConfigReflect) IsValid() bool                     { return r.m != nil }
+func (r peerConfigReflect) ProtoMethods() *protoiface.Methods { return &peerConfigMethods }
+
+func (r autoUpdateSettingsReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r autoUpdateSettingsReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r autoUpdateSettingsReflect) New() protoreflect.Message {
+	return autoUpdateSettingsReflect{m: new(AutoUpdateSettings)}
+}
+func (r autoUpdateSettingsReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r autoUpdateSettingsReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r autoUpdateSettingsReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r autoUpdateSettingsReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r autoUpdateSettingsReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r autoUpdateSettingsReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r autoUpdateSettingsReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r autoUpdateSettingsReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r autoUpdateSettingsReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r autoUpdateSettingsReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r autoUpdateSettingsReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r autoUpdateSettingsReflect) IsValid() bool { return r.m != nil }
+func (r autoUpdateSettingsReflect) ProtoMethods() *protoiface.Methods {
+	return &autoUpdateSettingsMethods
+}
+
+func (r networkAddressReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r networkAddressReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r networkAddressReflect) New() protoreflect.Message {
+	return networkAddressReflect{m: new(NetworkAddress)}
+}
+func (r networkAddressReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r networkAddressReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r networkAddressReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r networkAddressReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r networkAddressReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r networkAddressReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r networkAddressReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r networkAddressReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r networkAddressReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r networkAddressReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r networkAddressReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r networkAddressReflect) IsValid() bool                     { return r.m != nil }
+func (r networkAddressReflect) ProtoMethods() *protoiface.Methods { return &networkAddressMethods }
+
+func (r sSHConfigReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r sSHConfigReflect) Type() protoreflect.MessageType       { panic(protoCanary("Type")) }
+func (r sSHConfigReflect) New() protoreflect.Message            { return sSHConfigReflect{m: new(SSHConfig)} }
+func (r sSHConfigReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r sSHConfigReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r sSHConfigReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r sSHConfigReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r sSHConfigReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r sSHConfigReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r sSHConfigReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r sSHConfigReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r sSHConfigReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r sSHConfigReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r sSHConfigReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r sSHConfigReflect) IsValid() bool                     { return r.m != nil }
+func (r sSHConfigReflect) ProtoMethods() *protoiface.Methods { return &sSHConfigMethods }
+
+func (r checksReflect) Descriptor() protoreflect.MessageDescriptor { panic(protoCanary("Descriptor")) }
+func (r checksReflect) Type() protoreflect.MessageType             { panic(protoCanary("Type")) }
+func (r checksReflect) New() protoreflect.Message                  { return checksReflect{m: new(Checks)} }
+func (r checksReflect) Interface() protoreflect.ProtoMessage       { return r.m }
+func (r checksReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r checksReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r checksReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r checksReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r checksReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r checksReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r checksReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r checksReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r checksReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r checksReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r checksReflect) IsValid() bool                     { return r.m != nil }
+func (r checksReflect) ProtoMethods() *protoiface.Methods { return &checksMethods }
+
+func (r deviceAuthorizationFlowRequestReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r deviceAuthorizationFlowRequestReflect) Type() protoreflect.MessageType {
+	panic(protoCanary("Type"))
+}
+func (r deviceAuthorizationFlowRequestReflect) New() protoreflect.Message {
+	return deviceAuthorizationFlowRequestReflect{m: new(DeviceAuthorizationFlowRequest)}
+}
+func (r deviceAuthorizationFlowRequestReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r deviceAuthorizationFlowRequestReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r deviceAuthorizationFlowRequestReflect) Has(protoreflect.FieldDescriptor) bool {
+	panic(protoCanary("Has"))
+}
+func (r deviceAuthorizationFlowRequestReflect) Clear(protoreflect.FieldDescriptor) {
+	panic(protoCanary("Clear"))
+}
+func (r deviceAuthorizationFlowRequestReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r deviceAuthorizationFlowRequestReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r deviceAuthorizationFlowRequestReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r deviceAuthorizationFlowRequestReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r deviceAuthorizationFlowRequestReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r deviceAuthorizationFlowRequestReflect) GetUnknown() protoreflect.RawFields {
+	return r.m.unknownFields
+}
+func (r deviceAuthorizationFlowRequestReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r deviceAuthorizationFlowRequestReflect) IsValid() bool { return r.m != nil }
+func (r deviceAuthorizationFlowRequestReflect) ProtoMethods() *protoiface.Methods {
+	return &deviceAuthorizationFlowRequestMethods
+}
+
+func (r deviceAuthorizationFlowReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r deviceAuthorizationFlowReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r deviceAuthorizationFlowReflect) New() protoreflect.Message {
+	return deviceAuthorizationFlowReflect{m: new(DeviceAuthorizationFlow)}
+}
+func (r deviceAuthorizationFlowReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r deviceAuthorizationFlowReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r deviceAuthorizationFlowReflect) Has(protoreflect.FieldDescriptor) bool {
+	panic(protoCanary("Has"))
+}
+func (r deviceAuthorizationFlowReflect) Clear(protoreflect.FieldDescriptor) {
+	panic(protoCanary("Clear"))
+}
+func (r deviceAuthorizationFlowReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r deviceAuthorizationFlowReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r deviceAuthorizationFlowReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r deviceAuthorizationFlowReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r deviceAuthorizationFlowReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r deviceAuthorizationFlowReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r deviceAuthorizationFlowReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r deviceAuthorizationFlowReflect) IsValid() bool { return r.m != nil }
+func (r deviceAuthorizationFlowReflect) ProtoMethods() *protoiface.Methods {
+	return &deviceAuthorizationFlowMethods
+}
+
+func (r pKCEAuthorizationFlowRequestReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r pKCEAuthorizationFlowRequestReflect) Type() protoreflect.MessageType {
+	panic(protoCanary("Type"))
+}
+func (r pKCEAuthorizationFlowRequestReflect) New() protoreflect.Message {
+	return pKCEAuthorizationFlowRequestReflect{m: new(PKCEAuthorizationFlowRequest)}
+}
+func (r pKCEAuthorizationFlowRequestReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r pKCEAuthorizationFlowRequestReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r pKCEAuthorizationFlowRequestReflect) Has(protoreflect.FieldDescriptor) bool {
+	panic(protoCanary("Has"))
+}
+func (r pKCEAuthorizationFlowRequestReflect) Clear(protoreflect.FieldDescriptor) {
+	panic(protoCanary("Clear"))
+}
+func (r pKCEAuthorizationFlowRequestReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r pKCEAuthorizationFlowRequestReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r pKCEAuthorizationFlowRequestReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r pKCEAuthorizationFlowRequestReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r pKCEAuthorizationFlowRequestReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r pKCEAuthorizationFlowRequestReflect) GetUnknown() protoreflect.RawFields {
+	return r.m.unknownFields
+}
+func (r pKCEAuthorizationFlowRequestReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r pKCEAuthorizationFlowRequestReflect) IsValid() bool { return r.m != nil }
+func (r pKCEAuthorizationFlowRequestReflect) ProtoMethods() *protoiface.Methods {
+	return &pKCEAuthorizationFlowRequestMethods
+}
+
+func (r pKCEAuthorizationFlowReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r pKCEAuthorizationFlowReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r pKCEAuthorizationFlowReflect) New() protoreflect.Message {
+	return pKCEAuthorizationFlowReflect{m: new(PKCEAuthorizationFlow)}
+}
+func (r pKCEAuthorizationFlowReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r pKCEAuthorizationFlowReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r pKCEAuthorizationFlowReflect) Has(protoreflect.FieldDescriptor) bool {
+	panic(protoCanary("Has"))
+}
+func (r pKCEAuthorizationFlowReflect) Clear(protoreflect.FieldDescriptor) {
+	panic(protoCanary("Clear"))
+}
+func (r pKCEAuthorizationFlowReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r pKCEAuthorizationFlowReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r pKCEAuthorizationFlowReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r pKCEAuthorizationFlowReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r pKCEAuthorizationFlowReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r pKCEAuthorizationFlowReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r pKCEAuthorizationFlowReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r pKCEAuthorizationFlowReflect) IsValid() bool { return r.m != nil }
+func (r pKCEAuthorizationFlowReflect) ProtoMethods() *protoiface.Methods {
+	return &pKCEAuthorizationFlowMethods
+}
+
+func (r providerConfigReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r providerConfigReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r providerConfigReflect) New() protoreflect.Message {
+	return providerConfigReflect{m: new(ProviderConfig)}
+}
+func (r providerConfigReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r providerConfigReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r providerConfigReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r providerConfigReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r providerConfigReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r providerConfigReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r providerConfigReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r providerConfigReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r providerConfigReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r providerConfigReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r providerConfigReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r providerConfigReflect) IsValid() bool                     { return r.m != nil }
+func (r providerConfigReflect) ProtoMethods() *protoiface.Methods { return &providerConfigMethods }
+
 var encryptedMessageMethods = protoiface.Methods{
 	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
 	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
@@ -74,6 +1140,702 @@ var encryptedMessageMethods = protoiface.Methods{
 	},
 	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
 		return protoiface.EqualOutput{Equal: equalEncryptedMessage(in.MessageA.(encryptedMessageReflect).m, in.MessageB.(encryptedMessageReflect).m)}
+	},
+}
+
+var syncRequestMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeSyncRequest(in.Message.(syncRequestReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalSyncRequest(in.Buf, in.Message.(syncRequestReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalSyncRequest(in.Message.(syncRequestReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeSyncRequest(in.Destination.(syncRequestReflect).m, in.Source.(syncRequestReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalSyncRequest(in.MessageA.(syncRequestReflect).m, in.MessageB.(syncRequestReflect).m)}
+	},
+}
+
+var syncMetaRequestMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeSyncMetaRequest(in.Message.(syncMetaRequestReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalSyncMetaRequest(in.Buf, in.Message.(syncMetaRequestReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalSyncMetaRequest(in.Message.(syncMetaRequestReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeSyncMetaRequest(in.Destination.(syncMetaRequestReflect).m, in.Source.(syncMetaRequestReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalSyncMetaRequest(in.MessageA.(syncMetaRequestReflect).m, in.MessageB.(syncMetaRequestReflect).m)}
+	},
+}
+
+var loginRequestMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeLoginRequest(in.Message.(loginRequestReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalLoginRequest(in.Buf, in.Message.(loginRequestReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalLoginRequest(in.Message.(loginRequestReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeLoginRequest(in.Destination.(loginRequestReflect).m, in.Source.(loginRequestReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalLoginRequest(in.MessageA.(loginRequestReflect).m, in.MessageB.(loginRequestReflect).m)}
+	},
+}
+
+var peerKeysMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizePeerKeys(in.Message.(peerKeysReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalPeerKeys(in.Buf, in.Message.(peerKeysReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalPeerKeys(in.Message.(peerKeysReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergePeerKeys(in.Destination.(peerKeysReflect).m, in.Source.(peerKeysReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalPeerKeys(in.MessageA.(peerKeysReflect).m, in.MessageB.(peerKeysReflect).m)}
+	},
+}
+
+var environmentMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeEnvironment(in.Message.(environmentReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalEnvironment(in.Buf, in.Message.(environmentReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalEnvironment(in.Message.(environmentReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeEnvironment(in.Destination.(environmentReflect).m, in.Source.(environmentReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalEnvironment(in.MessageA.(environmentReflect).m, in.MessageB.(environmentReflect).m)}
+	},
+}
+
+var fileMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeFile(in.Message.(fileReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalFile(in.Buf, in.Message.(fileReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalFile(in.Message.(fileReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeFile(in.Destination.(fileReflect).m, in.Source.(fileReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalFile(in.MessageA.(fileReflect).m, in.MessageB.(fileReflect).m)}
+	},
+}
+
+var flagsMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeFlags(in.Message.(flagsReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalFlags(in.Buf, in.Message.(flagsReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalFlags(in.Message.(flagsReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeFlags(in.Destination.(flagsReflect).m, in.Source.(flagsReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalFlags(in.MessageA.(flagsReflect).m, in.MessageB.(flagsReflect).m)}
+	},
+}
+
+var peerSystemMetaMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizePeerSystemMeta(in.Message.(peerSystemMetaReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalPeerSystemMeta(in.Buf, in.Message.(peerSystemMetaReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalPeerSystemMeta(in.Message.(peerSystemMetaReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergePeerSystemMeta(in.Destination.(peerSystemMetaReflect).m, in.Source.(peerSystemMetaReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalPeerSystemMeta(in.MessageA.(peerSystemMetaReflect).m, in.MessageB.(peerSystemMetaReflect).m)}
+	},
+}
+
+var loginResponseMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeLoginResponse(in.Message.(loginResponseReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalLoginResponse(in.Buf, in.Message.(loginResponseReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalLoginResponse(in.Message.(loginResponseReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeLoginResponse(in.Destination.(loginResponseReflect).m, in.Source.(loginResponseReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalLoginResponse(in.MessageA.(loginResponseReflect).m, in.MessageB.(loginResponseReflect).m)}
+	},
+}
+
+var extendAuthSessionRequestMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeExtendAuthSessionRequest(in.Message.(extendAuthSessionRequestReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalExtendAuthSessionRequest(in.Buf, in.Message.(extendAuthSessionRequestReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalExtendAuthSessionRequest(in.Message.(extendAuthSessionRequestReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeExtendAuthSessionRequest(in.Destination.(extendAuthSessionRequestReflect).m, in.Source.(extendAuthSessionRequestReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalExtendAuthSessionRequest(in.MessageA.(extendAuthSessionRequestReflect).m, in.MessageB.(extendAuthSessionRequestReflect).m)}
+	},
+}
+
+var extendAuthSessionResponseMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeExtendAuthSessionResponse(in.Message.(extendAuthSessionResponseReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalExtendAuthSessionResponse(in.Buf, in.Message.(extendAuthSessionResponseReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalExtendAuthSessionResponse(in.Message.(extendAuthSessionResponseReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeExtendAuthSessionResponse(in.Destination.(extendAuthSessionResponseReflect).m, in.Source.(extendAuthSessionResponseReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalExtendAuthSessionResponse(in.MessageA.(extendAuthSessionResponseReflect).m, in.MessageB.(extendAuthSessionResponseReflect).m)}
+	},
+}
+
+var serverKeyResponseMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeServerKeyResponse(in.Message.(serverKeyResponseReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalServerKeyResponse(in.Buf, in.Message.(serverKeyResponseReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalServerKeyResponse(in.Message.(serverKeyResponseReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeServerKeyResponse(in.Destination.(serverKeyResponseReflect).m, in.Source.(serverKeyResponseReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalServerKeyResponse(in.MessageA.(serverKeyResponseReflect).m, in.MessageB.(serverKeyResponseReflect).m)}
+	},
+}
+
+var emptyMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeEmpty(in.Message.(emptyReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalEmpty(in.Buf, in.Message.(emptyReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalEmpty(in.Message.(emptyReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeEmpty(in.Destination.(emptyReflect).m, in.Source.(emptyReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalEmpty(in.MessageA.(emptyReflect).m, in.MessageB.(emptyReflect).m)}
+	},
+}
+
+var netbirdConfigMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeNetbirdConfig(in.Message.(netbirdConfigReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalNetbirdConfig(in.Buf, in.Message.(netbirdConfigReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalNetbirdConfig(in.Message.(netbirdConfigReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeNetbirdConfig(in.Destination.(netbirdConfigReflect).m, in.Source.(netbirdConfigReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalNetbirdConfig(in.MessageA.(netbirdConfigReflect).m, in.MessageB.(netbirdConfigReflect).m)}
+	},
+}
+
+var hostConfigMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeHostConfig(in.Message.(hostConfigReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalHostConfig(in.Buf, in.Message.(hostConfigReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalHostConfig(in.Message.(hostConfigReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeHostConfig(in.Destination.(hostConfigReflect).m, in.Source.(hostConfigReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalHostConfig(in.MessageA.(hostConfigReflect).m, in.MessageB.(hostConfigReflect).m)}
+	},
+}
+
+var relayConfigMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeRelayConfig(in.Message.(relayConfigReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalRelayConfig(in.Buf, in.Message.(relayConfigReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalRelayConfig(in.Message.(relayConfigReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeRelayConfig(in.Destination.(relayConfigReflect).m, in.Source.(relayConfigReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalRelayConfig(in.MessageA.(relayConfigReflect).m, in.MessageB.(relayConfigReflect).m)}
+	},
+}
+
+var flowConfigMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeFlowConfig(in.Message.(flowConfigReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalFlowConfig(in.Buf, in.Message.(flowConfigReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalFlowConfig(in.Message.(flowConfigReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeFlowConfig(in.Destination.(flowConfigReflect).m, in.Source.(flowConfigReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalFlowConfig(in.MessageA.(flowConfigReflect).m, in.MessageB.(flowConfigReflect).m)}
+	},
+}
+
+var jWTConfigMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeJWTConfig(in.Message.(jWTConfigReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalJWTConfig(in.Buf, in.Message.(jWTConfigReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalJWTConfig(in.Message.(jWTConfigReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeJWTConfig(in.Destination.(jWTConfigReflect).m, in.Source.(jWTConfigReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalJWTConfig(in.MessageA.(jWTConfigReflect).m, in.MessageB.(jWTConfigReflect).m)}
+	},
+}
+
+var protectedHostConfigMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeProtectedHostConfig(in.Message.(protectedHostConfigReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalProtectedHostConfig(in.Buf, in.Message.(protectedHostConfigReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalProtectedHostConfig(in.Message.(protectedHostConfigReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeProtectedHostConfig(in.Destination.(protectedHostConfigReflect).m, in.Source.(protectedHostConfigReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalProtectedHostConfig(in.MessageA.(protectedHostConfigReflect).m, in.MessageB.(protectedHostConfigReflect).m)}
+	},
+}
+
+var peerConfigMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizePeerConfig(in.Message.(peerConfigReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalPeerConfig(in.Buf, in.Message.(peerConfigReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalPeerConfig(in.Message.(peerConfigReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergePeerConfig(in.Destination.(peerConfigReflect).m, in.Source.(peerConfigReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalPeerConfig(in.MessageA.(peerConfigReflect).m, in.MessageB.(peerConfigReflect).m)}
+	},
+}
+
+var autoUpdateSettingsMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeAutoUpdateSettings(in.Message.(autoUpdateSettingsReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalAutoUpdateSettings(in.Buf, in.Message.(autoUpdateSettingsReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalAutoUpdateSettings(in.Message.(autoUpdateSettingsReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeAutoUpdateSettings(in.Destination.(autoUpdateSettingsReflect).m, in.Source.(autoUpdateSettingsReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalAutoUpdateSettings(in.MessageA.(autoUpdateSettingsReflect).m, in.MessageB.(autoUpdateSettingsReflect).m)}
+	},
+}
+
+var networkAddressMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeNetworkAddress(in.Message.(networkAddressReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalNetworkAddress(in.Buf, in.Message.(networkAddressReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalNetworkAddress(in.Message.(networkAddressReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeNetworkAddress(in.Destination.(networkAddressReflect).m, in.Source.(networkAddressReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalNetworkAddress(in.MessageA.(networkAddressReflect).m, in.MessageB.(networkAddressReflect).m)}
+	},
+}
+
+var sSHConfigMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeSSHConfig(in.Message.(sSHConfigReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalSSHConfig(in.Buf, in.Message.(sSHConfigReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalSSHConfig(in.Message.(sSHConfigReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeSSHConfig(in.Destination.(sSHConfigReflect).m, in.Source.(sSHConfigReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalSSHConfig(in.MessageA.(sSHConfigReflect).m, in.MessageB.(sSHConfigReflect).m)}
+	},
+}
+
+var checksMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeChecks(in.Message.(checksReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalChecks(in.Buf, in.Message.(checksReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalChecks(in.Message.(checksReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeChecks(in.Destination.(checksReflect).m, in.Source.(checksReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalChecks(in.MessageA.(checksReflect).m, in.MessageB.(checksReflect).m)}
+	},
+}
+
+var deviceAuthorizationFlowRequestMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeDeviceAuthorizationFlowRequest(in.Message.(deviceAuthorizationFlowRequestReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalDeviceAuthorizationFlowRequest(in.Buf, in.Message.(deviceAuthorizationFlowRequestReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalDeviceAuthorizationFlowRequest(in.Message.(deviceAuthorizationFlowRequestReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeDeviceAuthorizationFlowRequest(in.Destination.(deviceAuthorizationFlowRequestReflect).m, in.Source.(deviceAuthorizationFlowRequestReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalDeviceAuthorizationFlowRequest(in.MessageA.(deviceAuthorizationFlowRequestReflect).m, in.MessageB.(deviceAuthorizationFlowRequestReflect).m)}
+	},
+}
+
+var deviceAuthorizationFlowMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeDeviceAuthorizationFlow(in.Message.(deviceAuthorizationFlowReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalDeviceAuthorizationFlow(in.Buf, in.Message.(deviceAuthorizationFlowReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalDeviceAuthorizationFlow(in.Message.(deviceAuthorizationFlowReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeDeviceAuthorizationFlow(in.Destination.(deviceAuthorizationFlowReflect).m, in.Source.(deviceAuthorizationFlowReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalDeviceAuthorizationFlow(in.MessageA.(deviceAuthorizationFlowReflect).m, in.MessageB.(deviceAuthorizationFlowReflect).m)}
+	},
+}
+
+var pKCEAuthorizationFlowRequestMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizePKCEAuthorizationFlowRequest(in.Message.(pKCEAuthorizationFlowRequestReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalPKCEAuthorizationFlowRequest(in.Buf, in.Message.(pKCEAuthorizationFlowRequestReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalPKCEAuthorizationFlowRequest(in.Message.(pKCEAuthorizationFlowRequestReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergePKCEAuthorizationFlowRequest(in.Destination.(pKCEAuthorizationFlowRequestReflect).m, in.Source.(pKCEAuthorizationFlowRequestReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalPKCEAuthorizationFlowRequest(in.MessageA.(pKCEAuthorizationFlowRequestReflect).m, in.MessageB.(pKCEAuthorizationFlowRequestReflect).m)}
+	},
+}
+
+var pKCEAuthorizationFlowMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizePKCEAuthorizationFlow(in.Message.(pKCEAuthorizationFlowReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalPKCEAuthorizationFlow(in.Buf, in.Message.(pKCEAuthorizationFlowReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalPKCEAuthorizationFlow(in.Message.(pKCEAuthorizationFlowReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergePKCEAuthorizationFlow(in.Destination.(pKCEAuthorizationFlowReflect).m, in.Source.(pKCEAuthorizationFlowReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalPKCEAuthorizationFlow(in.MessageA.(pKCEAuthorizationFlowReflect).m, in.MessageB.(pKCEAuthorizationFlowReflect).m)}
+	},
+}
+
+var providerConfigMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeProviderConfig(in.Message.(providerConfigReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalProviderConfig(in.Buf, in.Message.(providerConfigReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalProviderConfig(in.Message.(providerConfigReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeProviderConfig(in.Destination.(providerConfigReflect).m, in.Source.(providerConfigReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalProviderConfig(in.MessageA.(providerConfigReflect).m, in.MessageB.(providerConfigReflect).m)}
 	},
 }
 
@@ -181,4 +1943,4251 @@ func equalEncryptedMessage(a, b *EncryptedMessage) bool {
 		return false
 	}
 	return true
+}
+
+func sizeSyncRequest(m *SyncRequest) int {
+	n := 0
+	if m.Meta != nil {
+		s := sizePeerSystemMeta(m.Meta)
+		n += protowire.SizeTag(1) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalSyncRequest(b []byte, m *SyncRequest) []byte {
+	if m.Meta != nil {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizePeerSystemMeta(m.Meta)))
+		b = marshalPeerSystemMeta(b, m.Meta)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalSyncRequest(m *SyncRequest, b []byte) error {
+	*m = SyncRequest{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.Meta == nil {
+				m.Meta = &PeerSystemMeta{}
+			}
+			if err := unmarshalPeerSystemMeta(m.Meta, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeSyncRequest(dst, src *SyncRequest) {
+	if src.Meta != nil {
+		if dst.Meta == nil {
+			dst.Meta = &PeerSystemMeta{}
+		}
+		mergePeerSystemMeta(dst.Meta, src.Meta)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalSyncRequest(a, b *SyncRequest) bool {
+	if (a.Meta == nil) != (b.Meta == nil) {
+		return false
+	}
+	if a.Meta != nil && !equalPeerSystemMeta(a.Meta, b.Meta) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeSyncMetaRequest(m *SyncMetaRequest) int {
+	n := 0
+	if m.Meta != nil {
+		s := sizePeerSystemMeta(m.Meta)
+		n += protowire.SizeTag(1) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalSyncMetaRequest(b []byte, m *SyncMetaRequest) []byte {
+	if m.Meta != nil {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizePeerSystemMeta(m.Meta)))
+		b = marshalPeerSystemMeta(b, m.Meta)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalSyncMetaRequest(m *SyncMetaRequest, b []byte) error {
+	*m = SyncMetaRequest{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.Meta == nil {
+				m.Meta = &PeerSystemMeta{}
+			}
+			if err := unmarshalPeerSystemMeta(m.Meta, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeSyncMetaRequest(dst, src *SyncMetaRequest) {
+	if src.Meta != nil {
+		if dst.Meta == nil {
+			dst.Meta = &PeerSystemMeta{}
+		}
+		mergePeerSystemMeta(dst.Meta, src.Meta)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalSyncMetaRequest(a, b *SyncMetaRequest) bool {
+	if (a.Meta == nil) != (b.Meta == nil) {
+		return false
+	}
+	if a.Meta != nil && !equalPeerSystemMeta(a.Meta, b.Meta) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeLoginRequest(m *LoginRequest) int {
+	n := 0
+	if m.SetupKey != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.SetupKey))
+	}
+	if m.Meta != nil {
+		s := sizePeerSystemMeta(m.Meta)
+		n += protowire.SizeTag(2) + protowire.SizeBytes(s)
+	}
+	if m.JwtToken != "" {
+		n += protowire.SizeTag(3) + protowire.SizeBytes(len(m.JwtToken))
+	}
+	if m.PeerKeys != nil {
+		s := sizePeerKeys(m.PeerKeys)
+		n += protowire.SizeTag(4) + protowire.SizeBytes(s)
+	}
+	for _, v := range m.DnsLabels {
+		n += protowire.SizeTag(5) + protowire.SizeBytes(len(v))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalLoginRequest(b []byte, m *LoginRequest) []byte {
+	if m.SetupKey != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.SetupKey)
+	}
+	if m.Meta != nil {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizePeerSystemMeta(m.Meta)))
+		b = marshalPeerSystemMeta(b, m.Meta)
+	}
+	if m.JwtToken != "" {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendString(b, m.JwtToken)
+	}
+	if m.PeerKeys != nil {
+		b = protowire.AppendTag(b, 4, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizePeerKeys(m.PeerKeys)))
+		b = marshalPeerKeys(b, m.PeerKeys)
+	}
+	for _, v := range m.DnsLabels {
+		b = protowire.AppendTag(b, 5, protowire.BytesType)
+		b = protowire.AppendString(b, v)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalLoginRequest(m *LoginRequest, b []byte) error {
+	*m = LoginRequest{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.SetupKey = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.Meta == nil {
+				m.Meta = &PeerSystemMeta{}
+			}
+			if err := unmarshalPeerSystemMeta(m.Meta, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.JwtToken = v
+			b = b[n:]
+		case num == 4 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.PeerKeys == nil {
+				m.PeerKeys = &PeerKeys{}
+			}
+			if err := unmarshalPeerKeys(m.PeerKeys, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 5 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.DnsLabels = append(m.DnsLabels, v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeLoginRequest(dst, src *LoginRequest) {
+	if src.SetupKey != "" {
+		dst.SetupKey = src.SetupKey
+	}
+	if src.Meta != nil {
+		if dst.Meta == nil {
+			dst.Meta = &PeerSystemMeta{}
+		}
+		mergePeerSystemMeta(dst.Meta, src.Meta)
+	}
+	if src.JwtToken != "" {
+		dst.JwtToken = src.JwtToken
+	}
+	if src.PeerKeys != nil {
+		if dst.PeerKeys == nil {
+			dst.PeerKeys = &PeerKeys{}
+		}
+		mergePeerKeys(dst.PeerKeys, src.PeerKeys)
+	}
+	if len(src.DnsLabels) > 0 {
+		dst.DnsLabels = append(dst.DnsLabels, src.DnsLabels...)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalLoginRequest(a, b *LoginRequest) bool {
+	if a.SetupKey != b.SetupKey {
+		return false
+	}
+	if (a.Meta == nil) != (b.Meta == nil) {
+		return false
+	}
+	if a.Meta != nil && !equalPeerSystemMeta(a.Meta, b.Meta) {
+		return false
+	}
+	if a.JwtToken != b.JwtToken {
+		return false
+	}
+	if (a.PeerKeys == nil) != (b.PeerKeys == nil) {
+		return false
+	}
+	if a.PeerKeys != nil && !equalPeerKeys(a.PeerKeys, b.PeerKeys) {
+		return false
+	}
+	if len(a.DnsLabels) != len(b.DnsLabels) {
+		return false
+	}
+	for i := range a.DnsLabels {
+		if a.DnsLabels[i] != b.DnsLabels[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizePeerKeys(m *PeerKeys) int {
+	n := 0
+	if len(m.SshPubKey) > 0 {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.SshPubKey))
+	}
+	if len(m.WgPubKey) > 0 {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.WgPubKey))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalPeerKeys(b []byte, m *PeerKeys) []byte {
+	if len(m.SshPubKey) > 0 {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendBytes(b, m.SshPubKey)
+	}
+	if len(m.WgPubKey) > 0 {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendBytes(b, m.WgPubKey)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalPeerKeys(m *PeerKeys, b []byte) error {
+	*m = PeerKeys{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.SshPubKey = append(m.SshPubKey[:0], v...)
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.WgPubKey = append(m.WgPubKey[:0], v...)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergePeerKeys(dst, src *PeerKeys) {
+	if len(src.SshPubKey) > 0 {
+		dst.SshPubKey = append(dst.SshPubKey[:0], src.SshPubKey...)
+	}
+	if len(src.WgPubKey) > 0 {
+		dst.WgPubKey = append(dst.WgPubKey[:0], src.WgPubKey...)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalPeerKeys(a, b *PeerKeys) bool {
+	if !bytes.Equal(a.SshPubKey, b.SshPubKey) {
+		return false
+	}
+	if !bytes.Equal(a.WgPubKey, b.WgPubKey) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeEnvironment(m *Environment) int {
+	n := 0
+	if m.Cloud != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Cloud))
+	}
+	if m.Platform != "" {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.Platform))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalEnvironment(b []byte, m *Environment) []byte {
+	if m.Cloud != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Cloud)
+	}
+	if m.Platform != "" {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendString(b, m.Platform)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalEnvironment(m *Environment, b []byte) error {
+	*m = Environment{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Cloud = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Platform = v
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeEnvironment(dst, src *Environment) {
+	if src.Cloud != "" {
+		dst.Cloud = src.Cloud
+	}
+	if src.Platform != "" {
+		dst.Platform = src.Platform
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalEnvironment(a, b *Environment) bool {
+	if a.Cloud != b.Cloud {
+		return false
+	}
+	if a.Platform != b.Platform {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeFile(m *File) int {
+	n := 0
+	if m.Path != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Path))
+	}
+	if m.Exist {
+		n += protowire.SizeTag(2) + protowire.SizeVarint(protowire.EncodeBool(m.Exist))
+	}
+	if m.ProcessIsRunning {
+		n += protowire.SizeTag(3) + protowire.SizeVarint(protowire.EncodeBool(m.ProcessIsRunning))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalFile(b []byte, m *File) []byte {
+	if m.Path != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Path)
+	}
+	if m.Exist {
+		b = protowire.AppendTag(b, 2, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.Exist))
+	}
+	if m.ProcessIsRunning {
+		b = protowire.AppendTag(b, 3, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.ProcessIsRunning))
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalFile(m *File, b []byte) error {
+	*m = File{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Path = v
+			b = b[n:]
+		case num == 2 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Exist = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 3 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ProcessIsRunning = protowire.DecodeBool(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeFile(dst, src *File) {
+	if src.Path != "" {
+		dst.Path = src.Path
+	}
+	if src.Exist {
+		dst.Exist = src.Exist
+	}
+	if src.ProcessIsRunning {
+		dst.ProcessIsRunning = src.ProcessIsRunning
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalFile(a, b *File) bool {
+	if a.Path != b.Path {
+		return false
+	}
+	if a.Exist != b.Exist {
+		return false
+	}
+	if a.ProcessIsRunning != b.ProcessIsRunning {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeFlags(m *Flags) int {
+	n := 0
+	if m.RosenpassEnabled {
+		n += protowire.SizeTag(1) + protowire.SizeVarint(protowire.EncodeBool(m.RosenpassEnabled))
+	}
+	if m.RosenpassPermissive {
+		n += protowire.SizeTag(2) + protowire.SizeVarint(protowire.EncodeBool(m.RosenpassPermissive))
+	}
+	if m.ServerSSHAllowed {
+		n += protowire.SizeTag(3) + protowire.SizeVarint(protowire.EncodeBool(m.ServerSSHAllowed))
+	}
+	if m.DisableClientRoutes {
+		n += protowire.SizeTag(4) + protowire.SizeVarint(protowire.EncodeBool(m.DisableClientRoutes))
+	}
+	if m.DisableServerRoutes {
+		n += protowire.SizeTag(5) + protowire.SizeVarint(protowire.EncodeBool(m.DisableServerRoutes))
+	}
+	if m.DisableDNS {
+		n += protowire.SizeTag(6) + protowire.SizeVarint(protowire.EncodeBool(m.DisableDNS))
+	}
+	if m.DisableFirewall {
+		n += protowire.SizeTag(7) + protowire.SizeVarint(protowire.EncodeBool(m.DisableFirewall))
+	}
+	if m.BlockLANAccess {
+		n += protowire.SizeTag(8) + protowire.SizeVarint(protowire.EncodeBool(m.BlockLANAccess))
+	}
+	if m.BlockInbound {
+		n += protowire.SizeTag(9) + protowire.SizeVarint(protowire.EncodeBool(m.BlockInbound))
+	}
+	if m.LazyConnectionEnabled {
+		n += protowire.SizeTag(10) + protowire.SizeVarint(protowire.EncodeBool(m.LazyConnectionEnabled))
+	}
+	if m.EnableSSHRoot {
+		n += protowire.SizeTag(11) + protowire.SizeVarint(protowire.EncodeBool(m.EnableSSHRoot))
+	}
+	if m.EnableSSHSFTP {
+		n += protowire.SizeTag(12) + protowire.SizeVarint(protowire.EncodeBool(m.EnableSSHSFTP))
+	}
+	if m.EnableSSHLocalPortForwarding {
+		n += protowire.SizeTag(13) + protowire.SizeVarint(protowire.EncodeBool(m.EnableSSHLocalPortForwarding))
+	}
+	if m.EnableSSHRemotePortForwarding {
+		n += protowire.SizeTag(14) + protowire.SizeVarint(protowire.EncodeBool(m.EnableSSHRemotePortForwarding))
+	}
+	if m.DisableSSHAuth {
+		n += protowire.SizeTag(15) + protowire.SizeVarint(protowire.EncodeBool(m.DisableSSHAuth))
+	}
+	if m.DisableIPv6 {
+		n += protowire.SizeTag(16) + protowire.SizeVarint(protowire.EncodeBool(m.DisableIPv6))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalFlags(b []byte, m *Flags) []byte {
+	if m.RosenpassEnabled {
+		b = protowire.AppendTag(b, 1, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.RosenpassEnabled))
+	}
+	if m.RosenpassPermissive {
+		b = protowire.AppendTag(b, 2, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.RosenpassPermissive))
+	}
+	if m.ServerSSHAllowed {
+		b = protowire.AppendTag(b, 3, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.ServerSSHAllowed))
+	}
+	if m.DisableClientRoutes {
+		b = protowire.AppendTag(b, 4, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.DisableClientRoutes))
+	}
+	if m.DisableServerRoutes {
+		b = protowire.AppendTag(b, 5, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.DisableServerRoutes))
+	}
+	if m.DisableDNS {
+		b = protowire.AppendTag(b, 6, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.DisableDNS))
+	}
+	if m.DisableFirewall {
+		b = protowire.AppendTag(b, 7, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.DisableFirewall))
+	}
+	if m.BlockLANAccess {
+		b = protowire.AppendTag(b, 8, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.BlockLANAccess))
+	}
+	if m.BlockInbound {
+		b = protowire.AppendTag(b, 9, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.BlockInbound))
+	}
+	if m.LazyConnectionEnabled {
+		b = protowire.AppendTag(b, 10, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.LazyConnectionEnabled))
+	}
+	if m.EnableSSHRoot {
+		b = protowire.AppendTag(b, 11, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.EnableSSHRoot))
+	}
+	if m.EnableSSHSFTP {
+		b = protowire.AppendTag(b, 12, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.EnableSSHSFTP))
+	}
+	if m.EnableSSHLocalPortForwarding {
+		b = protowire.AppendTag(b, 13, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.EnableSSHLocalPortForwarding))
+	}
+	if m.EnableSSHRemotePortForwarding {
+		b = protowire.AppendTag(b, 14, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.EnableSSHRemotePortForwarding))
+	}
+	if m.DisableSSHAuth {
+		b = protowire.AppendTag(b, 15, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.DisableSSHAuth))
+	}
+	if m.DisableIPv6 {
+		b = protowire.AppendTag(b, 16, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.DisableIPv6))
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalFlags(m *Flags, b []byte) error {
+	*m = Flags{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.RosenpassEnabled = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 2 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.RosenpassPermissive = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 3 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ServerSSHAllowed = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 4 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.DisableClientRoutes = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 5 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.DisableServerRoutes = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 6 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.DisableDNS = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 7 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.DisableFirewall = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 8 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.BlockLANAccess = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 9 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.BlockInbound = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 10 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.LazyConnectionEnabled = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 11 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.EnableSSHRoot = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 12 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.EnableSSHSFTP = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 13 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.EnableSSHLocalPortForwarding = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 14 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.EnableSSHRemotePortForwarding = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 15 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.DisableSSHAuth = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 16 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.DisableIPv6 = protowire.DecodeBool(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeFlags(dst, src *Flags) {
+	if src.RosenpassEnabled {
+		dst.RosenpassEnabled = src.RosenpassEnabled
+	}
+	if src.RosenpassPermissive {
+		dst.RosenpassPermissive = src.RosenpassPermissive
+	}
+	if src.ServerSSHAllowed {
+		dst.ServerSSHAllowed = src.ServerSSHAllowed
+	}
+	if src.DisableClientRoutes {
+		dst.DisableClientRoutes = src.DisableClientRoutes
+	}
+	if src.DisableServerRoutes {
+		dst.DisableServerRoutes = src.DisableServerRoutes
+	}
+	if src.DisableDNS {
+		dst.DisableDNS = src.DisableDNS
+	}
+	if src.DisableFirewall {
+		dst.DisableFirewall = src.DisableFirewall
+	}
+	if src.BlockLANAccess {
+		dst.BlockLANAccess = src.BlockLANAccess
+	}
+	if src.BlockInbound {
+		dst.BlockInbound = src.BlockInbound
+	}
+	if src.LazyConnectionEnabled {
+		dst.LazyConnectionEnabled = src.LazyConnectionEnabled
+	}
+	if src.EnableSSHRoot {
+		dst.EnableSSHRoot = src.EnableSSHRoot
+	}
+	if src.EnableSSHSFTP {
+		dst.EnableSSHSFTP = src.EnableSSHSFTP
+	}
+	if src.EnableSSHLocalPortForwarding {
+		dst.EnableSSHLocalPortForwarding = src.EnableSSHLocalPortForwarding
+	}
+	if src.EnableSSHRemotePortForwarding {
+		dst.EnableSSHRemotePortForwarding = src.EnableSSHRemotePortForwarding
+	}
+	if src.DisableSSHAuth {
+		dst.DisableSSHAuth = src.DisableSSHAuth
+	}
+	if src.DisableIPv6 {
+		dst.DisableIPv6 = src.DisableIPv6
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalFlags(a, b *Flags) bool {
+	if a.RosenpassEnabled != b.RosenpassEnabled {
+		return false
+	}
+	if a.RosenpassPermissive != b.RosenpassPermissive {
+		return false
+	}
+	if a.ServerSSHAllowed != b.ServerSSHAllowed {
+		return false
+	}
+	if a.DisableClientRoutes != b.DisableClientRoutes {
+		return false
+	}
+	if a.DisableServerRoutes != b.DisableServerRoutes {
+		return false
+	}
+	if a.DisableDNS != b.DisableDNS {
+		return false
+	}
+	if a.DisableFirewall != b.DisableFirewall {
+		return false
+	}
+	if a.BlockLANAccess != b.BlockLANAccess {
+		return false
+	}
+	if a.BlockInbound != b.BlockInbound {
+		return false
+	}
+	if a.LazyConnectionEnabled != b.LazyConnectionEnabled {
+		return false
+	}
+	if a.EnableSSHRoot != b.EnableSSHRoot {
+		return false
+	}
+	if a.EnableSSHSFTP != b.EnableSSHSFTP {
+		return false
+	}
+	if a.EnableSSHLocalPortForwarding != b.EnableSSHLocalPortForwarding {
+		return false
+	}
+	if a.EnableSSHRemotePortForwarding != b.EnableSSHRemotePortForwarding {
+		return false
+	}
+	if a.DisableSSHAuth != b.DisableSSHAuth {
+		return false
+	}
+	if a.DisableIPv6 != b.DisableIPv6 {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizePeerSystemMeta(m *PeerSystemMeta) int {
+	n := 0
+	if m.Hostname != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Hostname))
+	}
+	if m.GoOS != "" {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.GoOS))
+	}
+	if m.Kernel != "" {
+		n += protowire.SizeTag(3) + protowire.SizeBytes(len(m.Kernel))
+	}
+	if m.Core != "" {
+		n += protowire.SizeTag(4) + protowire.SizeBytes(len(m.Core))
+	}
+	if m.Platform != "" {
+		n += protowire.SizeTag(5) + protowire.SizeBytes(len(m.Platform))
+	}
+	if m.OS != "" {
+		n += protowire.SizeTag(6) + protowire.SizeBytes(len(m.OS))
+	}
+	if m.NetbirdVersion != "" {
+		n += protowire.SizeTag(7) + protowire.SizeBytes(len(m.NetbirdVersion))
+	}
+	if m.UiVersion != "" {
+		n += protowire.SizeTag(8) + protowire.SizeBytes(len(m.UiVersion))
+	}
+	if m.KernelVersion != "" {
+		n += protowire.SizeTag(9) + protowire.SizeBytes(len(m.KernelVersion))
+	}
+	if m.OSVersion != "" {
+		n += protowire.SizeTag(10) + protowire.SizeBytes(len(m.OSVersion))
+	}
+	for _, v := range m.NetworkAddresses {
+		if v != nil {
+			s := sizeNetworkAddress(v)
+			n += protowire.SizeTag(11) + protowire.SizeBytes(s)
+		}
+	}
+	if m.SysSerialNumber != "" {
+		n += protowire.SizeTag(12) + protowire.SizeBytes(len(m.SysSerialNumber))
+	}
+	if m.SysProductName != "" {
+		n += protowire.SizeTag(13) + protowire.SizeBytes(len(m.SysProductName))
+	}
+	if m.SysManufacturer != "" {
+		n += protowire.SizeTag(14) + protowire.SizeBytes(len(m.SysManufacturer))
+	}
+	if m.Environment != nil {
+		s := sizeEnvironment(m.Environment)
+		n += protowire.SizeTag(15) + protowire.SizeBytes(s)
+	}
+	for _, v := range m.Files {
+		if v != nil {
+			s := sizeFile(v)
+			n += protowire.SizeTag(16) + protowire.SizeBytes(s)
+		}
+	}
+	if m.Flags != nil {
+		s := sizeFlags(m.Flags)
+		n += protowire.SizeTag(17) + protowire.SizeBytes(s)
+	}
+	if len(m.Capabilities) > 0 {
+		packed := 0
+		for _, v := range m.Capabilities {
+			packed += protowire.SizeVarint(uint64(v))
+		}
+		n += protowire.SizeTag(18) + protowire.SizeBytes(packed)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalPeerSystemMeta(b []byte, m *PeerSystemMeta) []byte {
+	if m.Hostname != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Hostname)
+	}
+	if m.GoOS != "" {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendString(b, m.GoOS)
+	}
+	if m.Kernel != "" {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendString(b, m.Kernel)
+	}
+	if m.Core != "" {
+		b = protowire.AppendTag(b, 4, protowire.BytesType)
+		b = protowire.AppendString(b, m.Core)
+	}
+	if m.Platform != "" {
+		b = protowire.AppendTag(b, 5, protowire.BytesType)
+		b = protowire.AppendString(b, m.Platform)
+	}
+	if m.OS != "" {
+		b = protowire.AppendTag(b, 6, protowire.BytesType)
+		b = protowire.AppendString(b, m.OS)
+	}
+	if m.NetbirdVersion != "" {
+		b = protowire.AppendTag(b, 7, protowire.BytesType)
+		b = protowire.AppendString(b, m.NetbirdVersion)
+	}
+	if m.UiVersion != "" {
+		b = protowire.AppendTag(b, 8, protowire.BytesType)
+		b = protowire.AppendString(b, m.UiVersion)
+	}
+	if m.KernelVersion != "" {
+		b = protowire.AppendTag(b, 9, protowire.BytesType)
+		b = protowire.AppendString(b, m.KernelVersion)
+	}
+	if m.OSVersion != "" {
+		b = protowire.AppendTag(b, 10, protowire.BytesType)
+		b = protowire.AppendString(b, m.OSVersion)
+	}
+	for _, v := range m.NetworkAddresses {
+		if v != nil {
+			b = protowire.AppendTag(b, 11, protowire.BytesType)
+			b = protowire.AppendVarint(b, uint64(sizeNetworkAddress(v)))
+			b = marshalNetworkAddress(b, v)
+		}
+	}
+	if m.SysSerialNumber != "" {
+		b = protowire.AppendTag(b, 12, protowire.BytesType)
+		b = protowire.AppendString(b, m.SysSerialNumber)
+	}
+	if m.SysProductName != "" {
+		b = protowire.AppendTag(b, 13, protowire.BytesType)
+		b = protowire.AppendString(b, m.SysProductName)
+	}
+	if m.SysManufacturer != "" {
+		b = protowire.AppendTag(b, 14, protowire.BytesType)
+		b = protowire.AppendString(b, m.SysManufacturer)
+	}
+	if m.Environment != nil {
+		b = protowire.AppendTag(b, 15, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeEnvironment(m.Environment)))
+		b = marshalEnvironment(b, m.Environment)
+	}
+	for _, v := range m.Files {
+		if v != nil {
+			b = protowire.AppendTag(b, 16, protowire.BytesType)
+			b = protowire.AppendVarint(b, uint64(sizeFile(v)))
+			b = marshalFile(b, v)
+		}
+	}
+	if m.Flags != nil {
+		b = protowire.AppendTag(b, 17, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeFlags(m.Flags)))
+		b = marshalFlags(b, m.Flags)
+	}
+	if len(m.Capabilities) > 0 {
+		packed := 0
+		for _, v := range m.Capabilities {
+			packed += protowire.SizeVarint(uint64(v))
+		}
+		b = protowire.AppendTag(b, 18, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(packed))
+		for _, v := range m.Capabilities {
+			b = protowire.AppendVarint(b, uint64(v))
+		}
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalPeerSystemMeta(m *PeerSystemMeta, b []byte) error {
+	*m = PeerSystemMeta{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Hostname = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.GoOS = v
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Kernel = v
+			b = b[n:]
+		case num == 4 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Core = v
+			b = b[n:]
+		case num == 5 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Platform = v
+			b = b[n:]
+		case num == 6 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.OS = v
+			b = b[n:]
+		case num == 7 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.NetbirdVersion = v
+			b = b[n:]
+		case num == 8 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.UiVersion = v
+			b = b[n:]
+		case num == 9 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.KernelVersion = v
+			b = b[n:]
+		case num == 10 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.OSVersion = v
+			b = b[n:]
+		case num == 11 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			item := &NetworkAddress{}
+			if err := unmarshalNetworkAddress(item, v); err != nil {
+				return err
+			}
+			m.NetworkAddresses = append(m.NetworkAddresses, item)
+			b = b[n:]
+		case num == 12 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.SysSerialNumber = v
+			b = b[n:]
+		case num == 13 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.SysProductName = v
+			b = b[n:]
+		case num == 14 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.SysManufacturer = v
+			b = b[n:]
+		case num == 15 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.Environment == nil {
+				m.Environment = &Environment{}
+			}
+			if err := unmarshalEnvironment(m.Environment, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 16 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			item := &File{}
+			if err := unmarshalFile(item, v); err != nil {
+				return err
+			}
+			m.Files = append(m.Files, item)
+			b = b[n:]
+		case num == 17 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.Flags == nil {
+				m.Flags = &Flags{}
+			}
+			if err := unmarshalFlags(m.Flags, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 18 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			for len(v) > 0 {
+				item, consumed := protowire.ConsumeVarint(v)
+				if consumed < 0 {
+					return protowire.ParseError(consumed)
+				}
+				m.Capabilities = append(m.Capabilities, PeerCapability(item))
+				v = v[consumed:]
+			}
+			b = b[n:]
+		case num == 18 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Capabilities = append(m.Capabilities, PeerCapability(v))
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergePeerSystemMeta(dst, src *PeerSystemMeta) {
+	if src.Hostname != "" {
+		dst.Hostname = src.Hostname
+	}
+	if src.GoOS != "" {
+		dst.GoOS = src.GoOS
+	}
+	if src.Kernel != "" {
+		dst.Kernel = src.Kernel
+	}
+	if src.Core != "" {
+		dst.Core = src.Core
+	}
+	if src.Platform != "" {
+		dst.Platform = src.Platform
+	}
+	if src.OS != "" {
+		dst.OS = src.OS
+	}
+	if src.NetbirdVersion != "" {
+		dst.NetbirdVersion = src.NetbirdVersion
+	}
+	if src.UiVersion != "" {
+		dst.UiVersion = src.UiVersion
+	}
+	if src.KernelVersion != "" {
+		dst.KernelVersion = src.KernelVersion
+	}
+	if src.OSVersion != "" {
+		dst.OSVersion = src.OSVersion
+	}
+	if len(src.NetworkAddresses) > 0 {
+		for _, v := range src.NetworkAddresses {
+			if v != nil {
+				cp := &NetworkAddress{}
+				mergeNetworkAddress(cp, v)
+				dst.NetworkAddresses = append(dst.NetworkAddresses, cp)
+			}
+		}
+	}
+	if src.SysSerialNumber != "" {
+		dst.SysSerialNumber = src.SysSerialNumber
+	}
+	if src.SysProductName != "" {
+		dst.SysProductName = src.SysProductName
+	}
+	if src.SysManufacturer != "" {
+		dst.SysManufacturer = src.SysManufacturer
+	}
+	if src.Environment != nil {
+		if dst.Environment == nil {
+			dst.Environment = &Environment{}
+		}
+		mergeEnvironment(dst.Environment, src.Environment)
+	}
+	if len(src.Files) > 0 {
+		for _, v := range src.Files {
+			if v != nil {
+				cp := &File{}
+				mergeFile(cp, v)
+				dst.Files = append(dst.Files, cp)
+			}
+		}
+	}
+	if src.Flags != nil {
+		if dst.Flags == nil {
+			dst.Flags = &Flags{}
+		}
+		mergeFlags(dst.Flags, src.Flags)
+	}
+	if len(src.Capabilities) > 0 {
+		dst.Capabilities = append(dst.Capabilities, src.Capabilities...)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalPeerSystemMeta(a, b *PeerSystemMeta) bool {
+	if a.Hostname != b.Hostname {
+		return false
+	}
+	if a.GoOS != b.GoOS {
+		return false
+	}
+	if a.Kernel != b.Kernel {
+		return false
+	}
+	if a.Core != b.Core {
+		return false
+	}
+	if a.Platform != b.Platform {
+		return false
+	}
+	if a.OS != b.OS {
+		return false
+	}
+	if a.NetbirdVersion != b.NetbirdVersion {
+		return false
+	}
+	if a.UiVersion != b.UiVersion {
+		return false
+	}
+	if a.KernelVersion != b.KernelVersion {
+		return false
+	}
+	if a.OSVersion != b.OSVersion {
+		return false
+	}
+	if len(a.NetworkAddresses) != len(b.NetworkAddresses) {
+		return false
+	}
+	for i := range a.NetworkAddresses {
+		if (a.NetworkAddresses[i] == nil) != (b.NetworkAddresses[i] == nil) {
+			return false
+		}
+		if a.NetworkAddresses[i] != nil && !equalNetworkAddress(a.NetworkAddresses[i], b.NetworkAddresses[i]) {
+			return false
+		}
+	}
+	if a.SysSerialNumber != b.SysSerialNumber {
+		return false
+	}
+	if a.SysProductName != b.SysProductName {
+		return false
+	}
+	if a.SysManufacturer != b.SysManufacturer {
+		return false
+	}
+	if (a.Environment == nil) != (b.Environment == nil) {
+		return false
+	}
+	if a.Environment != nil && !equalEnvironment(a.Environment, b.Environment) {
+		return false
+	}
+	if len(a.Files) != len(b.Files) {
+		return false
+	}
+	for i := range a.Files {
+		if (a.Files[i] == nil) != (b.Files[i] == nil) {
+			return false
+		}
+		if a.Files[i] != nil && !equalFile(a.Files[i], b.Files[i]) {
+			return false
+		}
+	}
+	if (a.Flags == nil) != (b.Flags == nil) {
+		return false
+	}
+	if a.Flags != nil && !equalFlags(a.Flags, b.Flags) {
+		return false
+	}
+	if len(a.Capabilities) != len(b.Capabilities) {
+		return false
+	}
+	for i := range a.Capabilities {
+		if a.Capabilities[i] != b.Capabilities[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeLoginResponse(m *LoginResponse) int {
+	n := 0
+	if m.NetbirdConfig != nil {
+		s := sizeNetbirdConfig(m.NetbirdConfig)
+		n += protowire.SizeTag(1) + protowire.SizeBytes(s)
+	}
+	if m.PeerConfig != nil {
+		s := sizePeerConfig(m.PeerConfig)
+		n += protowire.SizeTag(2) + protowire.SizeBytes(s)
+	}
+	for _, v := range m.Checks {
+		if v != nil {
+			s := sizeChecks(v)
+			n += protowire.SizeTag(3) + protowire.SizeBytes(s)
+		}
+	}
+	if m.SessionExpiresAt != nil {
+		s := sizeTimestamp(m.SessionExpiresAt)
+		n += protowire.SizeTag(4) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalLoginResponse(b []byte, m *LoginResponse) []byte {
+	if m.NetbirdConfig != nil {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeNetbirdConfig(m.NetbirdConfig)))
+		b = marshalNetbirdConfig(b, m.NetbirdConfig)
+	}
+	if m.PeerConfig != nil {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizePeerConfig(m.PeerConfig)))
+		b = marshalPeerConfig(b, m.PeerConfig)
+	}
+	for _, v := range m.Checks {
+		if v != nil {
+			b = protowire.AppendTag(b, 3, protowire.BytesType)
+			b = protowire.AppendVarint(b, uint64(sizeChecks(v)))
+			b = marshalChecks(b, v)
+		}
+	}
+	if m.SessionExpiresAt != nil {
+		b = protowire.AppendTag(b, 4, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeTimestamp(m.SessionExpiresAt)))
+		b = marshalTimestamp(b, m.SessionExpiresAt)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalLoginResponse(m *LoginResponse, b []byte) error {
+	*m = LoginResponse{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.NetbirdConfig == nil {
+				m.NetbirdConfig = &NetbirdConfig{}
+			}
+			if err := unmarshalNetbirdConfig(m.NetbirdConfig, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.PeerConfig == nil {
+				m.PeerConfig = &PeerConfig{}
+			}
+			if err := unmarshalPeerConfig(m.PeerConfig, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			item := &Checks{}
+			if err := unmarshalChecks(item, v); err != nil {
+				return err
+			}
+			m.Checks = append(m.Checks, item)
+			b = b[n:]
+		case num == 4 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.SessionExpiresAt = &timestamppb.Timestamp{}
+			if err := unmarshalTimestamp(m.SessionExpiresAt, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeLoginResponse(dst, src *LoginResponse) {
+	if src.NetbirdConfig != nil {
+		if dst.NetbirdConfig == nil {
+			dst.NetbirdConfig = &NetbirdConfig{}
+		}
+		mergeNetbirdConfig(dst.NetbirdConfig, src.NetbirdConfig)
+	}
+	if src.PeerConfig != nil {
+		if dst.PeerConfig == nil {
+			dst.PeerConfig = &PeerConfig{}
+		}
+		mergePeerConfig(dst.PeerConfig, src.PeerConfig)
+	}
+	if len(src.Checks) > 0 {
+		for _, v := range src.Checks {
+			if v != nil {
+				cp := &Checks{}
+				mergeChecks(cp, v)
+				dst.Checks = append(dst.Checks, cp)
+			}
+		}
+	}
+	if src.SessionExpiresAt != nil {
+		if dst.SessionExpiresAt == nil {
+			dst.SessionExpiresAt = &timestamppb.Timestamp{}
+		}
+		mergeTimestamp(dst.SessionExpiresAt, src.SessionExpiresAt)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalLoginResponse(a, b *LoginResponse) bool {
+	if (a.NetbirdConfig == nil) != (b.NetbirdConfig == nil) {
+		return false
+	}
+	if a.NetbirdConfig != nil && !equalNetbirdConfig(a.NetbirdConfig, b.NetbirdConfig) {
+		return false
+	}
+	if (a.PeerConfig == nil) != (b.PeerConfig == nil) {
+		return false
+	}
+	if a.PeerConfig != nil && !equalPeerConfig(a.PeerConfig, b.PeerConfig) {
+		return false
+	}
+	if len(a.Checks) != len(b.Checks) {
+		return false
+	}
+	for i := range a.Checks {
+		if (a.Checks[i] == nil) != (b.Checks[i] == nil) {
+			return false
+		}
+		if a.Checks[i] != nil && !equalChecks(a.Checks[i], b.Checks[i]) {
+			return false
+		}
+	}
+	if !equalTimestamp(a.SessionExpiresAt, b.SessionExpiresAt) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeExtendAuthSessionRequest(m *ExtendAuthSessionRequest) int {
+	n := 0
+	if m.JwtToken != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.JwtToken))
+	}
+	if m.Meta != nil {
+		s := sizePeerSystemMeta(m.Meta)
+		n += protowire.SizeTag(2) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalExtendAuthSessionRequest(b []byte, m *ExtendAuthSessionRequest) []byte {
+	if m.JwtToken != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.JwtToken)
+	}
+	if m.Meta != nil {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizePeerSystemMeta(m.Meta)))
+		b = marshalPeerSystemMeta(b, m.Meta)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalExtendAuthSessionRequest(m *ExtendAuthSessionRequest, b []byte) error {
+	*m = ExtendAuthSessionRequest{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.JwtToken = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.Meta == nil {
+				m.Meta = &PeerSystemMeta{}
+			}
+			if err := unmarshalPeerSystemMeta(m.Meta, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeExtendAuthSessionRequest(dst, src *ExtendAuthSessionRequest) {
+	if src.JwtToken != "" {
+		dst.JwtToken = src.JwtToken
+	}
+	if src.Meta != nil {
+		if dst.Meta == nil {
+			dst.Meta = &PeerSystemMeta{}
+		}
+		mergePeerSystemMeta(dst.Meta, src.Meta)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalExtendAuthSessionRequest(a, b *ExtendAuthSessionRequest) bool {
+	if a.JwtToken != b.JwtToken {
+		return false
+	}
+	if (a.Meta == nil) != (b.Meta == nil) {
+		return false
+	}
+	if a.Meta != nil && !equalPeerSystemMeta(a.Meta, b.Meta) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeExtendAuthSessionResponse(m *ExtendAuthSessionResponse) int {
+	n := 0
+	if m.SessionExpiresAt != nil {
+		s := sizeTimestamp(m.SessionExpiresAt)
+		n += protowire.SizeTag(1) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalExtendAuthSessionResponse(b []byte, m *ExtendAuthSessionResponse) []byte {
+	if m.SessionExpiresAt != nil {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeTimestamp(m.SessionExpiresAt)))
+		b = marshalTimestamp(b, m.SessionExpiresAt)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalExtendAuthSessionResponse(m *ExtendAuthSessionResponse, b []byte) error {
+	*m = ExtendAuthSessionResponse{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.SessionExpiresAt = &timestamppb.Timestamp{}
+			if err := unmarshalTimestamp(m.SessionExpiresAt, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeExtendAuthSessionResponse(dst, src *ExtendAuthSessionResponse) {
+	if src.SessionExpiresAt != nil {
+		if dst.SessionExpiresAt == nil {
+			dst.SessionExpiresAt = &timestamppb.Timestamp{}
+		}
+		mergeTimestamp(dst.SessionExpiresAt, src.SessionExpiresAt)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalExtendAuthSessionResponse(a, b *ExtendAuthSessionResponse) bool {
+	if !equalTimestamp(a.SessionExpiresAt, b.SessionExpiresAt) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeServerKeyResponse(m *ServerKeyResponse) int {
+	n := 0
+	if m.Key != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Key))
+	}
+	if m.ExpiresAt != nil {
+		s := sizeTimestamp(m.ExpiresAt)
+		n += protowire.SizeTag(2) + protowire.SizeBytes(s)
+	}
+	if m.Version != 0 {
+		n += protowire.SizeTag(3) + protowire.SizeVarint(uint64(m.Version))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalServerKeyResponse(b []byte, m *ServerKeyResponse) []byte {
+	if m.Key != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Key)
+	}
+	if m.ExpiresAt != nil {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeTimestamp(m.ExpiresAt)))
+		b = marshalTimestamp(b, m.ExpiresAt)
+	}
+	if m.Version != 0 {
+		b = protowire.AppendTag(b, 3, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Version))
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalServerKeyResponse(m *ServerKeyResponse, b []byte) error {
+	*m = ServerKeyResponse{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Key = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ExpiresAt = &timestamppb.Timestamp{}
+			if err := unmarshalTimestamp(m.ExpiresAt, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 3 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Version = int32(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeServerKeyResponse(dst, src *ServerKeyResponse) {
+	if src.Key != "" {
+		dst.Key = src.Key
+	}
+	if src.ExpiresAt != nil {
+		if dst.ExpiresAt == nil {
+			dst.ExpiresAt = &timestamppb.Timestamp{}
+		}
+		mergeTimestamp(dst.ExpiresAt, src.ExpiresAt)
+	}
+	if src.Version != 0 {
+		dst.Version = src.Version
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalServerKeyResponse(a, b *ServerKeyResponse) bool {
+	if a.Key != b.Key {
+		return false
+	}
+	if !equalTimestamp(a.ExpiresAt, b.ExpiresAt) {
+		return false
+	}
+	if a.Version != b.Version {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeEmpty(m *Empty) int {
+	n := 0
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalEmpty(b []byte, m *Empty) []byte {
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalEmpty(m *Empty, b []byte) error {
+	*m = Empty{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeEmpty(dst, src *Empty) {
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalEmpty(a, b *Empty) bool {
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeNetbirdConfig(m *NetbirdConfig) int {
+	n := 0
+	for _, v := range m.Stuns {
+		if v != nil {
+			s := sizeHostConfig(v)
+			n += protowire.SizeTag(1) + protowire.SizeBytes(s)
+		}
+	}
+	for _, v := range m.Turns {
+		if v != nil {
+			s := sizeProtectedHostConfig(v)
+			n += protowire.SizeTag(2) + protowire.SizeBytes(s)
+		}
+	}
+	if m.Signal != nil {
+		s := sizeHostConfig(m.Signal)
+		n += protowire.SizeTag(3) + protowire.SizeBytes(s)
+	}
+	if m.Relay != nil {
+		s := sizeRelayConfig(m.Relay)
+		n += protowire.SizeTag(4) + protowire.SizeBytes(s)
+	}
+	if m.Flow != nil {
+		s := sizeFlowConfig(m.Flow)
+		n += protowire.SizeTag(5) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalNetbirdConfig(b []byte, m *NetbirdConfig) []byte {
+	for _, v := range m.Stuns {
+		if v != nil {
+			b = protowire.AppendTag(b, 1, protowire.BytesType)
+			b = protowire.AppendVarint(b, uint64(sizeHostConfig(v)))
+			b = marshalHostConfig(b, v)
+		}
+	}
+	for _, v := range m.Turns {
+		if v != nil {
+			b = protowire.AppendTag(b, 2, protowire.BytesType)
+			b = protowire.AppendVarint(b, uint64(sizeProtectedHostConfig(v)))
+			b = marshalProtectedHostConfig(b, v)
+		}
+	}
+	if m.Signal != nil {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeHostConfig(m.Signal)))
+		b = marshalHostConfig(b, m.Signal)
+	}
+	if m.Relay != nil {
+		b = protowire.AppendTag(b, 4, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeRelayConfig(m.Relay)))
+		b = marshalRelayConfig(b, m.Relay)
+	}
+	if m.Flow != nil {
+		b = protowire.AppendTag(b, 5, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeFlowConfig(m.Flow)))
+		b = marshalFlowConfig(b, m.Flow)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalNetbirdConfig(m *NetbirdConfig, b []byte) error {
+	*m = NetbirdConfig{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			item := &HostConfig{}
+			if err := unmarshalHostConfig(item, v); err != nil {
+				return err
+			}
+			m.Stuns = append(m.Stuns, item)
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			item := &ProtectedHostConfig{}
+			if err := unmarshalProtectedHostConfig(item, v); err != nil {
+				return err
+			}
+			m.Turns = append(m.Turns, item)
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.Signal == nil {
+				m.Signal = &HostConfig{}
+			}
+			if err := unmarshalHostConfig(m.Signal, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 4 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.Relay == nil {
+				m.Relay = &RelayConfig{}
+			}
+			if err := unmarshalRelayConfig(m.Relay, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 5 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.Flow == nil {
+				m.Flow = &FlowConfig{}
+			}
+			if err := unmarshalFlowConfig(m.Flow, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeNetbirdConfig(dst, src *NetbirdConfig) {
+	if len(src.Stuns) > 0 {
+		for _, v := range src.Stuns {
+			if v != nil {
+				cp := &HostConfig{}
+				mergeHostConfig(cp, v)
+				dst.Stuns = append(dst.Stuns, cp)
+			}
+		}
+	}
+	if len(src.Turns) > 0 {
+		for _, v := range src.Turns {
+			if v != nil {
+				cp := &ProtectedHostConfig{}
+				mergeProtectedHostConfig(cp, v)
+				dst.Turns = append(dst.Turns, cp)
+			}
+		}
+	}
+	if src.Signal != nil {
+		if dst.Signal == nil {
+			dst.Signal = &HostConfig{}
+		}
+		mergeHostConfig(dst.Signal, src.Signal)
+	}
+	if src.Relay != nil {
+		if dst.Relay == nil {
+			dst.Relay = &RelayConfig{}
+		}
+		mergeRelayConfig(dst.Relay, src.Relay)
+	}
+	if src.Flow != nil {
+		if dst.Flow == nil {
+			dst.Flow = &FlowConfig{}
+		}
+		mergeFlowConfig(dst.Flow, src.Flow)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalNetbirdConfig(a, b *NetbirdConfig) bool {
+	if len(a.Stuns) != len(b.Stuns) {
+		return false
+	}
+	for i := range a.Stuns {
+		if (a.Stuns[i] == nil) != (b.Stuns[i] == nil) {
+			return false
+		}
+		if a.Stuns[i] != nil && !equalHostConfig(a.Stuns[i], b.Stuns[i]) {
+			return false
+		}
+	}
+	if len(a.Turns) != len(b.Turns) {
+		return false
+	}
+	for i := range a.Turns {
+		if (a.Turns[i] == nil) != (b.Turns[i] == nil) {
+			return false
+		}
+		if a.Turns[i] != nil && !equalProtectedHostConfig(a.Turns[i], b.Turns[i]) {
+			return false
+		}
+	}
+	if (a.Signal == nil) != (b.Signal == nil) {
+		return false
+	}
+	if a.Signal != nil && !equalHostConfig(a.Signal, b.Signal) {
+		return false
+	}
+	if (a.Relay == nil) != (b.Relay == nil) {
+		return false
+	}
+	if a.Relay != nil && !equalRelayConfig(a.Relay, b.Relay) {
+		return false
+	}
+	if (a.Flow == nil) != (b.Flow == nil) {
+		return false
+	}
+	if a.Flow != nil && !equalFlowConfig(a.Flow, b.Flow) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeHostConfig(m *HostConfig) int {
+	n := 0
+	if m.Uri != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Uri))
+	}
+	if m.Protocol != 0 {
+		n += protowire.SizeTag(2) + protowire.SizeVarint(uint64(m.Protocol))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalHostConfig(b []byte, m *HostConfig) []byte {
+	if m.Uri != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Uri)
+	}
+	if m.Protocol != 0 {
+		b = protowire.AppendTag(b, 2, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Protocol))
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalHostConfig(m *HostConfig, b []byte) error {
+	*m = HostConfig{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Uri = v
+			b = b[n:]
+		case num == 2 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Protocol = HostConfig_Protocol(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeHostConfig(dst, src *HostConfig) {
+	if src.Uri != "" {
+		dst.Uri = src.Uri
+	}
+	if src.Protocol != 0 {
+		dst.Protocol = src.Protocol
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalHostConfig(a, b *HostConfig) bool {
+	if a.Uri != b.Uri {
+		return false
+	}
+	if a.Protocol != b.Protocol {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeRelayConfig(m *RelayConfig) int {
+	n := 0
+	for _, v := range m.Urls {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(v))
+	}
+	if m.TokenPayload != "" {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.TokenPayload))
+	}
+	if m.TokenSignature != "" {
+		n += protowire.SizeTag(3) + protowire.SizeBytes(len(m.TokenSignature))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalRelayConfig(b []byte, m *RelayConfig) []byte {
+	for _, v := range m.Urls {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, v)
+	}
+	if m.TokenPayload != "" {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendString(b, m.TokenPayload)
+	}
+	if m.TokenSignature != "" {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendString(b, m.TokenSignature)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalRelayConfig(m *RelayConfig, b []byte) error {
+	*m = RelayConfig{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Urls = append(m.Urls, v)
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.TokenPayload = v
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.TokenSignature = v
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeRelayConfig(dst, src *RelayConfig) {
+	if len(src.Urls) > 0 {
+		dst.Urls = append(dst.Urls, src.Urls...)
+	}
+	if src.TokenPayload != "" {
+		dst.TokenPayload = src.TokenPayload
+	}
+	if src.TokenSignature != "" {
+		dst.TokenSignature = src.TokenSignature
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalRelayConfig(a, b *RelayConfig) bool {
+	if len(a.Urls) != len(b.Urls) {
+		return false
+	}
+	for i := range a.Urls {
+		if a.Urls[i] != b.Urls[i] {
+			return false
+		}
+	}
+	if a.TokenPayload != b.TokenPayload {
+		return false
+	}
+	if a.TokenSignature != b.TokenSignature {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeFlowConfig(m *FlowConfig) int {
+	n := 0
+	if m.Url != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Url))
+	}
+	if m.TokenPayload != "" {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.TokenPayload))
+	}
+	if m.TokenSignature != "" {
+		n += protowire.SizeTag(3) + protowire.SizeBytes(len(m.TokenSignature))
+	}
+	if m.Interval != nil {
+		s := sizeDuration(m.Interval)
+		n += protowire.SizeTag(4) + protowire.SizeBytes(s)
+	}
+	if m.Enabled {
+		n += protowire.SizeTag(5) + protowire.SizeVarint(protowire.EncodeBool(m.Enabled))
+	}
+	if m.Counters {
+		n += protowire.SizeTag(6) + protowire.SizeVarint(protowire.EncodeBool(m.Counters))
+	}
+	if m.ExitNodeCollection {
+		n += protowire.SizeTag(7) + protowire.SizeVarint(protowire.EncodeBool(m.ExitNodeCollection))
+	}
+	if m.DnsCollection {
+		n += protowire.SizeTag(8) + protowire.SizeVarint(protowire.EncodeBool(m.DnsCollection))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalFlowConfig(b []byte, m *FlowConfig) []byte {
+	if m.Url != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Url)
+	}
+	if m.TokenPayload != "" {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendString(b, m.TokenPayload)
+	}
+	if m.TokenSignature != "" {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendString(b, m.TokenSignature)
+	}
+	if m.Interval != nil {
+		b = protowire.AppendTag(b, 4, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeDuration(m.Interval)))
+		b = marshalDuration(b, m.Interval)
+	}
+	if m.Enabled {
+		b = protowire.AppendTag(b, 5, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.Enabled))
+	}
+	if m.Counters {
+		b = protowire.AppendTag(b, 6, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.Counters))
+	}
+	if m.ExitNodeCollection {
+		b = protowire.AppendTag(b, 7, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.ExitNodeCollection))
+	}
+	if m.DnsCollection {
+		b = protowire.AppendTag(b, 8, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.DnsCollection))
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalFlowConfig(m *FlowConfig, b []byte) error {
+	*m = FlowConfig{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Url = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.TokenPayload = v
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.TokenSignature = v
+			b = b[n:]
+		case num == 4 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Interval = &durationpb.Duration{}
+			if err := unmarshalDuration(m.Interval, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 5 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Enabled = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 6 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Counters = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 7 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ExitNodeCollection = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 8 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.DnsCollection = protowire.DecodeBool(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeFlowConfig(dst, src *FlowConfig) {
+	if src.Url != "" {
+		dst.Url = src.Url
+	}
+	if src.TokenPayload != "" {
+		dst.TokenPayload = src.TokenPayload
+	}
+	if src.TokenSignature != "" {
+		dst.TokenSignature = src.TokenSignature
+	}
+	if src.Interval != nil {
+		if dst.Interval == nil {
+			dst.Interval = &durationpb.Duration{}
+		}
+		mergeDuration(dst.Interval, src.Interval)
+	}
+	if src.Enabled {
+		dst.Enabled = src.Enabled
+	}
+	if src.Counters {
+		dst.Counters = src.Counters
+	}
+	if src.ExitNodeCollection {
+		dst.ExitNodeCollection = src.ExitNodeCollection
+	}
+	if src.DnsCollection {
+		dst.DnsCollection = src.DnsCollection
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalFlowConfig(a, b *FlowConfig) bool {
+	if a.Url != b.Url {
+		return false
+	}
+	if a.TokenPayload != b.TokenPayload {
+		return false
+	}
+	if a.TokenSignature != b.TokenSignature {
+		return false
+	}
+	if !equalDuration(a.Interval, b.Interval) {
+		return false
+	}
+	if a.Enabled != b.Enabled {
+		return false
+	}
+	if a.Counters != b.Counters {
+		return false
+	}
+	if a.ExitNodeCollection != b.ExitNodeCollection {
+		return false
+	}
+	if a.DnsCollection != b.DnsCollection {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeJWTConfig(m *JWTConfig) int {
+	n := 0
+	if m.Issuer != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Issuer))
+	}
+	if m.Audience != "" {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.Audience))
+	}
+	if m.KeysLocation != "" {
+		n += protowire.SizeTag(3) + protowire.SizeBytes(len(m.KeysLocation))
+	}
+	if m.MaxTokenAge != 0 {
+		n += protowire.SizeTag(4) + protowire.SizeVarint(uint64(m.MaxTokenAge))
+	}
+	for _, v := range m.Audiences {
+		n += protowire.SizeTag(5) + protowire.SizeBytes(len(v))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalJWTConfig(b []byte, m *JWTConfig) []byte {
+	if m.Issuer != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Issuer)
+	}
+	if m.Audience != "" {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendString(b, m.Audience)
+	}
+	if m.KeysLocation != "" {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendString(b, m.KeysLocation)
+	}
+	if m.MaxTokenAge != 0 {
+		b = protowire.AppendTag(b, 4, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.MaxTokenAge))
+	}
+	for _, v := range m.Audiences {
+		b = protowire.AppendTag(b, 5, protowire.BytesType)
+		b = protowire.AppendString(b, v)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalJWTConfig(m *JWTConfig, b []byte) error {
+	*m = JWTConfig{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Issuer = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Audience = v
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.KeysLocation = v
+			b = b[n:]
+		case num == 4 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.MaxTokenAge = int64(v)
+			b = b[n:]
+		case num == 5 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Audiences = append(m.Audiences, v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeJWTConfig(dst, src *JWTConfig) {
+	if src.Issuer != "" {
+		dst.Issuer = src.Issuer
+	}
+	if src.Audience != "" {
+		dst.Audience = src.Audience
+	}
+	if src.KeysLocation != "" {
+		dst.KeysLocation = src.KeysLocation
+	}
+	if src.MaxTokenAge != 0 {
+		dst.MaxTokenAge = src.MaxTokenAge
+	}
+	if len(src.Audiences) > 0 {
+		dst.Audiences = append(dst.Audiences, src.Audiences...)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalJWTConfig(a, b *JWTConfig) bool {
+	if a.Issuer != b.Issuer {
+		return false
+	}
+	if a.Audience != b.Audience {
+		return false
+	}
+	if a.KeysLocation != b.KeysLocation {
+		return false
+	}
+	if a.MaxTokenAge != b.MaxTokenAge {
+		return false
+	}
+	if len(a.Audiences) != len(b.Audiences) {
+		return false
+	}
+	for i := range a.Audiences {
+		if a.Audiences[i] != b.Audiences[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeProtectedHostConfig(m *ProtectedHostConfig) int {
+	n := 0
+	if m.HostConfig != nil {
+		s := sizeHostConfig(m.HostConfig)
+		n += protowire.SizeTag(1) + protowire.SizeBytes(s)
+	}
+	if m.User != "" {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.User))
+	}
+	if m.Password != "" {
+		n += protowire.SizeTag(3) + protowire.SizeBytes(len(m.Password))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalProtectedHostConfig(b []byte, m *ProtectedHostConfig) []byte {
+	if m.HostConfig != nil {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeHostConfig(m.HostConfig)))
+		b = marshalHostConfig(b, m.HostConfig)
+	}
+	if m.User != "" {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendString(b, m.User)
+	}
+	if m.Password != "" {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendString(b, m.Password)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalProtectedHostConfig(m *ProtectedHostConfig, b []byte) error {
+	*m = ProtectedHostConfig{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.HostConfig == nil {
+				m.HostConfig = &HostConfig{}
+			}
+			if err := unmarshalHostConfig(m.HostConfig, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.User = v
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Password = v
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeProtectedHostConfig(dst, src *ProtectedHostConfig) {
+	if src.HostConfig != nil {
+		if dst.HostConfig == nil {
+			dst.HostConfig = &HostConfig{}
+		}
+		mergeHostConfig(dst.HostConfig, src.HostConfig)
+	}
+	if src.User != "" {
+		dst.User = src.User
+	}
+	if src.Password != "" {
+		dst.Password = src.Password
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalProtectedHostConfig(a, b *ProtectedHostConfig) bool {
+	if (a.HostConfig == nil) != (b.HostConfig == nil) {
+		return false
+	}
+	if a.HostConfig != nil && !equalHostConfig(a.HostConfig, b.HostConfig) {
+		return false
+	}
+	if a.User != b.User {
+		return false
+	}
+	if a.Password != b.Password {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizePeerConfig(m *PeerConfig) int {
+	n := 0
+	if m.Address != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Address))
+	}
+	if m.Dns != "" {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.Dns))
+	}
+	if m.SshConfig != nil {
+		s := sizeSSHConfig(m.SshConfig)
+		n += protowire.SizeTag(3) + protowire.SizeBytes(s)
+	}
+	if m.Fqdn != "" {
+		n += protowire.SizeTag(4) + protowire.SizeBytes(len(m.Fqdn))
+	}
+	if m.RoutingPeerDnsResolutionEnabled {
+		n += protowire.SizeTag(5) + protowire.SizeVarint(protowire.EncodeBool(m.RoutingPeerDnsResolutionEnabled))
+	}
+	if m.LazyConnectionEnabled {
+		n += protowire.SizeTag(6) + protowire.SizeVarint(protowire.EncodeBool(m.LazyConnectionEnabled))
+	}
+	if m.Mtu != 0 {
+		n += protowire.SizeTag(7) + protowire.SizeVarint(uint64(m.Mtu))
+	}
+	if m.AutoUpdate != nil {
+		s := sizeAutoUpdateSettings(m.AutoUpdate)
+		n += protowire.SizeTag(8) + protowire.SizeBytes(s)
+	}
+	if len(m.AddressV6) > 0 {
+		n += protowire.SizeTag(9) + protowire.SizeBytes(len(m.AddressV6))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalPeerConfig(b []byte, m *PeerConfig) []byte {
+	if m.Address != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Address)
+	}
+	if m.Dns != "" {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendString(b, m.Dns)
+	}
+	if m.SshConfig != nil {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeSSHConfig(m.SshConfig)))
+		b = marshalSSHConfig(b, m.SshConfig)
+	}
+	if m.Fqdn != "" {
+		b = protowire.AppendTag(b, 4, protowire.BytesType)
+		b = protowire.AppendString(b, m.Fqdn)
+	}
+	if m.RoutingPeerDnsResolutionEnabled {
+		b = protowire.AppendTag(b, 5, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.RoutingPeerDnsResolutionEnabled))
+	}
+	if m.LazyConnectionEnabled {
+		b = protowire.AppendTag(b, 6, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.LazyConnectionEnabled))
+	}
+	if m.Mtu != 0 {
+		b = protowire.AppendTag(b, 7, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Mtu))
+	}
+	if m.AutoUpdate != nil {
+		b = protowire.AppendTag(b, 8, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeAutoUpdateSettings(m.AutoUpdate)))
+		b = marshalAutoUpdateSettings(b, m.AutoUpdate)
+	}
+	if len(m.AddressV6) > 0 {
+		b = protowire.AppendTag(b, 9, protowire.BytesType)
+		b = protowire.AppendBytes(b, m.AddressV6)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalPeerConfig(m *PeerConfig, b []byte) error {
+	*m = PeerConfig{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Address = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Dns = v
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.SshConfig == nil {
+				m.SshConfig = &SSHConfig{}
+			}
+			if err := unmarshalSSHConfig(m.SshConfig, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 4 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Fqdn = v
+			b = b[n:]
+		case num == 5 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.RoutingPeerDnsResolutionEnabled = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 6 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.LazyConnectionEnabled = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 7 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Mtu = int32(v)
+			b = b[n:]
+		case num == 8 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.AutoUpdate == nil {
+				m.AutoUpdate = &AutoUpdateSettings{}
+			}
+			if err := unmarshalAutoUpdateSettings(m.AutoUpdate, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		case num == 9 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.AddressV6 = append(m.AddressV6[:0], v...)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergePeerConfig(dst, src *PeerConfig) {
+	if src.Address != "" {
+		dst.Address = src.Address
+	}
+	if src.Dns != "" {
+		dst.Dns = src.Dns
+	}
+	if src.SshConfig != nil {
+		if dst.SshConfig == nil {
+			dst.SshConfig = &SSHConfig{}
+		}
+		mergeSSHConfig(dst.SshConfig, src.SshConfig)
+	}
+	if src.Fqdn != "" {
+		dst.Fqdn = src.Fqdn
+	}
+	if src.RoutingPeerDnsResolutionEnabled {
+		dst.RoutingPeerDnsResolutionEnabled = src.RoutingPeerDnsResolutionEnabled
+	}
+	if src.LazyConnectionEnabled {
+		dst.LazyConnectionEnabled = src.LazyConnectionEnabled
+	}
+	if src.Mtu != 0 {
+		dst.Mtu = src.Mtu
+	}
+	if src.AutoUpdate != nil {
+		if dst.AutoUpdate == nil {
+			dst.AutoUpdate = &AutoUpdateSettings{}
+		}
+		mergeAutoUpdateSettings(dst.AutoUpdate, src.AutoUpdate)
+	}
+	if len(src.AddressV6) > 0 {
+		dst.AddressV6 = append(dst.AddressV6[:0], src.AddressV6...)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalPeerConfig(a, b *PeerConfig) bool {
+	if a.Address != b.Address {
+		return false
+	}
+	if a.Dns != b.Dns {
+		return false
+	}
+	if (a.SshConfig == nil) != (b.SshConfig == nil) {
+		return false
+	}
+	if a.SshConfig != nil && !equalSSHConfig(a.SshConfig, b.SshConfig) {
+		return false
+	}
+	if a.Fqdn != b.Fqdn {
+		return false
+	}
+	if a.RoutingPeerDnsResolutionEnabled != b.RoutingPeerDnsResolutionEnabled {
+		return false
+	}
+	if a.LazyConnectionEnabled != b.LazyConnectionEnabled {
+		return false
+	}
+	if a.Mtu != b.Mtu {
+		return false
+	}
+	if (a.AutoUpdate == nil) != (b.AutoUpdate == nil) {
+		return false
+	}
+	if a.AutoUpdate != nil && !equalAutoUpdateSettings(a.AutoUpdate, b.AutoUpdate) {
+		return false
+	}
+	if !bytes.Equal(a.AddressV6, b.AddressV6) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeAutoUpdateSettings(m *AutoUpdateSettings) int {
+	n := 0
+	if m.Version != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Version))
+	}
+	if m.AlwaysUpdate {
+		n += protowire.SizeTag(2) + protowire.SizeVarint(protowire.EncodeBool(m.AlwaysUpdate))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalAutoUpdateSettings(b []byte, m *AutoUpdateSettings) []byte {
+	if m.Version != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Version)
+	}
+	if m.AlwaysUpdate {
+		b = protowire.AppendTag(b, 2, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.AlwaysUpdate))
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalAutoUpdateSettings(m *AutoUpdateSettings, b []byte) error {
+	*m = AutoUpdateSettings{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Version = v
+			b = b[n:]
+		case num == 2 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.AlwaysUpdate = protowire.DecodeBool(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeAutoUpdateSettings(dst, src *AutoUpdateSettings) {
+	if src.Version != "" {
+		dst.Version = src.Version
+	}
+	if src.AlwaysUpdate {
+		dst.AlwaysUpdate = src.AlwaysUpdate
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalAutoUpdateSettings(a, b *AutoUpdateSettings) bool {
+	if a.Version != b.Version {
+		return false
+	}
+	if a.AlwaysUpdate != b.AlwaysUpdate {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeNetworkAddress(m *NetworkAddress) int {
+	n := 0
+	if m.NetIP != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.NetIP))
+	}
+	if m.Mac != "" {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.Mac))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalNetworkAddress(b []byte, m *NetworkAddress) []byte {
+	if m.NetIP != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.NetIP)
+	}
+	if m.Mac != "" {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendString(b, m.Mac)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalNetworkAddress(m *NetworkAddress, b []byte) error {
+	*m = NetworkAddress{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.NetIP = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Mac = v
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeNetworkAddress(dst, src *NetworkAddress) {
+	if src.NetIP != "" {
+		dst.NetIP = src.NetIP
+	}
+	if src.Mac != "" {
+		dst.Mac = src.Mac
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalNetworkAddress(a, b *NetworkAddress) bool {
+	if a.NetIP != b.NetIP {
+		return false
+	}
+	if a.Mac != b.Mac {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeSSHConfig(m *SSHConfig) int {
+	n := 0
+	if m.SshEnabled {
+		n += protowire.SizeTag(1) + protowire.SizeVarint(protowire.EncodeBool(m.SshEnabled))
+	}
+	if len(m.SshPubKey) > 0 {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.SshPubKey))
+	}
+	if m.JwtConfig != nil {
+		s := sizeJWTConfig(m.JwtConfig)
+		n += protowire.SizeTag(3) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalSSHConfig(b []byte, m *SSHConfig) []byte {
+	if m.SshEnabled {
+		b = protowire.AppendTag(b, 1, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.SshEnabled))
+	}
+	if len(m.SshPubKey) > 0 {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendBytes(b, m.SshPubKey)
+	}
+	if m.JwtConfig != nil {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeJWTConfig(m.JwtConfig)))
+		b = marshalJWTConfig(b, m.JwtConfig)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalSSHConfig(m *SSHConfig, b []byte) error {
+	*m = SSHConfig{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.SshEnabled = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.SshPubKey = append(m.SshPubKey[:0], v...)
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.JwtConfig == nil {
+				m.JwtConfig = &JWTConfig{}
+			}
+			if err := unmarshalJWTConfig(m.JwtConfig, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeSSHConfig(dst, src *SSHConfig) {
+	if src.SshEnabled {
+		dst.SshEnabled = src.SshEnabled
+	}
+	if len(src.SshPubKey) > 0 {
+		dst.SshPubKey = append(dst.SshPubKey[:0], src.SshPubKey...)
+	}
+	if src.JwtConfig != nil {
+		if dst.JwtConfig == nil {
+			dst.JwtConfig = &JWTConfig{}
+		}
+		mergeJWTConfig(dst.JwtConfig, src.JwtConfig)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalSSHConfig(a, b *SSHConfig) bool {
+	if a.SshEnabled != b.SshEnabled {
+		return false
+	}
+	if !bytes.Equal(a.SshPubKey, b.SshPubKey) {
+		return false
+	}
+	if (a.JwtConfig == nil) != (b.JwtConfig == nil) {
+		return false
+	}
+	if a.JwtConfig != nil && !equalJWTConfig(a.JwtConfig, b.JwtConfig) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeChecks(m *Checks) int {
+	n := 0
+	for _, v := range m.Files {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(v))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalChecks(b []byte, m *Checks) []byte {
+	for _, v := range m.Files {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, v)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalChecks(m *Checks, b []byte) error {
+	*m = Checks{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Files = append(m.Files, v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeChecks(dst, src *Checks) {
+	if len(src.Files) > 0 {
+		dst.Files = append(dst.Files, src.Files...)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalChecks(a, b *Checks) bool {
+	if len(a.Files) != len(b.Files) {
+		return false
+	}
+	for i := range a.Files {
+		if a.Files[i] != b.Files[i] {
+			return false
+		}
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeDeviceAuthorizationFlowRequest(m *DeviceAuthorizationFlowRequest) int {
+	n := 0
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalDeviceAuthorizationFlowRequest(b []byte, m *DeviceAuthorizationFlowRequest) []byte {
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalDeviceAuthorizationFlowRequest(m *DeviceAuthorizationFlowRequest, b []byte) error {
+	*m = DeviceAuthorizationFlowRequest{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeDeviceAuthorizationFlowRequest(dst, src *DeviceAuthorizationFlowRequest) {
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalDeviceAuthorizationFlowRequest(a, b *DeviceAuthorizationFlowRequest) bool {
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeDeviceAuthorizationFlow(m *DeviceAuthorizationFlow) int {
+	n := 0
+	if m.Provider != 0 {
+		n += protowire.SizeTag(1) + protowire.SizeVarint(uint64(m.Provider))
+	}
+	if m.ProviderConfig != nil {
+		s := sizeProviderConfig(m.ProviderConfig)
+		n += protowire.SizeTag(2) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalDeviceAuthorizationFlow(b []byte, m *DeviceAuthorizationFlow) []byte {
+	if m.Provider != 0 {
+		b = protowire.AppendTag(b, 1, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Provider))
+	}
+	if m.ProviderConfig != nil {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeProviderConfig(m.ProviderConfig)))
+		b = marshalProviderConfig(b, m.ProviderConfig)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalDeviceAuthorizationFlow(m *DeviceAuthorizationFlow, b []byte) error {
+	*m = DeviceAuthorizationFlow{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Provider = DeviceAuthorizationFlowProvider(v)
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.ProviderConfig == nil {
+				m.ProviderConfig = &ProviderConfig{}
+			}
+			if err := unmarshalProviderConfig(m.ProviderConfig, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeDeviceAuthorizationFlow(dst, src *DeviceAuthorizationFlow) {
+	if src.Provider != 0 {
+		dst.Provider = src.Provider
+	}
+	if src.ProviderConfig != nil {
+		if dst.ProviderConfig == nil {
+			dst.ProviderConfig = &ProviderConfig{}
+		}
+		mergeProviderConfig(dst.ProviderConfig, src.ProviderConfig)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalDeviceAuthorizationFlow(a, b *DeviceAuthorizationFlow) bool {
+	if a.Provider != b.Provider {
+		return false
+	}
+	if (a.ProviderConfig == nil) != (b.ProviderConfig == nil) {
+		return false
+	}
+	if a.ProviderConfig != nil && !equalProviderConfig(a.ProviderConfig, b.ProviderConfig) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizePKCEAuthorizationFlowRequest(m *PKCEAuthorizationFlowRequest) int {
+	n := 0
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalPKCEAuthorizationFlowRequest(b []byte, m *PKCEAuthorizationFlowRequest) []byte {
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalPKCEAuthorizationFlowRequest(m *PKCEAuthorizationFlowRequest, b []byte) error {
+	*m = PKCEAuthorizationFlowRequest{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergePKCEAuthorizationFlowRequest(dst, src *PKCEAuthorizationFlowRequest) {
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalPKCEAuthorizationFlowRequest(a, b *PKCEAuthorizationFlowRequest) bool {
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizePKCEAuthorizationFlow(m *PKCEAuthorizationFlow) int {
+	n := 0
+	if m.ProviderConfig != nil {
+		s := sizeProviderConfig(m.ProviderConfig)
+		n += protowire.SizeTag(1) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalPKCEAuthorizationFlow(b []byte, m *PKCEAuthorizationFlow) []byte {
+	if m.ProviderConfig != nil {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeProviderConfig(m.ProviderConfig)))
+		b = marshalProviderConfig(b, m.ProviderConfig)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalPKCEAuthorizationFlow(m *PKCEAuthorizationFlow, b []byte) error {
+	*m = PKCEAuthorizationFlow{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			if m.ProviderConfig == nil {
+				m.ProviderConfig = &ProviderConfig{}
+			}
+			if err := unmarshalProviderConfig(m.ProviderConfig, v); err != nil {
+				return err
+			}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergePKCEAuthorizationFlow(dst, src *PKCEAuthorizationFlow) {
+	if src.ProviderConfig != nil {
+		if dst.ProviderConfig == nil {
+			dst.ProviderConfig = &ProviderConfig{}
+		}
+		mergeProviderConfig(dst.ProviderConfig, src.ProviderConfig)
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalPKCEAuthorizationFlow(a, b *PKCEAuthorizationFlow) bool {
+	if (a.ProviderConfig == nil) != (b.ProviderConfig == nil) {
+		return false
+	}
+	if a.ProviderConfig != nil && !equalProviderConfig(a.ProviderConfig, b.ProviderConfig) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeProviderConfig(m *ProviderConfig) int {
+	n := 0
+	if m.ClientID != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.ClientID))
+	}
+	if m.ClientSecret != "" {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.ClientSecret))
+	}
+	if m.Domain != "" {
+		n += protowire.SizeTag(3) + protowire.SizeBytes(len(m.Domain))
+	}
+	if m.Audience != "" {
+		n += protowire.SizeTag(4) + protowire.SizeBytes(len(m.Audience))
+	}
+	if m.DeviceAuthEndpoint != "" {
+		n += protowire.SizeTag(5) + protowire.SizeBytes(len(m.DeviceAuthEndpoint))
+	}
+	if m.TokenEndpoint != "" {
+		n += protowire.SizeTag(6) + protowire.SizeBytes(len(m.TokenEndpoint))
+	}
+	if m.Scope != "" {
+		n += protowire.SizeTag(7) + protowire.SizeBytes(len(m.Scope))
+	}
+	if m.UseIDToken {
+		n += protowire.SizeTag(8) + protowire.SizeVarint(protowire.EncodeBool(m.UseIDToken))
+	}
+	if m.AuthorizationEndpoint != "" {
+		n += protowire.SizeTag(9) + protowire.SizeBytes(len(m.AuthorizationEndpoint))
+	}
+	for _, v := range m.RedirectURLs {
+		n += protowire.SizeTag(10) + protowire.SizeBytes(len(v))
+	}
+	if m.DisablePromptLogin {
+		n += protowire.SizeTag(11) + protowire.SizeVarint(protowire.EncodeBool(m.DisablePromptLogin))
+	}
+	if m.LoginFlag != 0 {
+		n += protowire.SizeTag(12) + protowire.SizeVarint(uint64(m.LoginFlag))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalProviderConfig(b []byte, m *ProviderConfig) []byte {
+	if m.ClientID != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.ClientID)
+	}
+	if m.ClientSecret != "" {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendString(b, m.ClientSecret)
+	}
+	if m.Domain != "" {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendString(b, m.Domain)
+	}
+	if m.Audience != "" {
+		b = protowire.AppendTag(b, 4, protowire.BytesType)
+		b = protowire.AppendString(b, m.Audience)
+	}
+	if m.DeviceAuthEndpoint != "" {
+		b = protowire.AppendTag(b, 5, protowire.BytesType)
+		b = protowire.AppendString(b, m.DeviceAuthEndpoint)
+	}
+	if m.TokenEndpoint != "" {
+		b = protowire.AppendTag(b, 6, protowire.BytesType)
+		b = protowire.AppendString(b, m.TokenEndpoint)
+	}
+	if m.Scope != "" {
+		b = protowire.AppendTag(b, 7, protowire.BytesType)
+		b = protowire.AppendString(b, m.Scope)
+	}
+	if m.UseIDToken {
+		b = protowire.AppendTag(b, 8, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.UseIDToken))
+	}
+	if m.AuthorizationEndpoint != "" {
+		b = protowire.AppendTag(b, 9, protowire.BytesType)
+		b = protowire.AppendString(b, m.AuthorizationEndpoint)
+	}
+	for _, v := range m.RedirectURLs {
+		b = protowire.AppendTag(b, 10, protowire.BytesType)
+		b = protowire.AppendString(b, v)
+	}
+	if m.DisablePromptLogin {
+		b = protowire.AppendTag(b, 11, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.DisablePromptLogin))
+	}
+	if m.LoginFlag != 0 {
+		b = protowire.AppendTag(b, 12, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.LoginFlag))
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalProviderConfig(m *ProviderConfig, b []byte) error {
+	*m = ProviderConfig{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ClientID = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ClientSecret = v
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Domain = v
+			b = b[n:]
+		case num == 4 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Audience = v
+			b = b[n:]
+		case num == 5 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.DeviceAuthEndpoint = v
+			b = b[n:]
+		case num == 6 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.TokenEndpoint = v
+			b = b[n:]
+		case num == 7 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Scope = v
+			b = b[n:]
+		case num == 8 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.UseIDToken = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 9 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.AuthorizationEndpoint = v
+			b = b[n:]
+		case num == 10 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.RedirectURLs = append(m.RedirectURLs, v)
+			b = b[n:]
+		case num == 11 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.DisablePromptLogin = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 12 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.LoginFlag = uint32(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeProviderConfig(dst, src *ProviderConfig) {
+	if src.ClientID != "" {
+		dst.ClientID = src.ClientID
+	}
+	if src.ClientSecret != "" {
+		dst.ClientSecret = src.ClientSecret
+	}
+	if src.Domain != "" {
+		dst.Domain = src.Domain
+	}
+	if src.Audience != "" {
+		dst.Audience = src.Audience
+	}
+	if src.DeviceAuthEndpoint != "" {
+		dst.DeviceAuthEndpoint = src.DeviceAuthEndpoint
+	}
+	if src.TokenEndpoint != "" {
+		dst.TokenEndpoint = src.TokenEndpoint
+	}
+	if src.Scope != "" {
+		dst.Scope = src.Scope
+	}
+	if src.UseIDToken {
+		dst.UseIDToken = src.UseIDToken
+	}
+	if src.AuthorizationEndpoint != "" {
+		dst.AuthorizationEndpoint = src.AuthorizationEndpoint
+	}
+	if len(src.RedirectURLs) > 0 {
+		dst.RedirectURLs = append(dst.RedirectURLs, src.RedirectURLs...)
+	}
+	if src.DisablePromptLogin {
+		dst.DisablePromptLogin = src.DisablePromptLogin
+	}
+	if src.LoginFlag != 0 {
+		dst.LoginFlag = src.LoginFlag
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalProviderConfig(a, b *ProviderConfig) bool {
+	if a.ClientID != b.ClientID {
+		return false
+	}
+	if a.ClientSecret != b.ClientSecret {
+		return false
+	}
+	if a.Domain != b.Domain {
+		return false
+	}
+	if a.Audience != b.Audience {
+		return false
+	}
+	if a.DeviceAuthEndpoint != b.DeviceAuthEndpoint {
+		return false
+	}
+	if a.TokenEndpoint != b.TokenEndpoint {
+		return false
+	}
+	if a.Scope != b.Scope {
+		return false
+	}
+	if a.UseIDToken != b.UseIDToken {
+		return false
+	}
+	if a.AuthorizationEndpoint != b.AuthorizationEndpoint {
+		return false
+	}
+	if len(a.RedirectURLs) != len(b.RedirectURLs) {
+		return false
+	}
+	for i := range a.RedirectURLs {
+		if a.RedirectURLs[i] != b.RedirectURLs[i] {
+			return false
+		}
+	}
+	if a.DisablePromptLogin != b.DisablePromptLogin {
+		return false
+	}
+	if a.LoginFlag != b.LoginFlag {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeTimestamp(m *timestamppb.Timestamp) int {
+	n := 0
+	if m.Seconds != 0 {
+		n += protowire.SizeTag(1) + protowire.SizeVarint(uint64(m.Seconds))
+	}
+	if m.Nanos != 0 {
+		n += protowire.SizeTag(2) + protowire.SizeVarint(uint64(m.Nanos))
+	}
+	return n
+}
+
+func marshalTimestamp(b []byte, m *timestamppb.Timestamp) []byte {
+	if m.Seconds != 0 {
+		b = protowire.AppendTag(b, 1, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Seconds))
+	}
+	if m.Nanos != 0 {
+		b = protowire.AppendTag(b, 2, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Nanos))
+	}
+	return b
+}
+
+func unmarshalTimestamp(m *timestamppb.Timestamp, b []byte) error {
+	*m = timestamppb.Timestamp{}
+	for len(b) > 0 {
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Seconds = int64(v)
+			b = b[n:]
+		case num == 2 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Nanos = int32(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeTimestamp(dst, src *timestamppb.Timestamp) {
+	if src.Seconds != 0 {
+		dst.Seconds = src.Seconds
+	}
+	if src.Nanos != 0 {
+		dst.Nanos = src.Nanos
+	}
+}
+
+func equalTimestamp(a, b *timestamppb.Timestamp) bool {
+	if (a == nil) != (b == nil) {
+		return false
+	}
+	if a == nil {
+		return true
+	}
+	return a.Seconds == b.Seconds && a.Nanos == b.Nanos
+}
+
+func sizeDuration(m *durationpb.Duration) int {
+	n := 0
+	if m.Seconds != 0 {
+		n += protowire.SizeTag(1) + protowire.SizeVarint(uint64(m.Seconds))
+	}
+	if m.Nanos != 0 {
+		n += protowire.SizeTag(2) + protowire.SizeVarint(uint64(m.Nanos))
+	}
+	return n
+}
+
+func marshalDuration(b []byte, m *durationpb.Duration) []byte {
+	if m.Seconds != 0 {
+		b = protowire.AppendTag(b, 1, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Seconds))
+	}
+	if m.Nanos != 0 {
+		b = protowire.AppendTag(b, 2, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Nanos))
+	}
+	return b
+}
+
+func unmarshalDuration(m *durationpb.Duration, b []byte) error {
+	*m = durationpb.Duration{}
+	for len(b) > 0 {
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Seconds = int64(v)
+			b = b[n:]
+		case num == 2 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Nanos = int32(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeDuration(dst, src *durationpb.Duration) {
+	if src.Seconds != 0 {
+		dst.Seconds = src.Seconds
+	}
+	if src.Nanos != 0 {
+		dst.Nanos = src.Nanos
+	}
+}
+
+func equalDuration(a, b *durationpb.Duration) bool {
+	if (a == nil) != (b == nil) {
+		return false
+	}
+	if a == nil {
+		return true
+	}
+	return a.Seconds == b.Seconds && a.Nanos == b.Nanos
 }

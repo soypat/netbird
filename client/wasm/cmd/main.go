@@ -4,6 +4,7 @@ package main
 
 import (
 	"context"
+	"encoding/base64"
 	"fmt"
 	"net"
 	"strconv"
@@ -12,7 +13,8 @@ import (
 	"time"
 
 	log "github.com/sirupsen/logrus"
-	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/types/known/durationpb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 
 	netbird "github.com/netbirdio/netbird/client/embed"
 	sshdetection "github.com/netbirdio/netbird/client/ssh/detection"
@@ -22,6 +24,7 @@ import (
 	"github.com/netbirdio/netbird/client/wasm/internal/rdp"
 	"github.com/netbirdio/netbird/client/wasm/internal/ssh"
 	nbwebsocket "github.com/netbirdio/netbird/client/wasm/internal/websocket"
+	mgmProto "github.com/netbirdio/netbird/shared/management/proto"
 	"github.com/netbirdio/netbird/util"
 )
 
@@ -466,21 +469,346 @@ func createGetSyncResponseMethod(client *netbird.Client) js.Func {
 				return
 			}
 
-			options := protojson.MarshalOptions{
-				EmitUnpopulated: true,
-				UseProtoNames:   true,
-				AllowPartial:    true,
-			}
-			jsonBytes, err := options.Marshal(syncResp)
-			if err != nil {
-				reject.Invoke(js.ValueOf(fmt.Sprintf("marshal sync response: %v", err)))
-				return
-			}
-
-			jsonObj := js.Global().Get("JSON").Call("parse", string(jsonBytes))
-			resolve.Invoke(jsonObj)
+			resolve.Invoke(syncResponseJS(syncResp))
 		})
 	})
+}
+
+func syncResponseJS(resp *mgmProto.SyncResponse) js.Value {
+	if resp == nil {
+		return js.Null()
+	}
+	return js.ValueOf(map[string]interface{}{
+		"netbirdConfig":      netbirdConfigJS(resp.GetNetbirdConfig()),
+		"peerConfig":         peerConfigJS(resp.GetPeerConfig()),
+		"remotePeers":        remotePeersJS(resp.GetRemotePeers()),
+		"remotePeersIsEmpty": resp.GetRemotePeersIsEmpty(),
+		"NetworkMap":         networkMapJS(resp.GetNetworkMap()),
+		"Checks":             checksJS(resp.GetChecks()),
+		"sessionExpiresAt":   timestampJS(resp.GetSessionExpiresAt()),
+	})
+}
+
+func netbirdConfigJS(cfg *mgmProto.NetbirdConfig) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"stuns":  hostConfigsJS(cfg.GetStuns()),
+		"turns":  protectedHostConfigsJS(cfg.GetTurns()),
+		"signal": hostConfigJS(cfg.GetSignal()),
+		"relay":  relayConfigJS(cfg.GetRelay()),
+		"flow":   flowConfigJS(cfg.GetFlow()),
+	}
+}
+
+func hostConfigsJS(in []*mgmProto.HostConfig) []interface{} {
+	out := make([]interface{}, 0, len(in))
+	for _, item := range in {
+		out = append(out, hostConfigJS(item))
+	}
+	return out
+}
+
+func protectedHostConfigsJS(in []*mgmProto.ProtectedHostConfig) []interface{} {
+	out := make([]interface{}, 0, len(in))
+	for _, item := range in {
+		out = append(out, protectedHostConfigJS(item))
+	}
+	return out
+}
+
+func hostConfigJS(cfg *mgmProto.HostConfig) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"uri":      cfg.GetUri(),
+		"protocol": int(cfg.GetProtocol()),
+	}
+}
+
+func protectedHostConfigJS(cfg *mgmProto.ProtectedHostConfig) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"hostConfig": hostConfigJS(cfg.GetHostConfig()),
+		"user":       cfg.GetUser(),
+		"password":   cfg.GetPassword(),
+	}
+}
+
+func relayConfigJS(cfg *mgmProto.RelayConfig) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"urls":           stringSliceJS(cfg.GetUrls()),
+		"tokenPayload":   cfg.GetTokenPayload(),
+		"tokenSignature": cfg.GetTokenSignature(),
+	}
+}
+
+func flowConfigJS(cfg *mgmProto.FlowConfig) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"url":                cfg.GetUrl(),
+		"tokenPayload":       cfg.GetTokenPayload(),
+		"tokenSignature":     cfg.GetTokenSignature(),
+		"interval":           durationJS(cfg.GetInterval()),
+		"enabled":            cfg.GetEnabled(),
+		"counters":           cfg.GetCounters(),
+		"exitNodeCollection": cfg.GetExitNodeCollection(),
+		"dnsCollection":      cfg.GetDnsCollection(),
+	}
+}
+
+func peerConfigJS(cfg *mgmProto.PeerConfig) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"address":                         cfg.GetAddress(),
+		"dns":                             cfg.GetDns(),
+		"sshConfig":                       sshConfigJS(cfg.GetSshConfig()),
+		"fqdn":                            cfg.GetFqdn(),
+		"RoutingPeerDnsResolutionEnabled": cfg.GetRoutingPeerDnsResolutionEnabled(),
+		"LazyConnectionEnabled":           cfg.GetLazyConnectionEnabled(),
+		"mtu":                             cfg.GetMtu(),
+		"autoUpdate":                      autoUpdateSettingsJS(cfg.GetAutoUpdate()),
+		"address_v6":                      bytesJS(cfg.GetAddressV6()),
+	}
+}
+
+func autoUpdateSettingsJS(cfg *mgmProto.AutoUpdateSettings) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"version":      cfg.GetVersion(),
+		"alwaysUpdate": cfg.GetAlwaysUpdate(),
+	}
+}
+
+func networkMapJS(nm *mgmProto.NetworkMap) interface{} {
+	if nm == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"Serial":                     float64(nm.GetSerial()),
+		"peerConfig":                 peerConfigJS(nm.GetPeerConfig()),
+		"remotePeers":                remotePeersJS(nm.GetRemotePeers()),
+		"remotePeersIsEmpty":         nm.GetRemotePeersIsEmpty(),
+		"Routes":                     routesJS(nm.GetRoutes()),
+		"DNSConfig":                  dnsConfigJS(nm.GetDNSConfig()),
+		"offlinePeers":               remotePeersJS(nm.GetOfflinePeers()),
+		"FirewallRules":              firewallRulesJS(nm.GetFirewallRules()),
+		"firewallRulesIsEmpty":       nm.GetFirewallRulesIsEmpty(),
+		"routesFirewallRules":        routeFirewallRulesJS(nm.GetRoutesFirewallRules()),
+		"routesFirewallRulesIsEmpty": nm.GetRoutesFirewallRulesIsEmpty(),
+		"forwardingRules":            forwardingRulesJS(nm.GetForwardingRules()),
+		"sshAuth":                    sshAuthJS(nm.GetSshAuth()),
+	}
+}
+
+func remotePeersJS(in []*mgmProto.RemotePeerConfig) []interface{} {
+	out := make([]interface{}, 0, len(in))
+	for _, item := range in {
+		out = append(out, remotePeerConfigJS(item))
+	}
+	return out
+}
+
+func remotePeerConfigJS(cfg *mgmProto.RemotePeerConfig) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"wgPubKey":     cfg.GetWgPubKey(),
+		"allowedIps":   stringSliceJS(cfg.GetAllowedIps()),
+		"sshConfig":    sshConfigJS(cfg.GetSshConfig()),
+		"fqdn":         cfg.GetFqdn(),
+		"agentVersion": cfg.GetAgentVersion(),
+	}
+}
+
+func sshConfigJS(cfg *mgmProto.SSHConfig) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"sshEnabled": cfg.GetSshEnabled(),
+		"sshPubKey":  bytesJS(cfg.GetSshPubKey()),
+		"jwtConfig":  jwtConfigJS(cfg.GetJwtConfig()),
+	}
+}
+
+func jwtConfigJS(cfg *mgmProto.JWTConfig) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"issuer":       cfg.GetIssuer(),
+		"audience":     cfg.GetAudience(),
+		"keysLocation": cfg.GetKeysLocation(),
+		"maxTokenAge":  cfg.GetMaxTokenAge(),
+		"audiences":    stringSliceJS(cfg.GetAudiences()),
+	}
+}
+
+func routesJS(in []*mgmProto.Route) []interface{} {
+	out := make([]interface{}, 0, len(in))
+	for _, item := range in {
+		if item == nil {
+			out = append(out, nil)
+			continue
+		}
+		out = append(out, map[string]interface{}{
+			"ID":            item.GetID(),
+			"Network":       item.GetNetwork(),
+			"NetworkType":   item.GetNetworkType(),
+			"Peer":          item.GetPeer(),
+			"Metric":        item.GetMetric(),
+			"Masquerade":    item.GetMasquerade(),
+			"NetID":         item.GetNetID(),
+			"Domains":       stringSliceJS(item.GetDomains()),
+			"keepRoute":     item.GetKeepRoute(),
+			"skipAutoApply": item.GetSkipAutoApply(),
+		})
+	}
+	return out
+}
+
+func dnsConfigJS(cfg *mgmProto.DNSConfig) interface{} {
+	if cfg == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"ServiceEnable": cfg.GetServiceEnable(),
+		"ForwarderPort": cfg.GetForwarderPort(),
+	}
+}
+
+func firewallRulesJS(in []*mgmProto.FirewallRule) []interface{} {
+	out := make([]interface{}, 0, len(in))
+	for _, item := range in {
+		if item == nil {
+			out = append(out, nil)
+			continue
+		}
+		out = append(out, map[string]interface{}{
+			"PeerIP":         item.GetPeerIP(),
+			"Direction":      int(item.GetDirection()),
+			"Action":         int(item.GetAction()),
+			"Protocol":       int(item.GetProtocol()),
+			"Port":           item.GetPort(),
+			"PolicyID":       bytesJS(item.GetPolicyID()),
+			"customProtocol": item.GetCustomProtocol(),
+			"sourcePrefixes": bytesSliceJS(item.GetSourcePrefixes()),
+		})
+	}
+	return out
+}
+
+func routeFirewallRulesJS(in []*mgmProto.RouteFirewallRule) []interface{} {
+	out := make([]interface{}, 0, len(in))
+	for _, item := range in {
+		if item == nil {
+			out = append(out, nil)
+			continue
+		}
+		out = append(out, map[string]interface{}{
+			"sourceRanges":   stringSliceJS(item.GetSourceRanges()),
+			"action":         int(item.GetAction()),
+			"destination":    item.GetDestination(),
+			"protocol":       int(item.GetProtocol()),
+			"isDynamic":      item.GetIsDynamic(),
+			"domains":        stringSliceJS(item.GetDomains()),
+			"customProtocol": item.GetCustomProtocol(),
+			"PolicyID":       bytesJS(item.GetPolicyID()),
+			"RouteID":        item.GetRouteID(),
+		})
+	}
+	return out
+}
+
+func forwardingRulesJS(in []*mgmProto.ForwardingRule) []interface{} {
+	out := make([]interface{}, 0, len(in))
+	for _, item := range in {
+		if item == nil {
+			out = append(out, nil)
+			continue
+		}
+		out = append(out, map[string]interface{}{
+			"protocol":          int(item.GetProtocol()),
+			"translatedAddress": bytesJS(item.GetTranslatedAddress()),
+		})
+	}
+	return out
+}
+
+func sshAuthJS(auth *mgmProto.SSHAuth) interface{} {
+	if auth == nil {
+		return nil
+	}
+	return map[string]interface{}{
+		"UserIDClaim":     auth.GetUserIDClaim(),
+		"AuthorizedUsers": bytesSliceJS(auth.GetAuthorizedUsers()),
+	}
+}
+
+func checksJS(in []*mgmProto.Checks) []interface{} {
+	out := make([]interface{}, 0, len(in))
+	for _, item := range in {
+		if item == nil {
+			out = append(out, nil)
+			continue
+		}
+		out = append(out, map[string]interface{}{
+			"Files": stringSliceJS(item.GetFiles()),
+		})
+	}
+	return out
+}
+
+func timestampJS(ts *timestamppb.Timestamp) interface{} {
+	if ts == nil {
+		return nil
+	}
+	return ts.AsTime().Format(time.RFC3339Nano)
+}
+
+func durationJS(d *durationpb.Duration) interface{} {
+	if d == nil {
+		return nil
+	}
+	return fmt.Sprintf("%ds", d.GetSeconds())
+}
+
+func stringSliceJS(in []string) []interface{} {
+	out := make([]interface{}, 0, len(in))
+	for _, item := range in {
+		out = append(out, item)
+	}
+	return out
+}
+
+func bytesSliceJS(in [][]byte) []interface{} {
+	out := make([]interface{}, 0, len(in))
+	for _, item := range in {
+		out = append(out, bytesJS(item))
+	}
+	return out
+}
+
+func bytesJS(in []byte) string {
+	if len(in) == 0 {
+		return ""
+	}
+	return base64.StdEncoding.EncodeToString(in)
 }
 
 // createSetLogLevelMethod creates the setLogLevel method to dynamically change logging level

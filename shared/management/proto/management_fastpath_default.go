@@ -7,3 +7,67 @@ package proto
 import "google.golang.org/protobuf/reflect/protoreflect"
 
 func encryptedMessageProtoReflect(*EncryptedMessage) protoreflect.Message { return nil }
+
+func syncRequestProtoReflect(*SyncRequest) protoreflect.Message { return nil }
+
+func syncMetaRequestProtoReflect(*SyncMetaRequest) protoreflect.Message { return nil }
+
+func loginRequestProtoReflect(*LoginRequest) protoreflect.Message { return nil }
+
+func peerKeysProtoReflect(*PeerKeys) protoreflect.Message { return nil }
+
+func environmentProtoReflect(*Environment) protoreflect.Message { return nil }
+
+func fileProtoReflect(*File) protoreflect.Message { return nil }
+
+func flagsProtoReflect(*Flags) protoreflect.Message { return nil }
+
+func peerSystemMetaProtoReflect(*PeerSystemMeta) protoreflect.Message { return nil }
+
+func loginResponseProtoReflect(*LoginResponse) protoreflect.Message { return nil }
+
+func extendAuthSessionRequestProtoReflect(*ExtendAuthSessionRequest) protoreflect.Message { return nil }
+
+func extendAuthSessionResponseProtoReflect(*ExtendAuthSessionResponse) protoreflect.Message {
+	return nil
+}
+
+func serverKeyResponseProtoReflect(*ServerKeyResponse) protoreflect.Message { return nil }
+
+func emptyProtoReflect(*Empty) protoreflect.Message { return nil }
+
+func netbirdConfigProtoReflect(*NetbirdConfig) protoreflect.Message { return nil }
+
+func hostConfigProtoReflect(*HostConfig) protoreflect.Message { return nil }
+
+func relayConfigProtoReflect(*RelayConfig) protoreflect.Message { return nil }
+
+func flowConfigProtoReflect(*FlowConfig) protoreflect.Message { return nil }
+
+func jWTConfigProtoReflect(*JWTConfig) protoreflect.Message { return nil }
+
+func protectedHostConfigProtoReflect(*ProtectedHostConfig) protoreflect.Message { return nil }
+
+func peerConfigProtoReflect(*PeerConfig) protoreflect.Message { return nil }
+
+func autoUpdateSettingsProtoReflect(*AutoUpdateSettings) protoreflect.Message { return nil }
+
+func networkAddressProtoReflect(*NetworkAddress) protoreflect.Message { return nil }
+
+func sSHConfigProtoReflect(*SSHConfig) protoreflect.Message { return nil }
+
+func checksProtoReflect(*Checks) protoreflect.Message { return nil }
+
+func deviceAuthorizationFlowRequestProtoReflect(*DeviceAuthorizationFlowRequest) protoreflect.Message {
+	return nil
+}
+
+func deviceAuthorizationFlowProtoReflect(*DeviceAuthorizationFlow) protoreflect.Message { return nil }
+
+func pKCEAuthorizationFlowRequestProtoReflect(*PKCEAuthorizationFlowRequest) protoreflect.Message {
+	return nil
+}
+
+func pKCEAuthorizationFlowProtoReflect(*PKCEAuthorizationFlow) protoreflect.Message { return nil }
+
+func providerConfigProtoReflect(*ProviderConfig) protoreflect.Message { return nil }

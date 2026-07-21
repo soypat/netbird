@@ -15,14 +15,23 @@ type scalarKind string
 const (
 	kindString         scalarKind = "string"
 	kindBytes          scalarKind = "bytes"
+	kindBool           scalarKind = "bool"
 	kindInt32          scalarKind = "int32"
+	kindInt64          scalarKind = "int64"
 	kindUint32         scalarKind = "uint32"
+	kindUint64         scalarKind = "uint64"
 	kindEnum           scalarKind = "enum"
 	kindMessage        scalarKind = "message"
 	kindRepeatedUint32 scalarKind = "repeated_uint32"
+	kindRepeatedEnum   scalarKind = "repeated_enum"
+	kindRepeatedString scalarKind = "repeated_string"
+	kindRepeatedBytes  scalarKind = "repeated_bytes"
+	kindRepeatedMsg    scalarKind = "repeated_message"
 	kindOptionalString scalarKind = "optional_string"
 	kindOptionalBytes  scalarKind = "optional_bytes"
 	kindOptionalBool   scalarKind = "optional_bool"
+	kindTimestamp      scalarKind = "timestamp"
+	kindDuration       scalarKind = "duration"
 )
 
 type field struct {
@@ -101,6 +110,177 @@ var targets = map[string]target{
 				{Number: 1, Name: "WgPubKey", Kind: kindString},
 				{Number: 2, Name: "Body", Kind: kindBytes},
 				{Number: 3, Name: "Version", Kind: kindInt32},
+			}},
+			{Name: "SyncRequest", Fields: []field{
+				{Number: 1, Name: "Meta", Kind: kindMessage, MessageType: "PeerSystemMeta"},
+			}},
+			{Name: "SyncMetaRequest", Fields: []field{
+				{Number: 1, Name: "Meta", Kind: kindMessage, MessageType: "PeerSystemMeta"},
+			}},
+			{Name: "LoginRequest", Fields: []field{
+				{Number: 1, Name: "SetupKey", Kind: kindString},
+				{Number: 2, Name: "Meta", Kind: kindMessage, MessageType: "PeerSystemMeta"},
+				{Number: 3, Name: "JwtToken", Kind: kindString},
+				{Number: 4, Name: "PeerKeys", Kind: kindMessage, MessageType: "PeerKeys"},
+				{Number: 5, Name: "DnsLabels", Kind: kindRepeatedString},
+			}},
+			{Name: "PeerKeys", Fields: []field{
+				{Number: 1, Name: "SshPubKey", Kind: kindBytes},
+				{Number: 2, Name: "WgPubKey", Kind: kindBytes},
+			}},
+			{Name: "Environment", Fields: []field{
+				{Number: 1, Name: "Cloud", Kind: kindString},
+				{Number: 2, Name: "Platform", Kind: kindString},
+			}},
+			{Name: "File", Fields: []field{
+				{Number: 1, Name: "Path", Kind: kindString},
+				{Number: 2, Name: "Exist", Kind: kindBool},
+				{Number: 3, Name: "ProcessIsRunning", Kind: kindBool},
+			}},
+			{Name: "Flags", Fields: []field{
+				{Number: 1, Name: "RosenpassEnabled", Kind: kindBool},
+				{Number: 2, Name: "RosenpassPermissive", Kind: kindBool},
+				{Number: 3, Name: "ServerSSHAllowed", Kind: kindBool},
+				{Number: 4, Name: "DisableClientRoutes", Kind: kindBool},
+				{Number: 5, Name: "DisableServerRoutes", Kind: kindBool},
+				{Number: 6, Name: "DisableDNS", Kind: kindBool},
+				{Number: 7, Name: "DisableFirewall", Kind: kindBool},
+				{Number: 8, Name: "BlockLANAccess", Kind: kindBool},
+				{Number: 9, Name: "BlockInbound", Kind: kindBool},
+				{Number: 10, Name: "LazyConnectionEnabled", Kind: kindBool},
+				{Number: 11, Name: "EnableSSHRoot", Kind: kindBool},
+				{Number: 12, Name: "EnableSSHSFTP", Kind: kindBool},
+				{Number: 13, Name: "EnableSSHLocalPortForwarding", Kind: kindBool},
+				{Number: 14, Name: "EnableSSHRemotePortForwarding", Kind: kindBool},
+				{Number: 15, Name: "DisableSSHAuth", Kind: kindBool},
+				{Number: 16, Name: "DisableIPv6", Kind: kindBool},
+			}},
+			{Name: "PeerSystemMeta", Fields: []field{
+				{Number: 1, Name: "Hostname", Kind: kindString},
+				{Number: 2, Name: "GoOS", Kind: kindString},
+				{Number: 3, Name: "Kernel", Kind: kindString},
+				{Number: 4, Name: "Core", Kind: kindString},
+				{Number: 5, Name: "Platform", Kind: kindString},
+				{Number: 6, Name: "OS", Kind: kindString},
+				{Number: 7, Name: "NetbirdVersion", Kind: kindString},
+				{Number: 8, Name: "UiVersion", Kind: kindString},
+				{Number: 9, Name: "KernelVersion", Kind: kindString},
+				{Number: 10, Name: "OSVersion", Kind: kindString},
+				{Number: 11, Name: "NetworkAddresses", Kind: kindRepeatedMsg, MessageType: "NetworkAddress"},
+				{Number: 12, Name: "SysSerialNumber", Kind: kindString},
+				{Number: 13, Name: "SysProductName", Kind: kindString},
+				{Number: 14, Name: "SysManufacturer", Kind: kindString},
+				{Number: 15, Name: "Environment", Kind: kindMessage, MessageType: "Environment"},
+				{Number: 16, Name: "Files", Kind: kindRepeatedMsg, MessageType: "File"},
+				{Number: 17, Name: "Flags", Kind: kindMessage, MessageType: "Flags"},
+				{Number: 18, Name: "Capabilities", Kind: kindRepeatedEnum, EnumType: "PeerCapability"},
+			}},
+			{Name: "LoginResponse", Fields: []field{
+				{Number: 1, Name: "NetbirdConfig", Kind: kindMessage, MessageType: "NetbirdConfig"},
+				{Number: 2, Name: "PeerConfig", Kind: kindMessage, MessageType: "PeerConfig"},
+				{Number: 3, Name: "Checks", Kind: kindRepeatedMsg, MessageType: "Checks"},
+				{Number: 4, Name: "SessionExpiresAt", Kind: kindTimestamp},
+			}},
+			{Name: "ExtendAuthSessionRequest", Fields: []field{
+				{Number: 1, Name: "JwtToken", Kind: kindString},
+				{Number: 2, Name: "Meta", Kind: kindMessage, MessageType: "PeerSystemMeta"},
+			}},
+			{Name: "ExtendAuthSessionResponse", Fields: []field{
+				{Number: 1, Name: "SessionExpiresAt", Kind: kindTimestamp},
+			}},
+			{Name: "ServerKeyResponse", Fields: []field{
+				{Number: 1, Name: "Key", Kind: kindString},
+				{Number: 2, Name: "ExpiresAt", Kind: kindTimestamp},
+				{Number: 3, Name: "Version", Kind: kindInt32},
+			}},
+			{Name: "Empty"},
+			{Name: "NetbirdConfig", Fields: []field{
+				{Number: 1, Name: "Stuns", Kind: kindRepeatedMsg, MessageType: "HostConfig"},
+				{Number: 2, Name: "Turns", Kind: kindRepeatedMsg, MessageType: "ProtectedHostConfig"},
+				{Number: 3, Name: "Signal", Kind: kindMessage, MessageType: "HostConfig"},
+				{Number: 4, Name: "Relay", Kind: kindMessage, MessageType: "RelayConfig"},
+				{Number: 5, Name: "Flow", Kind: kindMessage, MessageType: "FlowConfig"},
+			}},
+			{Name: "HostConfig", Fields: []field{
+				{Number: 1, Name: "Uri", Kind: kindString},
+				{Number: 2, Name: "Protocol", Kind: kindEnum, EnumType: "HostConfig_Protocol"},
+			}},
+			{Name: "RelayConfig", Fields: []field{
+				{Number: 1, Name: "Urls", Kind: kindRepeatedString},
+				{Number: 2, Name: "TokenPayload", Kind: kindString},
+				{Number: 3, Name: "TokenSignature", Kind: kindString},
+			}},
+			{Name: "FlowConfig", Fields: []field{
+				{Number: 1, Name: "Url", Kind: kindString},
+				{Number: 2, Name: "TokenPayload", Kind: kindString},
+				{Number: 3, Name: "TokenSignature", Kind: kindString},
+				{Number: 4, Name: "Interval", Kind: kindDuration},
+				{Number: 5, Name: "Enabled", Kind: kindBool},
+				{Number: 6, Name: "Counters", Kind: kindBool},
+				{Number: 7, Name: "ExitNodeCollection", Kind: kindBool},
+				{Number: 8, Name: "DnsCollection", Kind: kindBool},
+			}},
+			{Name: "JWTConfig", Fields: []field{
+				{Number: 1, Name: "Issuer", Kind: kindString},
+				{Number: 2, Name: "Audience", Kind: kindString},
+				{Number: 3, Name: "KeysLocation", Kind: kindString},
+				{Number: 4, Name: "MaxTokenAge", Kind: kindInt64},
+				{Number: 5, Name: "Audiences", Kind: kindRepeatedString},
+			}},
+			{Name: "ProtectedHostConfig", Fields: []field{
+				{Number: 1, Name: "HostConfig", Kind: kindMessage, MessageType: "HostConfig"},
+				{Number: 2, Name: "User", Kind: kindString},
+				{Number: 3, Name: "Password", Kind: kindString},
+			}},
+			{Name: "PeerConfig", Fields: []field{
+				{Number: 1, Name: "Address", Kind: kindString},
+				{Number: 2, Name: "Dns", Kind: kindString},
+				{Number: 3, Name: "SshConfig", Kind: kindMessage, MessageType: "SSHConfig"},
+				{Number: 4, Name: "Fqdn", Kind: kindString},
+				{Number: 5, Name: "RoutingPeerDnsResolutionEnabled", Kind: kindBool},
+				{Number: 6, Name: "LazyConnectionEnabled", Kind: kindBool},
+				{Number: 7, Name: "Mtu", Kind: kindInt32},
+				{Number: 8, Name: "AutoUpdate", Kind: kindMessage, MessageType: "AutoUpdateSettings"},
+				{Number: 9, Name: "AddressV6", Kind: kindBytes},
+			}},
+			{Name: "AutoUpdateSettings", Fields: []field{
+				{Number: 1, Name: "Version", Kind: kindString},
+				{Number: 2, Name: "AlwaysUpdate", Kind: kindBool},
+			}},
+			{Name: "NetworkAddress", Fields: []field{
+				{Number: 1, Name: "NetIP", Kind: kindString},
+				{Number: 2, Name: "Mac", Kind: kindString},
+			}},
+			{Name: "SSHConfig", Fields: []field{
+				{Number: 1, Name: "SshEnabled", Kind: kindBool},
+				{Number: 2, Name: "SshPubKey", Kind: kindBytes},
+				{Number: 3, Name: "JwtConfig", Kind: kindMessage, MessageType: "JWTConfig"},
+			}},
+			{Name: "Checks", Fields: []field{
+				{Number: 1, Name: "Files", Kind: kindRepeatedString},
+			}},
+			{Name: "DeviceAuthorizationFlowRequest"},
+			{Name: "DeviceAuthorizationFlow", Fields: []field{
+				{Number: 1, Name: "Provider", Kind: kindEnum, EnumType: "DeviceAuthorizationFlowProvider"},
+				{Number: 2, Name: "ProviderConfig", Kind: kindMessage, MessageType: "ProviderConfig"},
+			}},
+			{Name: "PKCEAuthorizationFlowRequest"},
+			{Name: "PKCEAuthorizationFlow", Fields: []field{
+				{Number: 1, Name: "ProviderConfig", Kind: kindMessage, MessageType: "ProviderConfig"},
+			}},
+			{Name: "ProviderConfig", Fields: []field{
+				{Number: 1, Name: "ClientID", Kind: kindString},
+				{Number: 2, Name: "ClientSecret", Kind: kindString},
+				{Number: 3, Name: "Domain", Kind: kindString},
+				{Number: 4, Name: "Audience", Kind: kindString},
+				{Number: 5, Name: "DeviceAuthEndpoint", Kind: kindString},
+				{Number: 6, Name: "TokenEndpoint", Kind: kindString},
+				{Number: 7, Name: "Scope", Kind: kindString},
+				{Number: 8, Name: "UseIDToken", Kind: kindBool},
+				{Number: 9, Name: "AuthorizationEndpoint", Kind: kindString},
+				{Number: 10, Name: "RedirectURLs", Kind: kindRepeatedString},
+				{Number: 11, Name: "DisablePromptLogin", Kind: kindBool},
+				{Number: 12, Name: "LoginFlag", Kind: kindUint32},
 			}},
 		},
 	},
@@ -204,6 +384,12 @@ func generateMethods(t target) []byte {
 	fmt.Fprintln(&b, "\t\"google.golang.org/protobuf/encoding/protowire\"")
 	fmt.Fprintln(&b, "\t\"google.golang.org/protobuf/reflect/protoreflect\"")
 	fmt.Fprintln(&b, "\t\"google.golang.org/protobuf/runtime/protoiface\"")
+	if hasKind(t, kindDuration) {
+		fmt.Fprintln(&b, "\t\"google.golang.org/protobuf/types/known/durationpb\"")
+	}
+	if hasKind(t, kindTimestamp) {
+		fmt.Fprintln(&b, "\t\"google.golang.org/protobuf/types/known/timestamppb\"")
+	}
 	fmt.Fprintln(&b, ")\n")
 
 	for _, m := range t.Messages {
@@ -222,6 +408,12 @@ func generateMethods(t target) []byte {
 		emitUnmarshal(&b, m)
 		emitMerge(&b, m)
 		emitEqual(&b, m)
+	}
+	if hasKind(t, kindTimestamp) {
+		emitWellKnown(&b, "Timestamp", "timestamppb.Timestamp")
+	}
+	if hasKind(t, kindDuration) {
+		emitWellKnown(&b, "Duration", "durationpb.Duration")
 	}
 	return b.Bytes()
 }
@@ -273,12 +465,26 @@ func emitSize(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tif m.%s != \"\" { n += protowire.SizeTag(%d) + protowire.SizeBytes(len(m.%s)) }\n", f.Name, f.Number, f.Name)
 		case kindBytes:
 			fmt.Fprintf(b, "\tif len(m.%s) > 0 { n += protowire.SizeTag(%d) + protowire.SizeBytes(len(m.%s)) }\n", f.Name, f.Number, f.Name)
-		case kindInt32, kindUint32, kindEnum:
+		case kindBool:
+			fmt.Fprintf(b, "\tif m.%s { n += protowire.SizeTag(%d) + protowire.SizeVarint(protowire.EncodeBool(m.%s)) }\n", f.Name, f.Number, f.Name)
+		case kindInt32, kindInt64, kindUint32, kindUint64, kindEnum:
 			fmt.Fprintf(b, "\tif m.%s != 0 { n += protowire.SizeTag(%d) + protowire.SizeVarint(uint64(m.%s)) }\n", f.Name, f.Number, f.Name)
 		case kindMessage:
 			fmt.Fprintf(b, "\tif m.%s != nil { s := size%s(m.%s); n += protowire.SizeTag(%d) + protowire.SizeBytes(s) }\n", f.Name, f.MessageType, f.Name, f.Number)
+		case kindTimestamp:
+			fmt.Fprintf(b, "\tif m.%s != nil { s := sizeTimestamp(m.%s); n += protowire.SizeTag(%d) + protowire.SizeBytes(s) }\n", f.Name, f.Name, f.Number)
+		case kindDuration:
+			fmt.Fprintf(b, "\tif m.%s != nil { s := sizeDuration(m.%s); n += protowire.SizeTag(%d) + protowire.SizeBytes(s) }\n", f.Name, f.Name, f.Number)
 		case kindRepeatedUint32:
 			fmt.Fprintf(b, "\tif len(m.%s) > 0 { packed := 0; for _, v := range m.%s { packed += protowire.SizeVarint(uint64(v)) }; n += protowire.SizeTag(%d) + protowire.SizeBytes(packed) }\n", f.Name, f.Name, f.Number)
+		case kindRepeatedEnum:
+			fmt.Fprintf(b, "\tif len(m.%s) > 0 { packed := 0; for _, v := range m.%s { packed += protowire.SizeVarint(uint64(v)) }; n += protowire.SizeTag(%d) + protowire.SizeBytes(packed) }\n", f.Name, f.Name, f.Number)
+		case kindRepeatedString:
+			fmt.Fprintf(b, "\tfor _, v := range m.%s { n += protowire.SizeTag(%d) + protowire.SizeBytes(len(v)) }\n", f.Name, f.Number)
+		case kindRepeatedBytes:
+			fmt.Fprintf(b, "\tfor _, v := range m.%s { n += protowire.SizeTag(%d) + protowire.SizeBytes(len(v)) }\n", f.Name, f.Number)
+		case kindRepeatedMsg:
+			fmt.Fprintf(b, "\tfor _, v := range m.%s { if v != nil { s := size%s(v); n += protowire.SizeTag(%d) + protowire.SizeBytes(s) } }\n", f.Name, f.MessageType, f.Number)
 		case kindOptionalString:
 			fmt.Fprintf(b, "\tif m.%s != nil { n += protowire.SizeTag(%d) + protowire.SizeBytes(len(*m.%s)) }\n", f.Name, f.Number, f.Name)
 		case kindOptionalBytes:
@@ -299,12 +505,26 @@ func emitMarshal(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tif m.%s != \"\" { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendString(b, m.%s) }\n", f.Name, f.Number, f.Name)
 		case kindBytes:
 			fmt.Fprintf(b, "\tif len(m.%s) > 0 { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendBytes(b, m.%s) }\n", f.Name, f.Number, f.Name)
-		case kindInt32, kindUint32, kindEnum:
+		case kindBool:
+			fmt.Fprintf(b, "\tif m.%s { b = protowire.AppendTag(b, %d, protowire.VarintType); b = protowire.AppendVarint(b, protowire.EncodeBool(m.%s)) }\n", f.Name, f.Number, f.Name)
+		case kindInt32, kindInt64, kindUint32, kindUint64, kindEnum:
 			fmt.Fprintf(b, "\tif m.%s != 0 { b = protowire.AppendTag(b, %d, protowire.VarintType); b = protowire.AppendVarint(b, uint64(m.%s)) }\n", f.Name, f.Number, f.Name)
 		case kindMessage:
 			fmt.Fprintf(b, "\tif m.%s != nil { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(size%s(m.%s))); b = marshal%s(b, m.%s) }\n", f.Name, f.Number, f.MessageType, f.Name, f.MessageType, f.Name)
+		case kindTimestamp:
+			fmt.Fprintf(b, "\tif m.%s != nil { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizeTimestamp(m.%s))); b = marshalTimestamp(b, m.%s) }\n", f.Name, f.Number, f.Name, f.Name)
+		case kindDuration:
+			fmt.Fprintf(b, "\tif m.%s != nil { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizeDuration(m.%s))); b = marshalDuration(b, m.%s) }\n", f.Name, f.Number, f.Name, f.Name)
 		case kindRepeatedUint32:
 			fmt.Fprintf(b, "\tif len(m.%s) > 0 { packed := 0; for _, v := range m.%s { packed += protowire.SizeVarint(uint64(v)) }; b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(packed)); for _, v := range m.%s { b = protowire.AppendVarint(b, uint64(v)) } }\n", f.Name, f.Name, f.Number, f.Name)
+		case kindRepeatedEnum:
+			fmt.Fprintf(b, "\tif len(m.%s) > 0 { packed := 0; for _, v := range m.%s { packed += protowire.SizeVarint(uint64(v)) }; b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(packed)); for _, v := range m.%s { b = protowire.AppendVarint(b, uint64(v)) } }\n", f.Name, f.Name, f.Number, f.Name)
+		case kindRepeatedString:
+			fmt.Fprintf(b, "\tfor _, v := range m.%s { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendString(b, v) }\n", f.Name, f.Number)
+		case kindRepeatedBytes:
+			fmt.Fprintf(b, "\tfor _, v := range m.%s { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendBytes(b, v) }\n", f.Name, f.Number)
+		case kindRepeatedMsg:
+			fmt.Fprintf(b, "\tfor _, v := range m.%s { if v != nil { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(size%s(v))); b = marshal%s(b, v) } }\n", f.Name, f.Number, f.MessageType, f.MessageType)
 		case kindOptionalString:
 			fmt.Fprintf(b, "\tif m.%s != nil { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendString(b, *m.%s) }\n", f.Name, f.Number, f.Name)
 		case kindOptionalBytes:
@@ -338,17 +558,36 @@ func emitUnmarshalCase(b *bytes.Buffer, f field) {
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeString(b); if n < 0 { return protowire.ParseError(n) }; m.%s = v; b = b[n:]\n", f.Number, f.Name)
 	case kindBytes:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; m.%s = append(m.%s[:0], v...); b = b[n:]\n", f.Number, f.Name, f.Name)
+	case kindBool:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.VarintType:\n\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.%s = protowire.DecodeBool(v); b = b[n:]\n", f.Number, f.Name)
 	case kindInt32:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.VarintType:\n\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.%s = int32(v); b = b[n:]\n", f.Number, f.Name)
+	case kindInt64:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.VarintType:\n\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.%s = int64(v); b = b[n:]\n", f.Number, f.Name)
 	case kindUint32:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.VarintType:\n\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.%s = uint32(v); b = b[n:]\n", f.Number, f.Name)
+	case kindUint64:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.VarintType:\n\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.%s = uint64(v); b = b[n:]\n", f.Number, f.Name)
 	case kindEnum:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.VarintType:\n\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.%s = %s(v); b = b[n:]\n", f.Number, f.Name, f.EnumType)
 	case kindMessage:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; if m.%s == nil { m.%s = &%s{} }; if err := unmarshal%s(m.%s, v); err != nil { return err }; b = b[n:]\n", f.Number, f.Name, f.Name, f.MessageType, f.MessageType, f.Name)
+	case kindTimestamp:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; m.%s = &timestamppb.Timestamp{}; if err := unmarshalTimestamp(m.%s, v); err != nil { return err }; b = b[n:]\n", f.Number, f.Name, f.Name)
+	case kindDuration:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; m.%s = &durationpb.Duration{}; if err := unmarshalDuration(m.%s, v); err != nil { return err }; b = b[n:]\n", f.Number, f.Name, f.Name)
 	case kindRepeatedUint32:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; for len(v) > 0 { item, consumed := protowire.ConsumeVarint(v); if consumed < 0 { return protowire.ParseError(consumed) }; m.%s = append(m.%s, uint32(item)); v = v[consumed:] }; b = b[n:]\n", f.Number, f.Name, f.Name)
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.VarintType:\n\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.%s = append(m.%s, uint32(v)); b = b[n:]\n", f.Number, f.Name, f.Name)
+	case kindRepeatedEnum:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; for len(v) > 0 { item, consumed := protowire.ConsumeVarint(v); if consumed < 0 { return protowire.ParseError(consumed) }; m.%s = append(m.%s, %s(item)); v = v[consumed:] }; b = b[n:]\n", f.Number, f.Name, f.Name, f.EnumType)
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.VarintType:\n\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.%s = append(m.%s, %s(v)); b = b[n:]\n", f.Number, f.Name, f.Name, f.EnumType)
+	case kindRepeatedString:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeString(b); if n < 0 { return protowire.ParseError(n) }; m.%s = append(m.%s, v); b = b[n:]\n", f.Number, f.Name, f.Name)
+	case kindRepeatedBytes:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; m.%s = append(m.%s, append([]byte(nil), v...)); b = b[n:]\n", f.Number, f.Name, f.Name)
+	case kindRepeatedMsg:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &%s{}; if err := unmarshal%s(item, v); err != nil { return err }; m.%s = append(m.%s, item); b = b[n:]\n", f.Number, f.MessageType, f.MessageType, f.Name, f.Name)
 	case kindOptionalString:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeString(b); if n < 0 { return protowire.ParseError(n) }; m.%s = &v; b = b[n:]\n", f.Number, f.Name)
 	case kindOptionalBytes:
@@ -364,14 +603,26 @@ func emitMerge(b *bytes.Buffer, m message) {
 		switch f.Kind {
 		case kindString:
 			fmt.Fprintf(b, "\tif src.%s != \"\" { dst.%s = src.%s }\n", f.Name, f.Name, f.Name)
-		case kindInt32, kindUint32, kindEnum:
+		case kindBool:
+			fmt.Fprintf(b, "\tif src.%s { dst.%s = src.%s }\n", f.Name, f.Name, f.Name)
+		case kindInt32, kindInt64, kindUint32, kindUint64, kindEnum:
 			fmt.Fprintf(b, "\tif src.%s != 0 { dst.%s = src.%s }\n", f.Name, f.Name, f.Name)
 		case kindBytes:
 			fmt.Fprintf(b, "\tif len(src.%s) > 0 { dst.%s = append(dst.%s[:0], src.%s...) }\n", f.Name, f.Name, f.Name, f.Name)
 		case kindMessage:
 			fmt.Fprintf(b, "\tif src.%s != nil { if dst.%s == nil { dst.%s = &%s{} }; merge%s(dst.%s, src.%s) }\n", f.Name, f.Name, f.Name, f.MessageType, f.MessageType, f.Name, f.Name)
-		case kindRepeatedUint32:
+		case kindTimestamp:
+			fmt.Fprintf(b, "\tif src.%s != nil { if dst.%s == nil { dst.%s = &timestamppb.Timestamp{} }; mergeTimestamp(dst.%s, src.%s) }\n", f.Name, f.Name, f.Name, f.Name, f.Name)
+		case kindDuration:
+			fmt.Fprintf(b, "\tif src.%s != nil { if dst.%s == nil { dst.%s = &durationpb.Duration{} }; mergeDuration(dst.%s, src.%s) }\n", f.Name, f.Name, f.Name, f.Name, f.Name)
+		case kindRepeatedUint32, kindRepeatedEnum:
 			fmt.Fprintf(b, "\tif len(src.%s) > 0 { dst.%s = append(dst.%s, src.%s...) }\n", f.Name, f.Name, f.Name, f.Name)
+		case kindRepeatedString:
+			fmt.Fprintf(b, "\tif len(src.%s) > 0 { dst.%s = append(dst.%s, src.%s...) }\n", f.Name, f.Name, f.Name, f.Name)
+		case kindRepeatedBytes:
+			fmt.Fprintf(b, "\tif len(src.%s) > 0 { for _, v := range src.%s { dst.%s = append(dst.%s, append([]byte(nil), v...)) } }\n", f.Name, f.Name, f.Name, f.Name)
+		case kindRepeatedMsg:
+			fmt.Fprintf(b, "\tif len(src.%s) > 0 { for _, v := range src.%s { if v != nil { cp := &%s{}; merge%s(cp, v); dst.%s = append(dst.%s, cp) } } }\n", f.Name, f.Name, f.MessageType, f.MessageType, f.Name, f.Name)
 		case kindOptionalString, kindOptionalBool:
 			fmt.Fprintf(b, "\tif src.%s != nil { v := *src.%s; dst.%s = &v }\n", f.Name, f.Name, f.Name)
 		case kindOptionalBytes:
@@ -386,16 +637,29 @@ func emitEqual(b *bytes.Buffer, m message) {
 	fmt.Fprintf(b, "func equal%s(a, b *%s) bool {\n", m.Name, m.Name)
 	for _, f := range m.Fields {
 		switch f.Kind {
-		case kindString, kindInt32, kindUint32, kindEnum:
+		case kindString, kindBool, kindInt32, kindInt64, kindUint32, kindUint64, kindEnum:
 			fmt.Fprintf(b, "\tif a.%s != b.%s { return false }\n", f.Name, f.Name)
 		case kindBytes:
 			fmt.Fprintf(b, "\tif !bytes.Equal(a.%s, b.%s) { return false }\n", f.Name, f.Name)
 		case kindMessage:
 			fmt.Fprintf(b, "\tif (a.%s == nil) != (b.%s == nil) { return false }\n", f.Name, f.Name)
 			fmt.Fprintf(b, "\tif a.%s != nil && !equal%s(a.%s, b.%s) { return false }\n", f.Name, f.MessageType, f.Name, f.Name)
-		case kindRepeatedUint32:
+		case kindTimestamp:
+			fmt.Fprintf(b, "\tif !equalTimestamp(a.%s, b.%s) { return false }\n", f.Name, f.Name)
+		case kindDuration:
+			fmt.Fprintf(b, "\tif !equalDuration(a.%s, b.%s) { return false }\n", f.Name, f.Name)
+		case kindRepeatedUint32, kindRepeatedEnum:
 			fmt.Fprintf(b, "\tif len(a.%s) != len(b.%s) { return false }\n", f.Name, f.Name)
 			fmt.Fprintf(b, "\tfor i := range a.%s { if a.%s[i] != b.%s[i] { return false } }\n", f.Name, f.Name, f.Name)
+		case kindRepeatedString:
+			fmt.Fprintf(b, "\tif len(a.%s) != len(b.%s) { return false }\n", f.Name, f.Name)
+			fmt.Fprintf(b, "\tfor i := range a.%s { if a.%s[i] != b.%s[i] { return false } }\n", f.Name, f.Name, f.Name)
+		case kindRepeatedBytes:
+			fmt.Fprintf(b, "\tif len(a.%s) != len(b.%s) { return false }\n", f.Name, f.Name)
+			fmt.Fprintf(b, "\tfor i := range a.%s { if !bytes.Equal(a.%s[i], b.%s[i]) { return false } }\n", f.Name, f.Name, f.Name)
+		case kindRepeatedMsg:
+			fmt.Fprintf(b, "\tif len(a.%s) != len(b.%s) { return false }\n", f.Name, f.Name)
+			fmt.Fprintf(b, "\tfor i := range a.%s { if (a.%s[i] == nil) != (b.%s[i] == nil) { return false }; if a.%s[i] != nil && !equal%s(a.%s[i], b.%s[i]) { return false } }\n", f.Name, f.Name, f.Name, f.Name, f.MessageType, f.Name, f.Name)
 		case kindOptionalString, kindOptionalBool:
 			fmt.Fprintf(b, "\tif (a.%s == nil) != (b.%s == nil) { return false }\n", f.Name, f.Name)
 			fmt.Fprintf(b, "\tif a.%s != nil && *a.%s != *b.%s { return false }\n", f.Name, f.Name, f.Name)
@@ -410,6 +674,61 @@ func emitEqual(b *bytes.Buffer, m message) {
 
 func lower(s string) string {
 	return strings.ToLower(s[:1]) + s[1:]
+}
+
+func hasKind(t target, kind scalarKind) bool {
+	for _, m := range t.Messages {
+		for _, f := range m.Fields {
+			if f.Kind == kind {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func emitWellKnown(b *bytes.Buffer, name, typ string) {
+	fmt.Fprintf(b, "func size%s(m *%s) int {\n", name, typ)
+	fmt.Fprintln(b, "\tn := 0")
+	fmt.Fprintln(b, "\tif m.Seconds != 0 { n += protowire.SizeTag(1) + protowire.SizeVarint(uint64(m.Seconds)) }")
+	fmt.Fprintln(b, "\tif m.Nanos != 0 { n += protowire.SizeTag(2) + protowire.SizeVarint(uint64(m.Nanos)) }")
+	fmt.Fprintln(b, "\treturn n")
+	fmt.Fprintln(b, "}\n")
+
+	fmt.Fprintf(b, "func marshal%s(b []byte, m *%s) []byte {\n", name, typ)
+	fmt.Fprintln(b, "\tif m.Seconds != 0 { b = protowire.AppendTag(b, 1, protowire.VarintType); b = protowire.AppendVarint(b, uint64(m.Seconds)) }")
+	fmt.Fprintln(b, "\tif m.Nanos != 0 { b = protowire.AppendTag(b, 2, protowire.VarintType); b = protowire.AppendVarint(b, uint64(m.Nanos)) }")
+	fmt.Fprintln(b, "\treturn b")
+	fmt.Fprintln(b, "}\n")
+
+	fmt.Fprintf(b, "func unmarshal%s(m *%s, b []byte) error {\n", name, typ)
+	fmt.Fprintln(b, "\t*m = "+typ+"{}")
+	fmt.Fprintln(b, "\tfor len(b) > 0 {")
+	fmt.Fprintln(b, "\t\tnum, typ, n := protowire.ConsumeTag(b)")
+	fmt.Fprintln(b, "\t\tif n < 0 { return protowire.ParseError(n) }")
+	fmt.Fprintln(b, "\t\tb = b[n:]")
+	fmt.Fprintln(b, "\t\tswitch {")
+	fmt.Fprintln(b, "\t\tcase num == 1 && typ == protowire.VarintType:")
+	fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.Seconds = int64(v); b = b[n:]")
+	fmt.Fprintln(b, "\t\tcase num == 2 && typ == protowire.VarintType:")
+	fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.Nanos = int32(v); b = b[n:]")
+	fmt.Fprintln(b, "\t\tdefault:")
+	fmt.Fprintln(b, "\t\t\tskip := protowire.ConsumeFieldValue(num, typ, b); if skip < 0 { return protowire.ParseError(skip) }; b = b[skip:]")
+	fmt.Fprintln(b, "\t\t}")
+	fmt.Fprintln(b, "\t}")
+	fmt.Fprintln(b, "\treturn nil")
+	fmt.Fprintln(b, "}\n")
+
+	fmt.Fprintf(b, "func merge%s(dst, src *%s) {\n", name, typ)
+	fmt.Fprintln(b, "\tif src.Seconds != 0 { dst.Seconds = src.Seconds }")
+	fmt.Fprintln(b, "\tif src.Nanos != 0 { dst.Nanos = src.Nanos }")
+	fmt.Fprintln(b, "}\n")
+
+	fmt.Fprintf(b, "func equal%s(a, b *%s) bool {\n", name, typ)
+	fmt.Fprintln(b, "\tif (a == nil) != (b == nil) { return false }")
+	fmt.Fprintln(b, "\tif a == nil { return true }")
+	fmt.Fprintln(b, "\treturn a.Seconds == b.Seconds && a.Nanos == b.Nanos")
+	fmt.Fprintln(b, "}\n")
 }
 
 func failf(format string, args ...any) {

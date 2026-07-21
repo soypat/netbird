@@ -9,3 +9,119 @@ import "google.golang.org/protobuf/reflect/protoreflect"
 func encryptedMessageProtoReflect(m *EncryptedMessage) protoreflect.Message {
 	return encryptedMessageReflect{m: m}
 }
+
+func syncRequestProtoReflect(m *SyncRequest) protoreflect.Message {
+	return syncRequestReflect{m: m}
+}
+
+func syncMetaRequestProtoReflect(m *SyncMetaRequest) protoreflect.Message {
+	return syncMetaRequestReflect{m: m}
+}
+
+func loginRequestProtoReflect(m *LoginRequest) protoreflect.Message {
+	return loginRequestReflect{m: m}
+}
+
+func peerKeysProtoReflect(m *PeerKeys) protoreflect.Message {
+	return peerKeysReflect{m: m}
+}
+
+func environmentProtoReflect(m *Environment) protoreflect.Message {
+	return environmentReflect{m: m}
+}
+
+func fileProtoReflect(m *File) protoreflect.Message {
+	return fileReflect{m: m}
+}
+
+func flagsProtoReflect(m *Flags) protoreflect.Message {
+	return flagsReflect{m: m}
+}
+
+func peerSystemMetaProtoReflect(m *PeerSystemMeta) protoreflect.Message {
+	return peerSystemMetaReflect{m: m}
+}
+
+func loginResponseProtoReflect(m *LoginResponse) protoreflect.Message {
+	return loginResponseReflect{m: m}
+}
+
+func extendAuthSessionRequestProtoReflect(m *ExtendAuthSessionRequest) protoreflect.Message {
+	return extendAuthSessionRequestReflect{m: m}
+}
+
+func extendAuthSessionResponseProtoReflect(m *ExtendAuthSessionResponse) protoreflect.Message {
+	return extendAuthSessionResponseReflect{m: m}
+}
+
+func serverKeyResponseProtoReflect(m *ServerKeyResponse) protoreflect.Message {
+	return serverKeyResponseReflect{m: m}
+}
+
+func emptyProtoReflect(m *Empty) protoreflect.Message {
+	return emptyReflect{m: m}
+}
+
+func netbirdConfigProtoReflect(m *NetbirdConfig) protoreflect.Message {
+	return netbirdConfigReflect{m: m}
+}
+
+func hostConfigProtoReflect(m *HostConfig) protoreflect.Message {
+	return hostConfigReflect{m: m}
+}
+
+func relayConfigProtoReflect(m *RelayConfig) protoreflect.Message {
+	return relayConfigReflect{m: m}
+}
+
+func flowConfigProtoReflect(m *FlowConfig) protoreflect.Message {
+	return flowConfigReflect{m: m}
+}
+
+func jWTConfigProtoReflect(m *JWTConfig) protoreflect.Message {
+	return jWTConfigReflect{m: m}
+}
+
+func protectedHostConfigProtoReflect(m *ProtectedHostConfig) protoreflect.Message {
+	return protectedHostConfigReflect{m: m}
+}
+
+func peerConfigProtoReflect(m *PeerConfig) protoreflect.Message {
+	return peerConfigReflect{m: m}
+}
+
+func autoUpdateSettingsProtoReflect(m *AutoUpdateSettings) protoreflect.Message {
+	return autoUpdateSettingsReflect{m: m}
+}
+
+func networkAddressProtoReflect(m *NetworkAddress) protoreflect.Message {
+	return networkAddressReflect{m: m}
+}
+
+func sSHConfigProtoReflect(m *SSHConfig) protoreflect.Message {
+	return sSHConfigReflect{m: m}
+}
+
+func checksProtoReflect(m *Checks) protoreflect.Message {
+	return checksReflect{m: m}
+}
+
+func deviceAuthorizationFlowRequestProtoReflect(m *DeviceAuthorizationFlowRequest) protoreflect.Message {
+	return deviceAuthorizationFlowRequestReflect{m: m}
+}
+
+func deviceAuthorizationFlowProtoReflect(m *DeviceAuthorizationFlow) protoreflect.Message {
+	return deviceAuthorizationFlowReflect{m: m}
+}
+
+func pKCEAuthorizationFlowRequestProtoReflect(m *PKCEAuthorizationFlowRequest) protoreflect.Message {
+	return pKCEAuthorizationFlowRequestReflect{m: m}
+}
+
+func pKCEAuthorizationFlowProtoReflect(m *PKCEAuthorizationFlow) protoreflect.Message {
+	return pKCEAuthorizationFlowReflect{m: m}
+}
+
+func providerConfigProtoReflect(m *ProviderConfig) protoreflect.Message {
+	return providerConfigReflect{m: m}
+}
