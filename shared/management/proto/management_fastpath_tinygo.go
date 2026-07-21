@@ -46,6 +46,10 @@ func loginResponseProtoReflect(m *LoginResponse) protoreflect.Message {
 	return loginResponseReflect{m: m}
 }
 
+func syncResponseProtoReflect(m *SyncResponse) protoreflect.Message {
+	return syncResponseReflect{m: m}
+}
+
 func extendAuthSessionRequestProtoReflect(m *ExtendAuthSessionRequest) protoreflect.Message {
 	return extendAuthSessionRequestReflect{m: m}
 }
@@ -94,6 +98,50 @@ func autoUpdateSettingsProtoReflect(m *AutoUpdateSettings) protoreflect.Message 
 	return autoUpdateSettingsReflect{m: m}
 }
 
+func networkMapProtoReflect(m *NetworkMap) protoreflect.Message {
+	return networkMapReflect{m: m}
+}
+
+func sSHAuthProtoReflect(m *SSHAuth) protoreflect.Message {
+	return sSHAuthReflect{m: m}
+}
+
+func machineUserIndexesProtoReflect(m *MachineUserIndexes) protoreflect.Message {
+	return machineUserIndexesReflect{m: m}
+}
+
+func remotePeerConfigProtoReflect(m *RemotePeerConfig) protoreflect.Message {
+	return remotePeerConfigReflect{m: m}
+}
+
+func routeProtoReflect(m *Route) protoreflect.Message {
+	return routeReflect{m: m}
+}
+
+func dNSConfigProtoReflect(m *DNSConfig) protoreflect.Message {
+	return dNSConfigReflect{m: m}
+}
+
+func customZoneProtoReflect(m *CustomZone) protoreflect.Message {
+	return customZoneReflect{m: m}
+}
+
+func simpleRecordProtoReflect(m *SimpleRecord) protoreflect.Message {
+	return simpleRecordReflect{m: m}
+}
+
+func nameServerGroupProtoReflect(m *NameServerGroup) protoreflect.Message {
+	return nameServerGroupReflect{m: m}
+}
+
+func nameServerProtoReflect(m *NameServer) protoreflect.Message {
+	return nameServerReflect{m: m}
+}
+
+func firewallRuleProtoReflect(m *FirewallRule) protoreflect.Message {
+	return firewallRuleReflect{m: m}
+}
+
 func networkAddressProtoReflect(m *NetworkAddress) protoreflect.Message {
 	return networkAddressReflect{m: m}
 }
@@ -104,6 +152,22 @@ func sSHConfigProtoReflect(m *SSHConfig) protoreflect.Message {
 
 func checksProtoReflect(m *Checks) protoreflect.Message {
 	return checksReflect{m: m}
+}
+
+func portInfoProtoReflect(m *PortInfo) protoreflect.Message {
+	return portInfoReflect{m: m}
+}
+
+func portInfo_RangeProtoReflect(m *PortInfo_Range) protoreflect.Message {
+	return portInfo_RangeReflect{m: m}
+}
+
+func routeFirewallRuleProtoReflect(m *RouteFirewallRule) protoreflect.Message {
+	return routeFirewallRuleReflect{m: m}
+}
+
+func forwardingRuleProtoReflect(m *ForwardingRule) protoreflect.Message {
+	return forwardingRuleReflect{m: m}
 }
 
 func deviceAuthorizationFlowRequestProtoReflect(m *DeviceAuthorizationFlowRequest) protoreflect.Message {

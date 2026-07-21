@@ -26,6 +26,8 @@ func peerSystemMetaProtoReflect(*PeerSystemMeta) protoreflect.Message { return n
 
 func loginResponseProtoReflect(*LoginResponse) protoreflect.Message { return nil }
 
+func syncResponseProtoReflect(*SyncResponse) protoreflect.Message { return nil }
+
 func extendAuthSessionRequestProtoReflect(*ExtendAuthSessionRequest) protoreflect.Message { return nil }
 
 func extendAuthSessionResponseProtoReflect(*ExtendAuthSessionResponse) protoreflect.Message {
@@ -52,11 +54,41 @@ func peerConfigProtoReflect(*PeerConfig) protoreflect.Message { return nil }
 
 func autoUpdateSettingsProtoReflect(*AutoUpdateSettings) protoreflect.Message { return nil }
 
+func networkMapProtoReflect(*NetworkMap) protoreflect.Message { return nil }
+
+func sSHAuthProtoReflect(*SSHAuth) protoreflect.Message { return nil }
+
+func machineUserIndexesProtoReflect(*MachineUserIndexes) protoreflect.Message { return nil }
+
+func remotePeerConfigProtoReflect(*RemotePeerConfig) protoreflect.Message { return nil }
+
+func routeProtoReflect(*Route) protoreflect.Message { return nil }
+
+func dNSConfigProtoReflect(*DNSConfig) protoreflect.Message { return nil }
+
+func customZoneProtoReflect(*CustomZone) protoreflect.Message { return nil }
+
+func simpleRecordProtoReflect(*SimpleRecord) protoreflect.Message { return nil }
+
+func nameServerGroupProtoReflect(*NameServerGroup) protoreflect.Message { return nil }
+
+func nameServerProtoReflect(*NameServer) protoreflect.Message { return nil }
+
+func firewallRuleProtoReflect(*FirewallRule) protoreflect.Message { return nil }
+
 func networkAddressProtoReflect(*NetworkAddress) protoreflect.Message { return nil }
 
 func sSHConfigProtoReflect(*SSHConfig) protoreflect.Message { return nil }
 
 func checksProtoReflect(*Checks) protoreflect.Message { return nil }
+
+func portInfoProtoReflect(*PortInfo) protoreflect.Message { return nil }
+
+func portInfo_RangeProtoReflect(*PortInfo_Range) protoreflect.Message { return nil }
+
+func routeFirewallRuleProtoReflect(*RouteFirewallRule) protoreflect.Message { return nil }
+
+func forwardingRuleProtoReflect(*ForwardingRule) protoreflect.Message { return nil }
 
 func deviceAuthorizationFlowRequestProtoReflect(*DeviceAuthorizationFlowRequest) protoreflect.Message {
 	return nil

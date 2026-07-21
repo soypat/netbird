@@ -27,6 +27,8 @@ const (
 	kindRepeatedString scalarKind = "repeated_string"
 	kindRepeatedBytes  scalarKind = "repeated_bytes"
 	kindRepeatedMsg    scalarKind = "repeated_message"
+	kindMapStringMsg   scalarKind = "map_string_message"
+	kindPortInfoOneof  scalarKind = "port_info_oneof"
 	kindOptionalString scalarKind = "optional_string"
 	kindOptionalBytes  scalarKind = "optional_bytes"
 	kindOptionalBool   scalarKind = "optional_bool"
@@ -181,6 +183,15 @@ var targets = map[string]target{
 				{Number: 3, Name: "Checks", Kind: kindRepeatedMsg, MessageType: "Checks"},
 				{Number: 4, Name: "SessionExpiresAt", Kind: kindTimestamp},
 			}},
+			{Name: "SyncResponse", Fields: []field{
+				{Number: 1, Name: "NetbirdConfig", Kind: kindMessage, MessageType: "NetbirdConfig"},
+				{Number: 2, Name: "PeerConfig", Kind: kindMessage, MessageType: "PeerConfig"},
+				{Number: 3, Name: "RemotePeers", Kind: kindRepeatedMsg, MessageType: "RemotePeerConfig"},
+				{Number: 4, Name: "RemotePeersIsEmpty", Kind: kindBool},
+				{Number: 5, Name: "NetworkMap", Kind: kindMessage, MessageType: "NetworkMap"},
+				{Number: 6, Name: "Checks", Kind: kindRepeatedMsg, MessageType: "Checks"},
+				{Number: 7, Name: "SessionExpiresAt", Kind: kindTimestamp},
+			}},
 			{Name: "ExtendAuthSessionRequest", Fields: []field{
 				{Number: 1, Name: "JwtToken", Kind: kindString},
 				{Number: 2, Name: "Meta", Kind: kindMessage, MessageType: "PeerSystemMeta"},
@@ -247,6 +258,89 @@ var targets = map[string]target{
 				{Number: 1, Name: "Version", Kind: kindString},
 				{Number: 2, Name: "AlwaysUpdate", Kind: kindBool},
 			}},
+			{Name: "NetworkMap", Fields: []field{
+				{Number: 1, Name: "Serial", Kind: kindUint64},
+				{Number: 2, Name: "PeerConfig", Kind: kindMessage, MessageType: "PeerConfig"},
+				{Number: 3, Name: "RemotePeers", Kind: kindRepeatedMsg, MessageType: "RemotePeerConfig"},
+				{Number: 4, Name: "RemotePeersIsEmpty", Kind: kindBool},
+				{Number: 5, Name: "Routes", Kind: kindRepeatedMsg, MessageType: "Route"},
+				{Number: 6, Name: "DNSConfig", Kind: kindMessage, MessageType: "DNSConfig"},
+				{Number: 7, Name: "OfflinePeers", Kind: kindRepeatedMsg, MessageType: "RemotePeerConfig"},
+				{Number: 8, Name: "FirewallRules", Kind: kindRepeatedMsg, MessageType: "FirewallRule"},
+				{Number: 9, Name: "FirewallRulesIsEmpty", Kind: kindBool},
+				{Number: 10, Name: "RoutesFirewallRules", Kind: kindRepeatedMsg, MessageType: "RouteFirewallRule"},
+				{Number: 11, Name: "RoutesFirewallRulesIsEmpty", Kind: kindBool},
+				{Number: 12, Name: "ForwardingRules", Kind: kindRepeatedMsg, MessageType: "ForwardingRule"},
+				{Number: 13, Name: "SshAuth", Kind: kindMessage, MessageType: "SSHAuth"},
+			}},
+			{Name: "SSHAuth", Fields: []field{
+				{Number: 1, Name: "UserIDClaim", Kind: kindString},
+				{Number: 2, Name: "AuthorizedUsers", Kind: kindRepeatedBytes},
+				{Number: 3, Name: "MachineUsers", Kind: kindMapStringMsg, MessageType: "MachineUserIndexes"},
+			}},
+			{Name: "MachineUserIndexes", Fields: []field{
+				{Number: 1, Name: "Indexes", Kind: kindRepeatedUint32},
+			}},
+			{Name: "RemotePeerConfig", Fields: []field{
+				{Number: 1, Name: "WgPubKey", Kind: kindString},
+				{Number: 2, Name: "AllowedIps", Kind: kindRepeatedString},
+				{Number: 3, Name: "SshConfig", Kind: kindMessage, MessageType: "SSHConfig"},
+				{Number: 4, Name: "Fqdn", Kind: kindString},
+				{Number: 5, Name: "AgentVersion", Kind: kindString},
+			}},
+			{Name: "Route", Fields: []field{
+				{Number: 1, Name: "ID", Kind: kindString},
+				{Number: 2, Name: "Network", Kind: kindString},
+				{Number: 3, Name: "NetworkType", Kind: kindInt64},
+				{Number: 4, Name: "Peer", Kind: kindString},
+				{Number: 5, Name: "Metric", Kind: kindInt64},
+				{Number: 6, Name: "Masquerade", Kind: kindBool},
+				{Number: 7, Name: "NetID", Kind: kindString},
+				{Number: 8, Name: "Domains", Kind: kindRepeatedString},
+				{Number: 9, Name: "KeepRoute", Kind: kindBool},
+				{Number: 10, Name: "SkipAutoApply", Kind: kindBool},
+			}},
+			{Name: "DNSConfig", Fields: []field{
+				{Number: 1, Name: "ServiceEnable", Kind: kindBool},
+				{Number: 2, Name: "NameServerGroups", Kind: kindRepeatedMsg, MessageType: "NameServerGroup"},
+				{Number: 3, Name: "CustomZones", Kind: kindRepeatedMsg, MessageType: "CustomZone"},
+				{Number: 4, Name: "ForwarderPort", Kind: kindInt64},
+			}},
+			{Name: "CustomZone", Fields: []field{
+				{Number: 1, Name: "Domain", Kind: kindString},
+				{Number: 2, Name: "Records", Kind: kindRepeatedMsg, MessageType: "SimpleRecord"},
+				{Number: 3, Name: "SearchDomainDisabled", Kind: kindBool},
+				{Number: 4, Name: "NonAuthoritative", Kind: kindBool},
+			}},
+			{Name: "SimpleRecord", Fields: []field{
+				{Number: 1, Name: "Name", Kind: kindString},
+				{Number: 2, Name: "Type", Kind: kindInt64},
+				{Number: 3, Name: "Class", Kind: kindString},
+				{Number: 4, Name: "TTL", Kind: kindInt64},
+				{Number: 5, Name: "RData", Kind: kindString},
+			}},
+			{Name: "NameServerGroup", Fields: []field{
+				{Number: 1, Name: "NameServers", Kind: kindRepeatedMsg, MessageType: "NameServer"},
+				{Number: 2, Name: "Primary", Kind: kindBool},
+				{Number: 3, Name: "Domains", Kind: kindRepeatedString},
+				{Number: 4, Name: "SearchDomainsEnabled", Kind: kindBool},
+			}},
+			{Name: "NameServer", Fields: []field{
+				{Number: 1, Name: "IP", Kind: kindString},
+				{Number: 2, Name: "NSType", Kind: kindInt64},
+				{Number: 3, Name: "Port", Kind: kindInt64},
+			}},
+			{Name: "FirewallRule", Fields: []field{
+				{Number: 1, Name: "PeerIP", Kind: kindString},
+				{Number: 2, Name: "Direction", Kind: kindEnum, EnumType: "RuleDirection"},
+				{Number: 3, Name: "Action", Kind: kindEnum, EnumType: "RuleAction"},
+				{Number: 4, Name: "Protocol", Kind: kindEnum, EnumType: "RuleProtocol"},
+				{Number: 5, Name: "Port", Kind: kindString},
+				{Number: 6, Name: "PortInfo", Kind: kindMessage, MessageType: "PortInfo"},
+				{Number: 7, Name: "PolicyID", Kind: kindBytes},
+				{Number: 8, Name: "CustomProtocol", Kind: kindUint32},
+				{Number: 9, Name: "SourcePrefixes", Kind: kindRepeatedBytes},
+			}},
 			{Name: "NetworkAddress", Fields: []field{
 				{Number: 1, Name: "NetIP", Kind: kindString},
 				{Number: 2, Name: "Mac", Kind: kindString},
@@ -258,6 +352,31 @@ var targets = map[string]target{
 			}},
 			{Name: "Checks", Fields: []field{
 				{Number: 1, Name: "Files", Kind: kindRepeatedString},
+			}},
+			{Name: "PortInfo", Fields: []field{
+				{Number: 0, Name: "PortSelection", Kind: kindPortInfoOneof},
+			}},
+			{Name: "PortInfo_Range", Fields: []field{
+				{Number: 1, Name: "Start", Kind: kindUint32},
+				{Number: 2, Name: "End", Kind: kindUint32},
+			}},
+			{Name: "RouteFirewallRule", Fields: []field{
+				{Number: 1, Name: "SourceRanges", Kind: kindRepeatedString},
+				{Number: 2, Name: "Action", Kind: kindEnum, EnumType: "RuleAction"},
+				{Number: 3, Name: "Destination", Kind: kindString},
+				{Number: 4, Name: "Protocol", Kind: kindEnum, EnumType: "RuleProtocol"},
+				{Number: 5, Name: "PortInfo", Kind: kindMessage, MessageType: "PortInfo"},
+				{Number: 6, Name: "IsDynamic", Kind: kindBool},
+				{Number: 7, Name: "Domains", Kind: kindRepeatedString},
+				{Number: 8, Name: "CustomProtocol", Kind: kindUint32},
+				{Number: 9, Name: "PolicyID", Kind: kindBytes},
+				{Number: 10, Name: "RouteID", Kind: kindString},
+			}},
+			{Name: "ForwardingRule", Fields: []field{
+				{Number: 1, Name: "Protocol", Kind: kindEnum, EnumType: "RuleProtocol"},
+				{Number: 2, Name: "DestinationPort", Kind: kindMessage, MessageType: "PortInfo"},
+				{Number: 3, Name: "TranslatedAddress", Kind: kindBytes},
+				{Number: 4, Name: "TranslatedPort", Kind: kindMessage, MessageType: "PortInfo"},
 			}},
 			{Name: "DeviceAuthorizationFlowRequest"},
 			{Name: "DeviceAuthorizationFlow", Fields: []field{
@@ -415,6 +534,10 @@ func generateMethods(t target) []byte {
 	if hasKind(t, kindDuration) {
 		emitWellKnown(&b, "Duration", "durationpb.Duration")
 	}
+	emitMapHelpers(&b, t)
+	if hasKind(t, kindPortInfoOneof) {
+		emitPortInfoSelectionHelpers(&b)
+	}
 	return b.Bytes()
 }
 
@@ -485,6 +608,11 @@ func emitSize(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tfor _, v := range m.%s { n += protowire.SizeTag(%d) + protowire.SizeBytes(len(v)) }\n", f.Name, f.Number)
 		case kindRepeatedMsg:
 			fmt.Fprintf(b, "\tfor _, v := range m.%s { if v != nil { s := size%s(v); n += protowire.SizeTag(%d) + protowire.SizeBytes(s) } }\n", f.Name, f.MessageType, f.Number)
+		case kindMapStringMsg:
+			fmt.Fprintf(b, "\tfor k, v := range m.%s { entry := protowire.SizeTag(1) + protowire.SizeBytes(len(k)); if v != nil { s := size%s(v); entry += protowire.SizeTag(2) + protowire.SizeBytes(s) }; n += protowire.SizeTag(%d) + protowire.SizeBytes(entry) }\n", f.Name, f.MessageType, f.Number)
+		case kindPortInfoOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Port); ok { n += protowire.SizeTag(1) + protowire.SizeVarint(uint64(v.Port)) }")
+			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Range_); ok && v.Range != nil { s := sizePortInfo_Range(v.Range); n += protowire.SizeTag(2) + protowire.SizeBytes(s) }")
 		case kindOptionalString:
 			fmt.Fprintf(b, "\tif m.%s != nil { n += protowire.SizeTag(%d) + protowire.SizeBytes(len(*m.%s)) }\n", f.Name, f.Number, f.Name)
 		case kindOptionalBytes:
@@ -525,6 +653,11 @@ func emitMarshal(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tfor _, v := range m.%s { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendBytes(b, v) }\n", f.Name, f.Number)
 		case kindRepeatedMsg:
 			fmt.Fprintf(b, "\tfor _, v := range m.%s { if v != nil { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(size%s(v))); b = marshal%s(b, v) } }\n", f.Name, f.Number, f.MessageType, f.MessageType)
+		case kindMapStringMsg:
+			fmt.Fprintf(b, "\tfor k, v := range m.%s { entry := protowire.SizeTag(1) + protowire.SizeBytes(len(k)); if v != nil { s := size%s(v); entry += protowire.SizeTag(2) + protowire.SizeBytes(s) }; b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(entry)); b = protowire.AppendTag(b, 1, protowire.BytesType); b = protowire.AppendString(b, k); if v != nil { b = protowire.AppendTag(b, 2, protowire.BytesType); b = protowire.AppendVarint(b, uint64(size%s(v))); b = marshal%s(b, v) } }\n", f.Name, f.MessageType, f.Number, f.MessageType, f.MessageType)
+		case kindPortInfoOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Port); ok { b = protowire.AppendTag(b, 1, protowire.VarintType); b = protowire.AppendVarint(b, uint64(v.Port)) }")
+			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Range_); ok && v.Range != nil { b = protowire.AppendTag(b, 2, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizePortInfo_Range(v.Range))); b = marshalPortInfo_Range(b, v.Range) }")
 		case kindOptionalString:
 			fmt.Fprintf(b, "\tif m.%s != nil { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendString(b, *m.%s) }\n", f.Name, f.Number, f.Name)
 		case kindOptionalBytes:
@@ -588,6 +721,13 @@ func emitUnmarshalCase(b *bytes.Buffer, f field) {
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; m.%s = append(m.%s, append([]byte(nil), v...)); b = b[n:]\n", f.Number, f.Name, f.Name)
 	case kindRepeatedMsg:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &%s{}; if err := unmarshal%s(item, v); err != nil { return err }; m.%s = append(m.%s, item); b = b[n:]\n", f.Number, f.MessageType, f.MessageType, f.Name, f.Name)
+	case kindMapStringMsg:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; k, val, err := consumeString%sEntry(v); if err != nil { return err }; if m.%s == nil { m.%s = make(map[string]*%s) }; m.%s[k] = val; b = b[n:]\n", f.Number, f.MessageType, f.Name, f.Name, f.MessageType, f.Name)
+	case kindPortInfoOneof:
+		fmt.Fprintln(b, "\t\tcase num == 1 && typ == protowire.VarintType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.PortSelection = &PortInfo_Port{Port: uint32(v)}; b = b[n:]")
+		fmt.Fprintln(b, "\t\tcase num == 2 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; r := &PortInfo_Range{}; if err := unmarshalPortInfo_Range(r, v); err != nil { return err }; m.PortSelection = &PortInfo_Range_{Range: r}; b = b[n:]")
 	case kindOptionalString:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeString(b); if n < 0 { return protowire.ParseError(n) }; m.%s = &v; b = b[n:]\n", f.Number, f.Name)
 	case kindOptionalBytes:
@@ -623,6 +763,15 @@ func emitMerge(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tif len(src.%s) > 0 { for _, v := range src.%s { dst.%s = append(dst.%s, append([]byte(nil), v...)) } }\n", f.Name, f.Name, f.Name, f.Name)
 		case kindRepeatedMsg:
 			fmt.Fprintf(b, "\tif len(src.%s) > 0 { for _, v := range src.%s { if v != nil { cp := &%s{}; merge%s(cp, v); dst.%s = append(dst.%s, cp) } } }\n", f.Name, f.Name, f.MessageType, f.MessageType, f.Name, f.Name)
+		case kindMapStringMsg:
+			fmt.Fprintf(b, "\tif len(src.%s) > 0 { if dst.%s == nil { dst.%s = make(map[string]*%s) }; for k, v := range src.%s { if v != nil { cp := &%s{}; merge%s(cp, v); dst.%s[k] = cp } else { dst.%s[k] = nil } } }\n", f.Name, f.Name, f.Name, f.MessageType, f.Name, f.MessageType, f.MessageType, f.Name, f.Name)
+		case kindPortInfoOneof:
+			fmt.Fprintln(b, "\tswitch v := src.PortSelection.(type) {")
+			fmt.Fprintln(b, "\tcase *PortInfo_Port:")
+			fmt.Fprintln(b, "\t\tdst.PortSelection = &PortInfo_Port{Port: v.Port}")
+			fmt.Fprintln(b, "\tcase *PortInfo_Range_:")
+			fmt.Fprintln(b, "\t\tif v.Range != nil { cp := &PortInfo_Range{}; mergePortInfo_Range(cp, v.Range); dst.PortSelection = &PortInfo_Range_{Range: cp} }")
+			fmt.Fprintln(b, "\t}")
 		case kindOptionalString, kindOptionalBool:
 			fmt.Fprintf(b, "\tif src.%s != nil { v := *src.%s; dst.%s = &v }\n", f.Name, f.Name, f.Name)
 		case kindOptionalBytes:
@@ -660,6 +809,11 @@ func emitEqual(b *bytes.Buffer, m message) {
 		case kindRepeatedMsg:
 			fmt.Fprintf(b, "\tif len(a.%s) != len(b.%s) { return false }\n", f.Name, f.Name)
 			fmt.Fprintf(b, "\tfor i := range a.%s { if (a.%s[i] == nil) != (b.%s[i] == nil) { return false }; if a.%s[i] != nil && !equal%s(a.%s[i], b.%s[i]) { return false } }\n", f.Name, f.Name, f.Name, f.Name, f.MessageType, f.Name, f.Name)
+		case kindMapStringMsg:
+			fmt.Fprintf(b, "\tif len(a.%s) != len(b.%s) { return false }\n", f.Name, f.Name)
+			fmt.Fprintf(b, "\tfor k, av := range a.%s { bv, ok := b.%s[k]; if !ok { return false }; if (av == nil) != (bv == nil) { return false }; if av != nil && !equal%s(av, bv) { return false } }\n", f.Name, f.Name, f.MessageType)
+		case kindPortInfoOneof:
+			fmt.Fprintln(b, "\tif !equalPortInfoSelection(a.PortSelection, b.PortSelection) { return false }")
 		case kindOptionalString, kindOptionalBool:
 			fmt.Fprintf(b, "\tif (a.%s == nil) != (b.%s == nil) { return false }\n", f.Name, f.Name)
 			fmt.Fprintf(b, "\tif a.%s != nil && *a.%s != *b.%s { return false }\n", f.Name, f.Name, f.Name)
@@ -728,6 +882,50 @@ func emitWellKnown(b *bytes.Buffer, name, typ string) {
 	fmt.Fprintln(b, "\tif (a == nil) != (b == nil) { return false }")
 	fmt.Fprintln(b, "\tif a == nil { return true }")
 	fmt.Fprintln(b, "\treturn a.Seconds == b.Seconds && a.Nanos == b.Nanos")
+	fmt.Fprintln(b, "}\n")
+}
+
+func emitMapHelpers(b *bytes.Buffer, t target) {
+	seen := make(map[string]bool)
+	for _, m := range t.Messages {
+		for _, f := range m.Fields {
+			if f.Kind != kindMapStringMsg || seen[f.MessageType] {
+				continue
+			}
+			seen[f.MessageType] = true
+			fmt.Fprintf(b, "func consumeString%sEntry(b []byte) (string, *%s, error) {\n", f.MessageType, f.MessageType)
+			fmt.Fprintf(b, "\tvar key string\n\tval := &%s{}\n", f.MessageType)
+			fmt.Fprintln(b, "\tfor len(b) > 0 {")
+			fmt.Fprintln(b, "\t\tnum, typ, n := protowire.ConsumeTag(b)")
+			fmt.Fprintln(b, "\t\tif n < 0 { return \"\", nil, protowire.ParseError(n) }")
+			fmt.Fprintln(b, "\t\tb = b[n:]")
+			fmt.Fprintln(b, "\t\tswitch {")
+			fmt.Fprintln(b, "\t\tcase num == 1 && typ == protowire.BytesType:")
+			fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeString(b); if n < 0 { return \"\", nil, protowire.ParseError(n) }; key = v; b = b[n:]")
+			fmt.Fprintln(b, "\t\tcase num == 2 && typ == protowire.BytesType:")
+			fmt.Fprintf(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return \"\", nil, protowire.ParseError(n) }; if err := unmarshal%s(val, v); err != nil { return \"\", nil, err }; b = b[n:]\n", f.MessageType)
+			fmt.Fprintln(b, "\t\tdefault:")
+			fmt.Fprintln(b, "\t\t\tskip := protowire.ConsumeFieldValue(num, typ, b); if skip < 0 { return \"\", nil, protowire.ParseError(skip) }; b = b[skip:]")
+			fmt.Fprintln(b, "\t\t}")
+			fmt.Fprintln(b, "\t}")
+			fmt.Fprintln(b, "\treturn key, val, nil")
+			fmt.Fprintln(b, "}\n")
+		}
+	}
+}
+
+func emitPortInfoSelectionHelpers(b *bytes.Buffer) {
+	fmt.Fprintln(b, "func equalPortInfoSelection(a, b isPortInfo_PortSelection) bool {")
+	fmt.Fprintln(b, "\tswitch av := a.(type) {")
+	fmt.Fprintln(b, "\tcase nil:")
+	fmt.Fprintln(b, "\t\treturn b == nil")
+	fmt.Fprintln(b, "\tcase *PortInfo_Port:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*PortInfo_Port); return ok && av.Port == bv.Port")
+	fmt.Fprintln(b, "\tcase *PortInfo_Range_:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*PortInfo_Range_); return ok && equalPortInfo_Range(av.Range, bv.Range)")
+	fmt.Fprintln(b, "\tdefault:")
+	fmt.Fprintln(b, "\t\treturn false")
+	fmt.Fprintln(b, "\t}")
 	fmt.Fprintln(b, "}\n")
 }
 
