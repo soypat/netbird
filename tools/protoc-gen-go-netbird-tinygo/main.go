@@ -29,6 +29,8 @@ const (
 	kindRepeatedMsg    scalarKind = "repeated_message"
 	kindMapStringMsg   scalarKind = "map_string_message"
 	kindPortInfoOneof  scalarKind = "port_info_oneof"
+	kindJobReqOneof    scalarKind = "job_request_oneof"
+	kindJobRespOneof   scalarKind = "job_response_oneof"
 	kindOptionalString scalarKind = "optional_string"
 	kindOptionalBytes  scalarKind = "optional_bytes"
 	kindOptionalBool   scalarKind = "optional_bool"
@@ -112,6 +114,25 @@ var targets = map[string]target{
 				{Number: 1, Name: "WgPubKey", Kind: kindString},
 				{Number: 2, Name: "Body", Kind: kindBytes},
 				{Number: 3, Name: "Version", Kind: kindInt32},
+			}},
+			{Name: "JobRequest", Fields: []field{
+				{Number: 1, Name: "ID", Kind: kindBytes},
+				{Number: 0, Name: "WorkloadParameters", Kind: kindJobReqOneof},
+			}},
+			{Name: "JobResponse", Fields: []field{
+				{Number: 1, Name: "ID", Kind: kindBytes},
+				{Number: 2, Name: "Status", Kind: kindEnum, EnumType: "JobStatus"},
+				{Number: 3, Name: "Reason", Kind: kindBytes},
+				{Number: 0, Name: "WorkloadResults", Kind: kindJobRespOneof},
+			}},
+			{Name: "BundleParameters", Fields: []field{
+				{Number: 1, Name: "BundleFor", Kind: kindBool},
+				{Number: 2, Name: "BundleForTime", Kind: kindInt64},
+				{Number: 3, Name: "LogFileCount", Kind: kindInt32},
+				{Number: 4, Name: "Anonymize", Kind: kindBool},
+			}},
+			{Name: "BundleResult", Fields: []field{
+				{Number: 1, Name: "UploadKey", Kind: kindString},
 			}},
 			{Name: "SyncRequest", Fields: []field{
 				{Number: 1, Name: "Meta", Kind: kindMessage, MessageType: "PeerSystemMeta"},
@@ -401,6 +422,30 @@ var targets = map[string]target{
 				{Number: 11, Name: "DisablePromptLogin", Kind: kindBool},
 				{Number: 12, Name: "LoginFlag", Kind: kindUint32},
 			}},
+			{Name: "ExposeServiceRequest", Fields: []field{
+				{Number: 1, Name: "Port", Kind: kindUint32},
+				{Number: 2, Name: "Protocol", Kind: kindEnum, EnumType: "ExposeProtocol"},
+				{Number: 3, Name: "Pin", Kind: kindString},
+				{Number: 4, Name: "Password", Kind: kindString},
+				{Number: 5, Name: "UserGroups", Kind: kindRepeatedString},
+				{Number: 6, Name: "Domain", Kind: kindString},
+				{Number: 7, Name: "NamePrefix", Kind: kindString},
+				{Number: 8, Name: "ListenPort", Kind: kindUint32},
+			}},
+			{Name: "ExposeServiceResponse", Fields: []field{
+				{Number: 1, Name: "ServiceName", Kind: kindString},
+				{Number: 2, Name: "ServiceUrl", Kind: kindString},
+				{Number: 3, Name: "Domain", Kind: kindString},
+				{Number: 4, Name: "PortAutoAssigned", Kind: kindBool},
+			}},
+			{Name: "RenewExposeRequest", Fields: []field{
+				{Number: 1, Name: "Domain", Kind: kindString},
+			}},
+			{Name: "RenewExposeResponse"},
+			{Name: "StopExposeRequest", Fields: []field{
+				{Number: 1, Name: "Domain", Kind: kindString},
+			}},
+			{Name: "StopExposeResponse"},
 		},
 	},
 }
@@ -538,6 +583,12 @@ func generateMethods(t target) []byte {
 	if hasKind(t, kindPortInfoOneof) {
 		emitPortInfoSelectionHelpers(&b)
 	}
+	if hasKind(t, kindJobReqOneof) {
+		emitJobRequestWorkloadHelpers(&b)
+	}
+	if hasKind(t, kindJobRespOneof) {
+		emitJobResponseWorkloadHelpers(&b)
+	}
 	return b.Bytes()
 }
 
@@ -613,6 +664,10 @@ func emitSize(b *bytes.Buffer, m message) {
 		case kindPortInfoOneof:
 			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Port); ok { n += protowire.SizeTag(1) + protowire.SizeVarint(uint64(v.Port)) }")
 			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Range_); ok && v.Range != nil { s := sizePortInfo_Range(v.Range); n += protowire.SizeTag(2) + protowire.SizeBytes(s) }")
+		case kindJobReqOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.WorkloadParameters.(*JobRequest_Bundle); ok && v.Bundle != nil { s := sizeBundleParameters(v.Bundle); n += protowire.SizeTag(10) + protowire.SizeBytes(s) }")
+		case kindJobRespOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.WorkloadResults.(*JobResponse_Bundle); ok && v.Bundle != nil { s := sizeBundleResult(v.Bundle); n += protowire.SizeTag(10) + protowire.SizeBytes(s) }")
 		case kindOptionalString:
 			fmt.Fprintf(b, "\tif m.%s != nil { n += protowire.SizeTag(%d) + protowire.SizeBytes(len(*m.%s)) }\n", f.Name, f.Number, f.Name)
 		case kindOptionalBytes:
@@ -658,6 +713,10 @@ func emitMarshal(b *bytes.Buffer, m message) {
 		case kindPortInfoOneof:
 			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Port); ok { b = protowire.AppendTag(b, 1, protowire.VarintType); b = protowire.AppendVarint(b, uint64(v.Port)) }")
 			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Range_); ok && v.Range != nil { b = protowire.AppendTag(b, 2, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizePortInfo_Range(v.Range))); b = marshalPortInfo_Range(b, v.Range) }")
+		case kindJobReqOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.WorkloadParameters.(*JobRequest_Bundle); ok && v.Bundle != nil { b = protowire.AppendTag(b, 10, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizeBundleParameters(v.Bundle))); b = marshalBundleParameters(b, v.Bundle) }")
+		case kindJobRespOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.WorkloadResults.(*JobResponse_Bundle); ok && v.Bundle != nil { b = protowire.AppendTag(b, 10, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizeBundleResult(v.Bundle))); b = marshalBundleResult(b, v.Bundle) }")
 		case kindOptionalString:
 			fmt.Fprintf(b, "\tif m.%s != nil { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendString(b, *m.%s) }\n", f.Name, f.Number, f.Name)
 		case kindOptionalBytes:
@@ -728,6 +787,12 @@ func emitUnmarshalCase(b *bytes.Buffer, f field) {
 		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.PortSelection = &PortInfo_Port{Port: uint32(v)}; b = b[n:]")
 		fmt.Fprintln(b, "\t\tcase num == 2 && typ == protowire.BytesType:")
 		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; r := &PortInfo_Range{}; if err := unmarshalPortInfo_Range(r, v); err != nil { return err }; m.PortSelection = &PortInfo_Range_{Range: r}; b = b[n:]")
+	case kindJobReqOneof:
+		fmt.Fprintln(b, "\t\tcase num == 10 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &BundleParameters{}; if err := unmarshalBundleParameters(item, v); err != nil { return err }; m.WorkloadParameters = &JobRequest_Bundle{Bundle: item}; b = b[n:]")
+	case kindJobRespOneof:
+		fmt.Fprintln(b, "\t\tcase num == 10 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &BundleResult{}; if err := unmarshalBundleResult(item, v); err != nil { return err }; m.WorkloadResults = &JobResponse_Bundle{Bundle: item}; b = b[n:]")
 	case kindOptionalString:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeString(b); if n < 0 { return protowire.ParseError(n) }; m.%s = &v; b = b[n:]\n", f.Number, f.Name)
 	case kindOptionalBytes:
@@ -772,6 +837,16 @@ func emitMerge(b *bytes.Buffer, m message) {
 			fmt.Fprintln(b, "\tcase *PortInfo_Range_:")
 			fmt.Fprintln(b, "\t\tif v.Range != nil { cp := &PortInfo_Range{}; mergePortInfo_Range(cp, v.Range); dst.PortSelection = &PortInfo_Range_{Range: cp} }")
 			fmt.Fprintln(b, "\t}")
+		case kindJobReqOneof:
+			fmt.Fprintln(b, "\tswitch v := src.WorkloadParameters.(type) {")
+			fmt.Fprintln(b, "\tcase *JobRequest_Bundle:")
+			fmt.Fprintln(b, "\t\tif v.Bundle != nil { cp := &BundleParameters{}; mergeBundleParameters(cp, v.Bundle); dst.WorkloadParameters = &JobRequest_Bundle{Bundle: cp} }")
+			fmt.Fprintln(b, "\t}")
+		case kindJobRespOneof:
+			fmt.Fprintln(b, "\tswitch v := src.WorkloadResults.(type) {")
+			fmt.Fprintln(b, "\tcase *JobResponse_Bundle:")
+			fmt.Fprintln(b, "\t\tif v.Bundle != nil { cp := &BundleResult{}; mergeBundleResult(cp, v.Bundle); dst.WorkloadResults = &JobResponse_Bundle{Bundle: cp} }")
+			fmt.Fprintln(b, "\t}")
 		case kindOptionalString, kindOptionalBool:
 			fmt.Fprintf(b, "\tif src.%s != nil { v := *src.%s; dst.%s = &v }\n", f.Name, f.Name, f.Name)
 		case kindOptionalBytes:
@@ -814,6 +889,10 @@ func emitEqual(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tfor k, av := range a.%s { bv, ok := b.%s[k]; if !ok { return false }; if (av == nil) != (bv == nil) { return false }; if av != nil && !equal%s(av, bv) { return false } }\n", f.Name, f.Name, f.MessageType)
 		case kindPortInfoOneof:
 			fmt.Fprintln(b, "\tif !equalPortInfoSelection(a.PortSelection, b.PortSelection) { return false }")
+		case kindJobReqOneof:
+			fmt.Fprintln(b, "\tif !equalJobRequestWorkloadParameters(a.WorkloadParameters, b.WorkloadParameters) { return false }")
+		case kindJobRespOneof:
+			fmt.Fprintln(b, "\tif !equalJobResponseWorkloadResults(a.WorkloadResults, b.WorkloadResults) { return false }")
 		case kindOptionalString, kindOptionalBool:
 			fmt.Fprintf(b, "\tif (a.%s == nil) != (b.%s == nil) { return false }\n", f.Name, f.Name)
 			fmt.Fprintf(b, "\tif a.%s != nil && *a.%s != *b.%s { return false }\n", f.Name, f.Name, f.Name)
@@ -923,6 +1002,32 @@ func emitPortInfoSelectionHelpers(b *bytes.Buffer) {
 	fmt.Fprintln(b, "\t\tbv, ok := b.(*PortInfo_Port); return ok && av.Port == bv.Port")
 	fmt.Fprintln(b, "\tcase *PortInfo_Range_:")
 	fmt.Fprintln(b, "\t\tbv, ok := b.(*PortInfo_Range_); return ok && equalPortInfo_Range(av.Range, bv.Range)")
+	fmt.Fprintln(b, "\tdefault:")
+	fmt.Fprintln(b, "\t\treturn false")
+	fmt.Fprintln(b, "\t}")
+	fmt.Fprintln(b, "}\n")
+}
+
+func emitJobRequestWorkloadHelpers(b *bytes.Buffer) {
+	fmt.Fprintln(b, "func equalJobRequestWorkloadParameters(a, b isJobRequest_WorkloadParameters) bool {")
+	fmt.Fprintln(b, "\tswitch av := a.(type) {")
+	fmt.Fprintln(b, "\tcase nil:")
+	fmt.Fprintln(b, "\t\treturn b == nil")
+	fmt.Fprintln(b, "\tcase *JobRequest_Bundle:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*JobRequest_Bundle); return ok && equalBundleParameters(av.Bundle, bv.Bundle)")
+	fmt.Fprintln(b, "\tdefault:")
+	fmt.Fprintln(b, "\t\treturn false")
+	fmt.Fprintln(b, "\t}")
+	fmt.Fprintln(b, "}\n")
+}
+
+func emitJobResponseWorkloadHelpers(b *bytes.Buffer) {
+	fmt.Fprintln(b, "func equalJobResponseWorkloadResults(a, b isJobResponse_WorkloadResults) bool {")
+	fmt.Fprintln(b, "\tswitch av := a.(type) {")
+	fmt.Fprintln(b, "\tcase nil:")
+	fmt.Fprintln(b, "\t\treturn b == nil")
+	fmt.Fprintln(b, "\tcase *JobResponse_Bundle:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*JobResponse_Bundle); return ok && equalBundleResult(av.Bundle, bv.Bundle)")
 	fmt.Fprintln(b, "\tdefault:")
 	fmt.Fprintln(b, "\t\treturn false")
 	fmt.Fprintln(b, "\t}")

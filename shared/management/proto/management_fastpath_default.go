@@ -8,6 +8,14 @@ import "google.golang.org/protobuf/reflect/protoreflect"
 
 func encryptedMessageProtoReflect(*EncryptedMessage) protoreflect.Message { return nil }
 
+func jobRequestProtoReflect(*JobRequest) protoreflect.Message { return nil }
+
+func jobResponseProtoReflect(*JobResponse) protoreflect.Message { return nil }
+
+func bundleParametersProtoReflect(*BundleParameters) protoreflect.Message { return nil }
+
+func bundleResultProtoReflect(*BundleResult) protoreflect.Message { return nil }
+
 func syncRequestProtoReflect(*SyncRequest) protoreflect.Message { return nil }
 
 func syncMetaRequestProtoReflect(*SyncMetaRequest) protoreflect.Message { return nil }
@@ -103,3 +111,15 @@ func pKCEAuthorizationFlowRequestProtoReflect(*PKCEAuthorizationFlowRequest) pro
 func pKCEAuthorizationFlowProtoReflect(*PKCEAuthorizationFlow) protoreflect.Message { return nil }
 
 func providerConfigProtoReflect(*ProviderConfig) protoreflect.Message { return nil }
+
+func exposeServiceRequestProtoReflect(*ExposeServiceRequest) protoreflect.Message { return nil }
+
+func exposeServiceResponseProtoReflect(*ExposeServiceResponse) protoreflect.Message { return nil }
+
+func renewExposeRequestProtoReflect(*RenewExposeRequest) protoreflect.Message { return nil }
+
+func renewExposeResponseProtoReflect(*RenewExposeResponse) protoreflect.Message { return nil }
+
+func stopExposeRequestProtoReflect(*StopExposeRequest) protoreflect.Message { return nil }
+
+func stopExposeResponseProtoReflect(*StopExposeResponse) protoreflect.Message { return nil }

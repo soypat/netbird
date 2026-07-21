@@ -526,6 +526,11 @@ func (x *JobRequest) String() string {
 func (*JobRequest) ProtoMessage() {}
 
 func (x *JobRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := jobRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -603,6 +608,11 @@ func (x *JobResponse) String() string {
 func (*JobResponse) ProtoMessage() {}
 
 func (x *JobResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := jobResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -691,6 +701,11 @@ func (x *BundleParameters) String() string {
 func (*BundleParameters) ProtoMessage() {}
 
 func (x *BundleParameters) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := bundleParametersProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -759,6 +774,11 @@ func (x *BundleResult) String() string {
 func (*BundleResult) ProtoMessage() {}
 
 func (x *BundleResult) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := bundleResultProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4529,6 +4549,11 @@ func (x *ExposeServiceRequest) String() string {
 func (*ExposeServiceRequest) ProtoMessage() {}
 
 func (x *ExposeServiceRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := exposeServiceRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[49]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4628,6 +4653,11 @@ func (x *ExposeServiceResponse) String() string {
 func (*ExposeServiceResponse) ProtoMessage() {}
 
 func (x *ExposeServiceResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := exposeServiceResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[50]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4696,6 +4726,11 @@ func (x *RenewExposeRequest) String() string {
 func (*RenewExposeRequest) ProtoMessage() {}
 
 func (x *RenewExposeRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := renewExposeRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4741,6 +4776,11 @@ func (x *RenewExposeResponse) String() string {
 func (*RenewExposeResponse) ProtoMessage() {}
 
 func (x *RenewExposeResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := renewExposeResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4781,6 +4821,11 @@ func (x *StopExposeRequest) String() string {
 func (*StopExposeRequest) ProtoMessage() {}
 
 func (x *StopExposeRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := stopExposeRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[53]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4826,6 +4871,11 @@ func (x *StopExposeResponse) String() string {
 func (*StopExposeResponse) ProtoMessage() {}
 
 func (x *StopExposeResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := stopExposeResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[54]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))

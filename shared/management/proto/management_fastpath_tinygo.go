@@ -10,6 +10,22 @@ func encryptedMessageProtoReflect(m *EncryptedMessage) protoreflect.Message {
 	return encryptedMessageReflect{m: m}
 }
 
+func jobRequestProtoReflect(m *JobRequest) protoreflect.Message {
+	return jobRequestReflect{m: m}
+}
+
+func jobResponseProtoReflect(m *JobResponse) protoreflect.Message {
+	return jobResponseReflect{m: m}
+}
+
+func bundleParametersProtoReflect(m *BundleParameters) protoreflect.Message {
+	return bundleParametersReflect{m: m}
+}
+
+func bundleResultProtoReflect(m *BundleResult) protoreflect.Message {
+	return bundleResultReflect{m: m}
+}
+
 func syncRequestProtoReflect(m *SyncRequest) protoreflect.Message {
 	return syncRequestReflect{m: m}
 }
@@ -188,4 +204,28 @@ func pKCEAuthorizationFlowProtoReflect(m *PKCEAuthorizationFlow) protoreflect.Me
 
 func providerConfigProtoReflect(m *ProviderConfig) protoreflect.Message {
 	return providerConfigReflect{m: m}
+}
+
+func exposeServiceRequestProtoReflect(m *ExposeServiceRequest) protoreflect.Message {
+	return exposeServiceRequestReflect{m: m}
+}
+
+func exposeServiceResponseProtoReflect(m *ExposeServiceResponse) protoreflect.Message {
+	return exposeServiceResponseReflect{m: m}
+}
+
+func renewExposeRequestProtoReflect(m *RenewExposeRequest) protoreflect.Message {
+	return renewExposeRequestReflect{m: m}
+}
+
+func renewExposeResponseProtoReflect(m *RenewExposeResponse) protoreflect.Message {
+	return renewExposeResponseReflect{m: m}
+}
+
+func stopExposeRequestProtoReflect(m *StopExposeRequest) protoreflect.Message {
+	return stopExposeRequestReflect{m: m}
+}
+
+func stopExposeResponseProtoReflect(m *StopExposeResponse) protoreflect.Message {
+	return stopExposeResponseReflect{m: m}
 }

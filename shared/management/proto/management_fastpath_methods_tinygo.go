@@ -15,6 +15,10 @@ import (
 )
 
 type encryptedMessageReflect struct{ m *EncryptedMessage }
+type jobRequestReflect struct{ m *JobRequest }
+type jobResponseReflect struct{ m *JobResponse }
+type bundleParametersReflect struct{ m *BundleParameters }
+type bundleResultReflect struct{ m *BundleResult }
 type syncRequestReflect struct{ m *SyncRequest }
 type syncMetaRequestReflect struct{ m *SyncMetaRequest }
 type loginRequestReflect struct{ m *LoginRequest }
@@ -62,6 +66,12 @@ type deviceAuthorizationFlowReflect struct{ m *DeviceAuthorizationFlow }
 type pKCEAuthorizationFlowRequestReflect struct{ m *PKCEAuthorizationFlowRequest }
 type pKCEAuthorizationFlowReflect struct{ m *PKCEAuthorizationFlow }
 type providerConfigReflect struct{ m *ProviderConfig }
+type exposeServiceRequestReflect struct{ m *ExposeServiceRequest }
+type exposeServiceResponseReflect struct{ m *ExposeServiceResponse }
+type renewExposeRequestReflect struct{ m *RenewExposeRequest }
+type renewExposeResponseReflect struct{ m *RenewExposeResponse }
+type stopExposeRequestReflect struct{ m *StopExposeRequest }
+type stopExposeResponseReflect struct{ m *StopExposeResponse }
 
 func protoCanary(method string) string {
 	return "management proto fast-path: unexpected protoreflect.Message." + method
@@ -101,6 +111,144 @@ func (r encryptedMessageReflect) SetUnknown(f protoreflect.RawFields) {
 }
 func (r encryptedMessageReflect) IsValid() bool                     { return r.m != nil }
 func (r encryptedMessageReflect) ProtoMethods() *protoiface.Methods { return &encryptedMessageMethods }
+
+func (r jobRequestReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r jobRequestReflect) Type() protoreflect.MessageType       { panic(protoCanary("Type")) }
+func (r jobRequestReflect) New() protoreflect.Message            { return jobRequestReflect{m: new(JobRequest)} }
+func (r jobRequestReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r jobRequestReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r jobRequestReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r jobRequestReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r jobRequestReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r jobRequestReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r jobRequestReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r jobRequestReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r jobRequestReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r jobRequestReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r jobRequestReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r jobRequestReflect) IsValid() bool                     { return r.m != nil }
+func (r jobRequestReflect) ProtoMethods() *protoiface.Methods { return &jobRequestMethods }
+
+func (r jobResponseReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r jobResponseReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r jobResponseReflect) New() protoreflect.Message {
+	return jobResponseReflect{m: new(JobResponse)}
+}
+func (r jobResponseReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r jobResponseReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r jobResponseReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r jobResponseReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r jobResponseReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r jobResponseReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r jobResponseReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r jobResponseReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r jobResponseReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r jobResponseReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r jobResponseReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r jobResponseReflect) IsValid() bool                     { return r.m != nil }
+func (r jobResponseReflect) ProtoMethods() *protoiface.Methods { return &jobResponseMethods }
+
+func (r bundleParametersReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r bundleParametersReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r bundleParametersReflect) New() protoreflect.Message {
+	return bundleParametersReflect{m: new(BundleParameters)}
+}
+func (r bundleParametersReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r bundleParametersReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r bundleParametersReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r bundleParametersReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r bundleParametersReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r bundleParametersReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r bundleParametersReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r bundleParametersReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r bundleParametersReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r bundleParametersReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r bundleParametersReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r bundleParametersReflect) IsValid() bool                     { return r.m != nil }
+func (r bundleParametersReflect) ProtoMethods() *protoiface.Methods { return &bundleParametersMethods }
+
+func (r bundleResultReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r bundleResultReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r bundleResultReflect) New() protoreflect.Message {
+	return bundleResultReflect{m: new(BundleResult)}
+}
+func (r bundleResultReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r bundleResultReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r bundleResultReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r bundleResultReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r bundleResultReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r bundleResultReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r bundleResultReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r bundleResultReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r bundleResultReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r bundleResultReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r bundleResultReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r bundleResultReflect) IsValid() bool                     { return r.m != nil }
+func (r bundleResultReflect) ProtoMethods() *protoiface.Methods { return &bundleResultMethods }
 
 func (r syncRequestReflect) Descriptor() protoreflect.MessageDescriptor {
 	panic(protoCanary("Descriptor"))
@@ -1679,6 +1827,234 @@ func (r providerConfigReflect) SetUnknown(f protoreflect.RawFields) {
 func (r providerConfigReflect) IsValid() bool                     { return r.m != nil }
 func (r providerConfigReflect) ProtoMethods() *protoiface.Methods { return &providerConfigMethods }
 
+func (r exposeServiceRequestReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r exposeServiceRequestReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r exposeServiceRequestReflect) New() protoreflect.Message {
+	return exposeServiceRequestReflect{m: new(ExposeServiceRequest)}
+}
+func (r exposeServiceRequestReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r exposeServiceRequestReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r exposeServiceRequestReflect) Has(protoreflect.FieldDescriptor) bool {
+	panic(protoCanary("Has"))
+}
+func (r exposeServiceRequestReflect) Clear(protoreflect.FieldDescriptor) { panic(protoCanary("Clear")) }
+func (r exposeServiceRequestReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r exposeServiceRequestReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r exposeServiceRequestReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r exposeServiceRequestReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r exposeServiceRequestReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r exposeServiceRequestReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r exposeServiceRequestReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r exposeServiceRequestReflect) IsValid() bool { return r.m != nil }
+func (r exposeServiceRequestReflect) ProtoMethods() *protoiface.Methods {
+	return &exposeServiceRequestMethods
+}
+
+func (r exposeServiceResponseReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r exposeServiceResponseReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r exposeServiceResponseReflect) New() protoreflect.Message {
+	return exposeServiceResponseReflect{m: new(ExposeServiceResponse)}
+}
+func (r exposeServiceResponseReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r exposeServiceResponseReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r exposeServiceResponseReflect) Has(protoreflect.FieldDescriptor) bool {
+	panic(protoCanary("Has"))
+}
+func (r exposeServiceResponseReflect) Clear(protoreflect.FieldDescriptor) {
+	panic(protoCanary("Clear"))
+}
+func (r exposeServiceResponseReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r exposeServiceResponseReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r exposeServiceResponseReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r exposeServiceResponseReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r exposeServiceResponseReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r exposeServiceResponseReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r exposeServiceResponseReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r exposeServiceResponseReflect) IsValid() bool { return r.m != nil }
+func (r exposeServiceResponseReflect) ProtoMethods() *protoiface.Methods {
+	return &exposeServiceResponseMethods
+}
+
+func (r renewExposeRequestReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r renewExposeRequestReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r renewExposeRequestReflect) New() protoreflect.Message {
+	return renewExposeRequestReflect{m: new(RenewExposeRequest)}
+}
+func (r renewExposeRequestReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r renewExposeRequestReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r renewExposeRequestReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r renewExposeRequestReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r renewExposeRequestReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r renewExposeRequestReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r renewExposeRequestReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r renewExposeRequestReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r renewExposeRequestReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r renewExposeRequestReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r renewExposeRequestReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r renewExposeRequestReflect) IsValid() bool { return r.m != nil }
+func (r renewExposeRequestReflect) ProtoMethods() *protoiface.Methods {
+	return &renewExposeRequestMethods
+}
+
+func (r renewExposeResponseReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r renewExposeResponseReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r renewExposeResponseReflect) New() protoreflect.Message {
+	return renewExposeResponseReflect{m: new(RenewExposeResponse)}
+}
+func (r renewExposeResponseReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r renewExposeResponseReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r renewExposeResponseReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r renewExposeResponseReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r renewExposeResponseReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r renewExposeResponseReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r renewExposeResponseReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r renewExposeResponseReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r renewExposeResponseReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r renewExposeResponseReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r renewExposeResponseReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r renewExposeResponseReflect) IsValid() bool { return r.m != nil }
+func (r renewExposeResponseReflect) ProtoMethods() *protoiface.Methods {
+	return &renewExposeResponseMethods
+}
+
+func (r stopExposeRequestReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r stopExposeRequestReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r stopExposeRequestReflect) New() protoreflect.Message {
+	return stopExposeRequestReflect{m: new(StopExposeRequest)}
+}
+func (r stopExposeRequestReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r stopExposeRequestReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r stopExposeRequestReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r stopExposeRequestReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r stopExposeRequestReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r stopExposeRequestReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r stopExposeRequestReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r stopExposeRequestReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r stopExposeRequestReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r stopExposeRequestReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r stopExposeRequestReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r stopExposeRequestReflect) IsValid() bool { return r.m != nil }
+func (r stopExposeRequestReflect) ProtoMethods() *protoiface.Methods {
+	return &stopExposeRequestMethods
+}
+
+func (r stopExposeResponseReflect) Descriptor() protoreflect.MessageDescriptor {
+	panic(protoCanary("Descriptor"))
+}
+func (r stopExposeResponseReflect) Type() protoreflect.MessageType { panic(protoCanary("Type")) }
+func (r stopExposeResponseReflect) New() protoreflect.Message {
+	return stopExposeResponseReflect{m: new(StopExposeResponse)}
+}
+func (r stopExposeResponseReflect) Interface() protoreflect.ProtoMessage { return r.m }
+func (r stopExposeResponseReflect) Range(func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	panic(protoCanary("Range"))
+}
+func (r stopExposeResponseReflect) Has(protoreflect.FieldDescriptor) bool { panic(protoCanary("Has")) }
+func (r stopExposeResponseReflect) Clear(protoreflect.FieldDescriptor)    { panic(protoCanary("Clear")) }
+func (r stopExposeResponseReflect) Get(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Get"))
+}
+func (r stopExposeResponseReflect) Set(protoreflect.FieldDescriptor, protoreflect.Value) {
+	panic(protoCanary("Set"))
+}
+func (r stopExposeResponseReflect) Mutable(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("Mutable"))
+}
+func (r stopExposeResponseReflect) NewField(protoreflect.FieldDescriptor) protoreflect.Value {
+	panic(protoCanary("NewField"))
+}
+func (r stopExposeResponseReflect) WhichOneof(protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	panic(protoCanary("WhichOneof"))
+}
+func (r stopExposeResponseReflect) GetUnknown() protoreflect.RawFields { return r.m.unknownFields }
+func (r stopExposeResponseReflect) SetUnknown(f protoreflect.RawFields) {
+	r.m.unknownFields = append(r.m.unknownFields[:0], f...)
+}
+func (r stopExposeResponseReflect) IsValid() bool { return r.m != nil }
+func (r stopExposeResponseReflect) ProtoMethods() *protoiface.Methods {
+	return &stopExposeResponseMethods
+}
+
 var encryptedMessageMethods = protoiface.Methods{
 	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
 	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
@@ -1700,6 +2076,102 @@ var encryptedMessageMethods = protoiface.Methods{
 	},
 	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
 		return protoiface.EqualOutput{Equal: equalEncryptedMessage(in.MessageA.(encryptedMessageReflect).m, in.MessageB.(encryptedMessageReflect).m)}
+	},
+}
+
+var jobRequestMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeJobRequest(in.Message.(jobRequestReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalJobRequest(in.Buf, in.Message.(jobRequestReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalJobRequest(in.Message.(jobRequestReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeJobRequest(in.Destination.(jobRequestReflect).m, in.Source.(jobRequestReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalJobRequest(in.MessageA.(jobRequestReflect).m, in.MessageB.(jobRequestReflect).m)}
+	},
+}
+
+var jobResponseMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeJobResponse(in.Message.(jobResponseReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalJobResponse(in.Buf, in.Message.(jobResponseReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalJobResponse(in.Message.(jobResponseReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeJobResponse(in.Destination.(jobResponseReflect).m, in.Source.(jobResponseReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalJobResponse(in.MessageA.(jobResponseReflect).m, in.MessageB.(jobResponseReflect).m)}
+	},
+}
+
+var bundleParametersMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeBundleParameters(in.Message.(bundleParametersReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalBundleParameters(in.Buf, in.Message.(bundleParametersReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalBundleParameters(in.Message.(bundleParametersReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeBundleParameters(in.Destination.(bundleParametersReflect).m, in.Source.(bundleParametersReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalBundleParameters(in.MessageA.(bundleParametersReflect).m, in.MessageB.(bundleParametersReflect).m)}
+	},
+}
+
+var bundleResultMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeBundleResult(in.Message.(bundleResultReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalBundleResult(in.Buf, in.Message.(bundleResultReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalBundleResult(in.Message.(bundleResultReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeBundleResult(in.Destination.(bundleResultReflect).m, in.Source.(bundleResultReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalBundleResult(in.MessageA.(bundleResultReflect).m, in.MessageB.(bundleResultReflect).m)}
 	},
 }
 
@@ -2783,6 +3255,150 @@ var providerConfigMethods = protoiface.Methods{
 	},
 }
 
+var exposeServiceRequestMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeExposeServiceRequest(in.Message.(exposeServiceRequestReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalExposeServiceRequest(in.Buf, in.Message.(exposeServiceRequestReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalExposeServiceRequest(in.Message.(exposeServiceRequestReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeExposeServiceRequest(in.Destination.(exposeServiceRequestReflect).m, in.Source.(exposeServiceRequestReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalExposeServiceRequest(in.MessageA.(exposeServiceRequestReflect).m, in.MessageB.(exposeServiceRequestReflect).m)}
+	},
+}
+
+var exposeServiceResponseMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeExposeServiceResponse(in.Message.(exposeServiceResponseReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalExposeServiceResponse(in.Buf, in.Message.(exposeServiceResponseReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalExposeServiceResponse(in.Message.(exposeServiceResponseReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeExposeServiceResponse(in.Destination.(exposeServiceResponseReflect).m, in.Source.(exposeServiceResponseReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalExposeServiceResponse(in.MessageA.(exposeServiceResponseReflect).m, in.MessageB.(exposeServiceResponseReflect).m)}
+	},
+}
+
+var renewExposeRequestMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeRenewExposeRequest(in.Message.(renewExposeRequestReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalRenewExposeRequest(in.Buf, in.Message.(renewExposeRequestReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalRenewExposeRequest(in.Message.(renewExposeRequestReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeRenewExposeRequest(in.Destination.(renewExposeRequestReflect).m, in.Source.(renewExposeRequestReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalRenewExposeRequest(in.MessageA.(renewExposeRequestReflect).m, in.MessageB.(renewExposeRequestReflect).m)}
+	},
+}
+
+var renewExposeResponseMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeRenewExposeResponse(in.Message.(renewExposeResponseReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalRenewExposeResponse(in.Buf, in.Message.(renewExposeResponseReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalRenewExposeResponse(in.Message.(renewExposeResponseReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeRenewExposeResponse(in.Destination.(renewExposeResponseReflect).m, in.Source.(renewExposeResponseReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalRenewExposeResponse(in.MessageA.(renewExposeResponseReflect).m, in.MessageB.(renewExposeResponseReflect).m)}
+	},
+}
+
+var stopExposeRequestMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeStopExposeRequest(in.Message.(stopExposeRequestReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalStopExposeRequest(in.Buf, in.Message.(stopExposeRequestReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalStopExposeRequest(in.Message.(stopExposeRequestReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeStopExposeRequest(in.Destination.(stopExposeRequestReflect).m, in.Source.(stopExposeRequestReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalStopExposeRequest(in.MessageA.(stopExposeRequestReflect).m, in.MessageB.(stopExposeRequestReflect).m)}
+	},
+}
+
+var stopExposeResponseMethods = protoiface.Methods{
+	Flags: protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+	Size: func(in protoiface.SizeInput) protoiface.SizeOutput {
+		return protoiface.SizeOutput{Size: sizeStopExposeResponse(in.Message.(stopExposeResponseReflect).m)}
+	},
+	Marshal: func(in protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		return protoiface.MarshalOutput{Buf: marshalStopExposeResponse(in.Buf, in.Message.(stopExposeResponseReflect).m)}, nil
+	},
+	Unmarshal: func(in protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		err := unmarshalStopExposeResponse(in.Message.(stopExposeResponseReflect).m, in.Buf)
+		return protoiface.UnmarshalOutput{Flags: protoiface.UnmarshalInitialized}, err
+	},
+	Merge: func(in protoiface.MergeInput) protoiface.MergeOutput {
+		mergeStopExposeResponse(in.Destination.(stopExposeResponseReflect).m, in.Source.(stopExposeResponseReflect).m)
+		return protoiface.MergeOutput{Flags: protoiface.MergeComplete}
+	},
+	CheckInitialized: func(protoiface.CheckInitializedInput) (protoiface.CheckInitializedOutput, error) {
+		return protoiface.CheckInitializedOutput{}, nil
+	},
+	Equal: func(in protoiface.EqualInput) protoiface.EqualOutput {
+		return protoiface.EqualOutput{Equal: equalStopExposeResponse(in.MessageA.(stopExposeResponseReflect).m, in.MessageB.(stopExposeResponseReflect).m)}
+	},
+}
+
 func sizeEncryptedMessage(m *EncryptedMessage) int {
 	n := 0
 	if m.WgPubKey != "" {
@@ -2881,6 +3497,432 @@ func equalEncryptedMessage(a, b *EncryptedMessage) bool {
 		return false
 	}
 	if a.Version != b.Version {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeJobRequest(m *JobRequest) int {
+	n := 0
+	if len(m.ID) > 0 {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.ID))
+	}
+	if v, ok := m.WorkloadParameters.(*JobRequest_Bundle); ok && v.Bundle != nil {
+		s := sizeBundleParameters(v.Bundle)
+		n += protowire.SizeTag(10) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalJobRequest(b []byte, m *JobRequest) []byte {
+	if len(m.ID) > 0 {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendBytes(b, m.ID)
+	}
+	if v, ok := m.WorkloadParameters.(*JobRequest_Bundle); ok && v.Bundle != nil {
+		b = protowire.AppendTag(b, 10, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeBundleParameters(v.Bundle)))
+		b = marshalBundleParameters(b, v.Bundle)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalJobRequest(m *JobRequest, b []byte) error {
+	*m = JobRequest{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ID = append(m.ID[:0], v...)
+			b = b[n:]
+		case num == 10 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			item := &BundleParameters{}
+			if err := unmarshalBundleParameters(item, v); err != nil {
+				return err
+			}
+			m.WorkloadParameters = &JobRequest_Bundle{Bundle: item}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeJobRequest(dst, src *JobRequest) {
+	if len(src.ID) > 0 {
+		dst.ID = append(dst.ID[:0], src.ID...)
+	}
+	switch v := src.WorkloadParameters.(type) {
+	case *JobRequest_Bundle:
+		if v.Bundle != nil {
+			cp := &BundleParameters{}
+			mergeBundleParameters(cp, v.Bundle)
+			dst.WorkloadParameters = &JobRequest_Bundle{Bundle: cp}
+		}
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalJobRequest(a, b *JobRequest) bool {
+	if !bytes.Equal(a.ID, b.ID) {
+		return false
+	}
+	if !equalJobRequestWorkloadParameters(a.WorkloadParameters, b.WorkloadParameters) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeJobResponse(m *JobResponse) int {
+	n := 0
+	if len(m.ID) > 0 {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.ID))
+	}
+	if m.Status != 0 {
+		n += protowire.SizeTag(2) + protowire.SizeVarint(uint64(m.Status))
+	}
+	if len(m.Reason) > 0 {
+		n += protowire.SizeTag(3) + protowire.SizeBytes(len(m.Reason))
+	}
+	if v, ok := m.WorkloadResults.(*JobResponse_Bundle); ok && v.Bundle != nil {
+		s := sizeBundleResult(v.Bundle)
+		n += protowire.SizeTag(10) + protowire.SizeBytes(s)
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalJobResponse(b []byte, m *JobResponse) []byte {
+	if len(m.ID) > 0 {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendBytes(b, m.ID)
+	}
+	if m.Status != 0 {
+		b = protowire.AppendTag(b, 2, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Status))
+	}
+	if len(m.Reason) > 0 {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendBytes(b, m.Reason)
+	}
+	if v, ok := m.WorkloadResults.(*JobResponse_Bundle); ok && v.Bundle != nil {
+		b = protowire.AppendTag(b, 10, protowire.BytesType)
+		b = protowire.AppendVarint(b, uint64(sizeBundleResult(v.Bundle)))
+		b = marshalBundleResult(b, v.Bundle)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalJobResponse(m *JobResponse, b []byte) error {
+	*m = JobResponse{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ID = append(m.ID[:0], v...)
+			b = b[n:]
+		case num == 2 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Status = JobStatus(v)
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Reason = append(m.Reason[:0], v...)
+			b = b[n:]
+		case num == 10 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeBytes(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			item := &BundleResult{}
+			if err := unmarshalBundleResult(item, v); err != nil {
+				return err
+			}
+			m.WorkloadResults = &JobResponse_Bundle{Bundle: item}
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeJobResponse(dst, src *JobResponse) {
+	if len(src.ID) > 0 {
+		dst.ID = append(dst.ID[:0], src.ID...)
+	}
+	if src.Status != 0 {
+		dst.Status = src.Status
+	}
+	if len(src.Reason) > 0 {
+		dst.Reason = append(dst.Reason[:0], src.Reason...)
+	}
+	switch v := src.WorkloadResults.(type) {
+	case *JobResponse_Bundle:
+		if v.Bundle != nil {
+			cp := &BundleResult{}
+			mergeBundleResult(cp, v.Bundle)
+			dst.WorkloadResults = &JobResponse_Bundle{Bundle: cp}
+		}
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalJobResponse(a, b *JobResponse) bool {
+	if !bytes.Equal(a.ID, b.ID) {
+		return false
+	}
+	if a.Status != b.Status {
+		return false
+	}
+	if !bytes.Equal(a.Reason, b.Reason) {
+		return false
+	}
+	if !equalJobResponseWorkloadResults(a.WorkloadResults, b.WorkloadResults) {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeBundleParameters(m *BundleParameters) int {
+	n := 0
+	if m.BundleFor {
+		n += protowire.SizeTag(1) + protowire.SizeVarint(protowire.EncodeBool(m.BundleFor))
+	}
+	if m.BundleForTime != 0 {
+		n += protowire.SizeTag(2) + protowire.SizeVarint(uint64(m.BundleForTime))
+	}
+	if m.LogFileCount != 0 {
+		n += protowire.SizeTag(3) + protowire.SizeVarint(uint64(m.LogFileCount))
+	}
+	if m.Anonymize {
+		n += protowire.SizeTag(4) + protowire.SizeVarint(protowire.EncodeBool(m.Anonymize))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalBundleParameters(b []byte, m *BundleParameters) []byte {
+	if m.BundleFor {
+		b = protowire.AppendTag(b, 1, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.BundleFor))
+	}
+	if m.BundleForTime != 0 {
+		b = protowire.AppendTag(b, 2, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.BundleForTime))
+	}
+	if m.LogFileCount != 0 {
+		b = protowire.AppendTag(b, 3, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.LogFileCount))
+	}
+	if m.Anonymize {
+		b = protowire.AppendTag(b, 4, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.Anonymize))
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalBundleParameters(m *BundleParameters, b []byte) error {
+	*m = BundleParameters{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.BundleFor = protowire.DecodeBool(v)
+			b = b[n:]
+		case num == 2 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.BundleForTime = int64(v)
+			b = b[n:]
+		case num == 3 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.LogFileCount = int32(v)
+			b = b[n:]
+		case num == 4 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Anonymize = protowire.DecodeBool(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeBundleParameters(dst, src *BundleParameters) {
+	if src.BundleFor {
+		dst.BundleFor = src.BundleFor
+	}
+	if src.BundleForTime != 0 {
+		dst.BundleForTime = src.BundleForTime
+	}
+	if src.LogFileCount != 0 {
+		dst.LogFileCount = src.LogFileCount
+	}
+	if src.Anonymize {
+		dst.Anonymize = src.Anonymize
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalBundleParameters(a, b *BundleParameters) bool {
+	if a.BundleFor != b.BundleFor {
+		return false
+	}
+	if a.BundleForTime != b.BundleForTime {
+		return false
+	}
+	if a.LogFileCount != b.LogFileCount {
+		return false
+	}
+	if a.Anonymize != b.Anonymize {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeBundleResult(m *BundleResult) int {
+	n := 0
+	if m.UploadKey != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.UploadKey))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalBundleResult(b []byte, m *BundleResult) []byte {
+	if m.UploadKey != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.UploadKey)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalBundleResult(m *BundleResult, b []byte) error {
+	*m = BundleResult{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.UploadKey = v
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeBundleResult(dst, src *BundleResult) {
+	if src.UploadKey != "" {
+		dst.UploadKey = src.UploadKey
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalBundleResult(a, b *BundleResult) bool {
+	if a.UploadKey != b.UploadKey {
 		return false
 	}
 	if !bytes.Equal(a.unknownFields, b.unknownFields) {
@@ -10002,6 +11044,567 @@ func equalProviderConfig(a, b *ProviderConfig) bool {
 	return true
 }
 
+func sizeExposeServiceRequest(m *ExposeServiceRequest) int {
+	n := 0
+	if m.Port != 0 {
+		n += protowire.SizeTag(1) + protowire.SizeVarint(uint64(m.Port))
+	}
+	if m.Protocol != 0 {
+		n += protowire.SizeTag(2) + protowire.SizeVarint(uint64(m.Protocol))
+	}
+	if m.Pin != "" {
+		n += protowire.SizeTag(3) + protowire.SizeBytes(len(m.Pin))
+	}
+	if m.Password != "" {
+		n += protowire.SizeTag(4) + protowire.SizeBytes(len(m.Password))
+	}
+	for _, v := range m.UserGroups {
+		n += protowire.SizeTag(5) + protowire.SizeBytes(len(v))
+	}
+	if m.Domain != "" {
+		n += protowire.SizeTag(6) + protowire.SizeBytes(len(m.Domain))
+	}
+	if m.NamePrefix != "" {
+		n += protowire.SizeTag(7) + protowire.SizeBytes(len(m.NamePrefix))
+	}
+	if m.ListenPort != 0 {
+		n += protowire.SizeTag(8) + protowire.SizeVarint(uint64(m.ListenPort))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalExposeServiceRequest(b []byte, m *ExposeServiceRequest) []byte {
+	if m.Port != 0 {
+		b = protowire.AppendTag(b, 1, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Port))
+	}
+	if m.Protocol != 0 {
+		b = protowire.AppendTag(b, 2, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.Protocol))
+	}
+	if m.Pin != "" {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendString(b, m.Pin)
+	}
+	if m.Password != "" {
+		b = protowire.AppendTag(b, 4, protowire.BytesType)
+		b = protowire.AppendString(b, m.Password)
+	}
+	for _, v := range m.UserGroups {
+		b = protowire.AppendTag(b, 5, protowire.BytesType)
+		b = protowire.AppendString(b, v)
+	}
+	if m.Domain != "" {
+		b = protowire.AppendTag(b, 6, protowire.BytesType)
+		b = protowire.AppendString(b, m.Domain)
+	}
+	if m.NamePrefix != "" {
+		b = protowire.AppendTag(b, 7, protowire.BytesType)
+		b = protowire.AppendString(b, m.NamePrefix)
+	}
+	if m.ListenPort != 0 {
+		b = protowire.AppendTag(b, 8, protowire.VarintType)
+		b = protowire.AppendVarint(b, uint64(m.ListenPort))
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalExposeServiceRequest(m *ExposeServiceRequest, b []byte) error {
+	*m = ExposeServiceRequest{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Port = uint32(v)
+			b = b[n:]
+		case num == 2 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Protocol = ExposeProtocol(v)
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Pin = v
+			b = b[n:]
+		case num == 4 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Password = v
+			b = b[n:]
+		case num == 5 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.UserGroups = append(m.UserGroups, v)
+			b = b[n:]
+		case num == 6 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Domain = v
+			b = b[n:]
+		case num == 7 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.NamePrefix = v
+			b = b[n:]
+		case num == 8 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ListenPort = uint32(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeExposeServiceRequest(dst, src *ExposeServiceRequest) {
+	if src.Port != 0 {
+		dst.Port = src.Port
+	}
+	if src.Protocol != 0 {
+		dst.Protocol = src.Protocol
+	}
+	if src.Pin != "" {
+		dst.Pin = src.Pin
+	}
+	if src.Password != "" {
+		dst.Password = src.Password
+	}
+	if len(src.UserGroups) > 0 {
+		dst.UserGroups = append(dst.UserGroups, src.UserGroups...)
+	}
+	if src.Domain != "" {
+		dst.Domain = src.Domain
+	}
+	if src.NamePrefix != "" {
+		dst.NamePrefix = src.NamePrefix
+	}
+	if src.ListenPort != 0 {
+		dst.ListenPort = src.ListenPort
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalExposeServiceRequest(a, b *ExposeServiceRequest) bool {
+	if a.Port != b.Port {
+		return false
+	}
+	if a.Protocol != b.Protocol {
+		return false
+	}
+	if a.Pin != b.Pin {
+		return false
+	}
+	if a.Password != b.Password {
+		return false
+	}
+	if len(a.UserGroups) != len(b.UserGroups) {
+		return false
+	}
+	for i := range a.UserGroups {
+		if a.UserGroups[i] != b.UserGroups[i] {
+			return false
+		}
+	}
+	if a.Domain != b.Domain {
+		return false
+	}
+	if a.NamePrefix != b.NamePrefix {
+		return false
+	}
+	if a.ListenPort != b.ListenPort {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeExposeServiceResponse(m *ExposeServiceResponse) int {
+	n := 0
+	if m.ServiceName != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.ServiceName))
+	}
+	if m.ServiceUrl != "" {
+		n += protowire.SizeTag(2) + protowire.SizeBytes(len(m.ServiceUrl))
+	}
+	if m.Domain != "" {
+		n += protowire.SizeTag(3) + protowire.SizeBytes(len(m.Domain))
+	}
+	if m.PortAutoAssigned {
+		n += protowire.SizeTag(4) + protowire.SizeVarint(protowire.EncodeBool(m.PortAutoAssigned))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalExposeServiceResponse(b []byte, m *ExposeServiceResponse) []byte {
+	if m.ServiceName != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.ServiceName)
+	}
+	if m.ServiceUrl != "" {
+		b = protowire.AppendTag(b, 2, protowire.BytesType)
+		b = protowire.AppendString(b, m.ServiceUrl)
+	}
+	if m.Domain != "" {
+		b = protowire.AppendTag(b, 3, protowire.BytesType)
+		b = protowire.AppendString(b, m.Domain)
+	}
+	if m.PortAutoAssigned {
+		b = protowire.AppendTag(b, 4, protowire.VarintType)
+		b = protowire.AppendVarint(b, protowire.EncodeBool(m.PortAutoAssigned))
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalExposeServiceResponse(m *ExposeServiceResponse, b []byte) error {
+	*m = ExposeServiceResponse{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ServiceName = v
+			b = b[n:]
+		case num == 2 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.ServiceUrl = v
+			b = b[n:]
+		case num == 3 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Domain = v
+			b = b[n:]
+		case num == 4 && typ == protowire.VarintType:
+			v, n := protowire.ConsumeVarint(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.PortAutoAssigned = protowire.DecodeBool(v)
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeExposeServiceResponse(dst, src *ExposeServiceResponse) {
+	if src.ServiceName != "" {
+		dst.ServiceName = src.ServiceName
+	}
+	if src.ServiceUrl != "" {
+		dst.ServiceUrl = src.ServiceUrl
+	}
+	if src.Domain != "" {
+		dst.Domain = src.Domain
+	}
+	if src.PortAutoAssigned {
+		dst.PortAutoAssigned = src.PortAutoAssigned
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalExposeServiceResponse(a, b *ExposeServiceResponse) bool {
+	if a.ServiceName != b.ServiceName {
+		return false
+	}
+	if a.ServiceUrl != b.ServiceUrl {
+		return false
+	}
+	if a.Domain != b.Domain {
+		return false
+	}
+	if a.PortAutoAssigned != b.PortAutoAssigned {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeRenewExposeRequest(m *RenewExposeRequest) int {
+	n := 0
+	if m.Domain != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Domain))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalRenewExposeRequest(b []byte, m *RenewExposeRequest) []byte {
+	if m.Domain != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Domain)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalRenewExposeRequest(m *RenewExposeRequest, b []byte) error {
+	*m = RenewExposeRequest{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Domain = v
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeRenewExposeRequest(dst, src *RenewExposeRequest) {
+	if src.Domain != "" {
+		dst.Domain = src.Domain
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalRenewExposeRequest(a, b *RenewExposeRequest) bool {
+	if a.Domain != b.Domain {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeRenewExposeResponse(m *RenewExposeResponse) int {
+	n := 0
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalRenewExposeResponse(b []byte, m *RenewExposeResponse) []byte {
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalRenewExposeResponse(m *RenewExposeResponse, b []byte) error {
+	*m = RenewExposeResponse{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeRenewExposeResponse(dst, src *RenewExposeResponse) {
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalRenewExposeResponse(a, b *RenewExposeResponse) bool {
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeStopExposeRequest(m *StopExposeRequest) int {
+	n := 0
+	if m.Domain != "" {
+		n += protowire.SizeTag(1) + protowire.SizeBytes(len(m.Domain))
+	}
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalStopExposeRequest(b []byte, m *StopExposeRequest) []byte {
+	if m.Domain != "" {
+		b = protowire.AppendTag(b, 1, protowire.BytesType)
+		b = protowire.AppendString(b, m.Domain)
+	}
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalStopExposeRequest(m *StopExposeRequest, b []byte) error {
+	*m = StopExposeRequest{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		case num == 1 && typ == protowire.BytesType:
+			v, n := protowire.ConsumeString(b)
+			if n < 0 {
+				return protowire.ParseError(n)
+			}
+			m.Domain = v
+			b = b[n:]
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeStopExposeRequest(dst, src *StopExposeRequest) {
+	if src.Domain != "" {
+		dst.Domain = src.Domain
+	}
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalStopExposeRequest(a, b *StopExposeRequest) bool {
+	if a.Domain != b.Domain {
+		return false
+	}
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
+func sizeStopExposeResponse(m *StopExposeResponse) int {
+	n := 0
+	n += len(m.unknownFields)
+	return n
+}
+
+func marshalStopExposeResponse(b []byte, m *StopExposeResponse) []byte {
+	b = append(b, m.unknownFields...)
+	return b
+}
+
+func unmarshalStopExposeResponse(m *StopExposeResponse, b []byte) error {
+	*m = StopExposeResponse{}
+	for len(b) > 0 {
+		fieldStart := b
+		num, typ, n := protowire.ConsumeTag(b)
+		if n < 0 {
+			return protowire.ParseError(n)
+		}
+		b = b[n:]
+		switch {
+		default:
+			skip := protowire.ConsumeFieldValue(num, typ, b)
+			if skip < 0 {
+				return protowire.ParseError(skip)
+			}
+			m.unknownFields = append(m.unknownFields, fieldStart[:n+skip]...)
+			b = b[skip:]
+		}
+	}
+	return nil
+}
+
+func mergeStopExposeResponse(dst, src *StopExposeResponse) {
+	if len(src.unknownFields) > 0 {
+		dst.unknownFields = append(dst.unknownFields, src.unknownFields...)
+	}
+}
+
+func equalStopExposeResponse(a, b *StopExposeResponse) bool {
+	if !bytes.Equal(a.unknownFields, b.unknownFields) {
+		return false
+	}
+	return true
+}
+
 func sizeTimestamp(m *timestamppb.Timestamp) int {
 	n := 0
 	if m.Seconds != 0 {
@@ -10201,6 +11804,30 @@ func equalPortInfoSelection(a, b isPortInfo_PortSelection) bool {
 	case *PortInfo_Range_:
 		bv, ok := b.(*PortInfo_Range_)
 		return ok && equalPortInfo_Range(av.Range, bv.Range)
+	default:
+		return false
+	}
+}
+
+func equalJobRequestWorkloadParameters(a, b isJobRequest_WorkloadParameters) bool {
+	switch av := a.(type) {
+	case nil:
+		return b == nil
+	case *JobRequest_Bundle:
+		bv, ok := b.(*JobRequest_Bundle)
+		return ok && equalBundleParameters(av.Bundle, bv.Bundle)
+	default:
+		return false
+	}
+}
+
+func equalJobResponseWorkloadResults(a, b isJobResponse_WorkloadResults) bool {
+	switch av := a.(type) {
+	case nil:
+		return b == nil
+	case *JobResponse_Bundle:
+		bv, ok := b.(*JobResponse_Bundle)
+		return ok && equalBundleResult(av.Bundle, bv.Bundle)
 	default:
 		return false
 	}

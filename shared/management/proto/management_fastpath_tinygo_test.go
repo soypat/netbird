@@ -206,6 +206,52 @@ func TestManagementSyncResponseNetworkMapFastPathRoundTrip(t *testing.T) {
 	assertProtoRoundTrip(t, resp, &SyncResponse{})
 }
 
+func TestManagementJobFastPathRoundTrip(t *testing.T) {
+	assertProtoRoundTrip(t, &JobRequest{
+		ID: []byte("job-id"),
+		WorkloadParameters: &JobRequest_Bundle{Bundle: &BundleParameters{
+			BundleFor:     true,
+			BundleForTime: 60,
+			LogFileCount:  3,
+			Anonymize:     true,
+		}},
+	}, &JobRequest{})
+
+	assertProtoRoundTrip(t, &JobResponse{
+		ID:     []byte("job-id"),
+		Status: JobStatus_succeeded,
+		Reason: []byte("done"),
+		WorkloadResults: &JobResponse_Bundle{Bundle: &BundleResult{
+			UploadKey: "upload-key",
+		}},
+	}, &JobResponse{})
+}
+
+func TestManagementExposeFastPathRoundTrip(t *testing.T) {
+	assertProtoRoundTrip(t, &ExposeServiceRequest{
+		Port:       8080,
+		Protocol:   ExposeProtocol_EXPOSE_TCP,
+		Pin:        "123456",
+		Password:   "password",
+		UserGroups: []string{"admins", "support"},
+		Domain:     "service.example.com",
+		NamePrefix: "ssh",
+		ListenPort: 18080,
+	}, &ExposeServiceRequest{})
+
+	assertProtoRoundTrip(t, &ExposeServiceResponse{
+		ServiceName:      "ssh-service",
+		ServiceUrl:       "tcp://service.example.com:8080",
+		Domain:           "service.example.com",
+		PortAutoAssigned: true,
+	}, &ExposeServiceResponse{})
+
+	assertProtoRoundTrip(t, &RenewExposeRequest{Domain: "service.example.com"}, &RenewExposeRequest{})
+	assertProtoRoundTrip(t, &RenewExposeResponse{}, &RenewExposeResponse{})
+	assertProtoRoundTrip(t, &StopExposeRequest{Domain: "service.example.com"}, &StopExposeRequest{})
+	assertProtoRoundTrip(t, &StopExposeResponse{}, &StopExposeResponse{})
+}
+
 func TestManagementAuthFlowFastPathRoundTrip(t *testing.T) {
 	assertProtoRoundTrip(t, &Empty{}, &Empty{})
 	assertProtoRoundTrip(t, &SyncRequest{Meta: &PeerSystemMeta{Hostname: "host"}}, &SyncRequest{})
