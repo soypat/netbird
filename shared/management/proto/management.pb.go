@@ -456,6 +456,11 @@ func (x *EncryptedMessage) String() string {
 func (*EncryptedMessage) ProtoMessage() {}
 
 func (x *EncryptedMessage) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := encryptedMessageProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
