@@ -17,4 +17,5 @@ protoc -I ./ ./management.proto --go_out=../ --go-grpc_out=../
 protoc -I ./ ./proxy_service.proto --go_out=../ --go-grpc_out=../
 cd ../../..
 go run ./tools/protoc-gen-go-netbird-tinygo -target management
+go run ./tools/protoc-gen-go-netbird-tinygo -target proxy_service
 cd "$old_pwd"

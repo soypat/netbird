@@ -213,6 +213,11 @@ func (x *ProxyCapabilities) String() string {
 func (*ProxyCapabilities) ProtoMessage() {}
 
 func (x *ProxyCapabilities) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := proxyCapabilitiesProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -293,6 +298,11 @@ func (x *GetMappingUpdateRequest) String() string {
 func (*GetMappingUpdateRequest) ProtoMessage() {}
 
 func (x *GetMappingUpdateRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := getMappingUpdateRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -374,6 +384,11 @@ func (x *GetMappingUpdateResponse) String() string {
 func (*GetMappingUpdateResponse) ProtoMessage() {}
 
 func (x *GetMappingUpdateResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := getMappingUpdateResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -440,6 +455,11 @@ func (x *PathTargetOptions) String() string {
 func (*PathTargetOptions) ProtoMessage() {}
 
 func (x *PathTargetOptions) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := pathTargetOptionsProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -531,6 +551,11 @@ func (x *PathMapping) String() string {
 func (*PathMapping) ProtoMessage() {}
 
 func (x *PathMapping) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := pathMappingProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -595,6 +620,11 @@ func (x *HeaderAuth) String() string {
 func (*HeaderAuth) ProtoMessage() {}
 
 func (x *HeaderAuth) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := headerAuthProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -654,6 +684,11 @@ func (x *Authentication) String() string {
 func (*Authentication) ProtoMessage() {}
 
 func (x *Authentication) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := authenticationProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -741,6 +776,11 @@ func (x *AccessRestrictions) String() string {
 func (*AccessRestrictions) ProtoMessage() {}
 
 func (x *AccessRestrictions) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := accessRestrictionsProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -835,6 +875,11 @@ func (x *ProxyMapping) String() string {
 func (*ProxyMapping) ProtoMessage() {}
 
 func (x *ProxyMapping) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := proxyMappingProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -967,6 +1012,11 @@ func (x *SendAccessLogRequest) String() string {
 func (*SendAccessLogRequest) ProtoMessage() {}
 
 func (x *SendAccessLogRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := sendAccessLogRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1013,6 +1063,11 @@ func (x *SendAccessLogResponse) String() string {
 func (*SendAccessLogResponse) ProtoMessage() {}
 
 func (x *SendAccessLogResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := sendAccessLogResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1070,6 +1125,11 @@ func (x *AccessLog) String() string {
 func (*AccessLog) ProtoMessage() {}
 
 func (x *AccessLog) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := accessLogProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1236,6 +1296,11 @@ func (x *AuthenticateRequest) String() string {
 func (*AuthenticateRequest) ProtoMessage() {}
 
 func (x *AuthenticateRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := authenticateRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1341,6 +1406,11 @@ func (x *HeaderAuthRequest) String() string {
 func (*HeaderAuthRequest) ProtoMessage() {}
 
 func (x *HeaderAuthRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := headerAuthRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1395,6 +1465,11 @@ func (x *PasswordRequest) String() string {
 func (*PasswordRequest) ProtoMessage() {}
 
 func (x *PasswordRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := passwordRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1442,6 +1517,11 @@ func (x *PinRequest) String() string {
 func (*PinRequest) ProtoMessage() {}
 
 func (x *PinRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := pinRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1490,6 +1570,11 @@ func (x *AuthenticateResponse) String() string {
 func (*AuthenticateResponse) ProtoMessage() {}
 
 func (x *AuthenticateResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := authenticateResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1554,6 +1639,11 @@ func (x *SendStatusUpdateRequest) String() string {
 func (*SendStatusUpdateRequest) ProtoMessage() {}
 
 func (x *SendStatusUpdateRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := sendStatusUpdateRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1646,6 +1736,11 @@ func (x *ProxyInboundListener) String() string {
 func (*ProxyInboundListener) ProtoMessage() {}
 
 func (x *ProxyInboundListener) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := proxyInboundListenerProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1706,6 +1801,11 @@ func (x *SendStatusUpdateResponse) String() string {
 func (*SendStatusUpdateResponse) ProtoMessage() {}
 
 func (x *SendStatusUpdateResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := sendStatusUpdateResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1752,6 +1852,11 @@ func (x *CreateProxyPeerRequest) String() string {
 func (*CreateProxyPeerRequest) ProtoMessage() {}
 
 func (x *CreateProxyPeerRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := createProxyPeerRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1829,6 +1934,11 @@ func (x *CreateProxyPeerResponse) String() string {
 func (*CreateProxyPeerResponse) ProtoMessage() {}
 
 func (x *CreateProxyPeerResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := createProxyPeerResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1885,6 +1995,11 @@ func (x *GetOIDCURLRequest) String() string {
 func (*GetOIDCURLRequest) ProtoMessage() {}
 
 func (x *GetOIDCURLRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := getOIDCURLRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1946,6 +2061,11 @@ func (x *GetOIDCURLResponse) String() string {
 func (*GetOIDCURLResponse) ProtoMessage() {}
 
 func (x *GetOIDCURLResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := getOIDCURLResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1994,6 +2114,11 @@ func (x *ValidateSessionRequest) String() string {
 func (*ValidateSessionRequest) ProtoMessage() {}
 
 func (x *ValidateSessionRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := validateSessionRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2060,6 +2185,11 @@ func (x *ValidateSessionResponse) String() string {
 func (*ValidateSessionResponse) ProtoMessage() {}
 
 func (x *ValidateSessionResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := validateSessionResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2146,6 +2276,11 @@ func (x *ValidateTunnelPeerRequest) String() string {
 func (*ValidateTunnelPeerRequest) ProtoMessage() {}
 
 func (x *ValidateTunnelPeerRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := validateTunnelPeerRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2226,6 +2361,11 @@ func (x *ValidateTunnelPeerResponse) String() string {
 func (*ValidateTunnelPeerResponse) ProtoMessage() {}
 
 func (x *ValidateTunnelPeerResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := validateTunnelPeerResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2322,6 +2462,11 @@ func (x *SyncMappingsRequest) String() string {
 func (*SyncMappingsRequest) ProtoMessage() {}
 
 func (x *SyncMappingsRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := syncMappingsRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2405,6 +2550,11 @@ func (x *SyncMappingsInit) String() string {
 func (*SyncMappingsInit) ProtoMessage() {}
 
 func (x *SyncMappingsInit) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := syncMappingsInitProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2480,6 +2630,11 @@ func (x *SyncMappingsAck) String() string {
 func (*SyncMappingsAck) ProtoMessage() {}
 
 func (x *SyncMappingsAck) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := syncMappingsAckProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2524,6 +2679,11 @@ func (x *SyncMappingsResponse) String() string {
 func (*SyncMappingsResponse) ProtoMessage() {}
 
 func (x *SyncMappingsResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := syncMappingsResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_proxy_service_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))

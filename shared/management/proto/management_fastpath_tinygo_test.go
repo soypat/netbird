@@ -252,6 +252,128 @@ func TestManagementExposeFastPathRoundTrip(t *testing.T) {
 	assertProtoRoundTrip(t, &StopExposeResponse{}, &StopExposeResponse{})
 }
 
+func TestManagementProxyServiceFastPathRoundTrip(t *testing.T) {
+	trueValue := true
+	errorMessage := "certificate failed"
+
+	mapping := &ProxyMapping{
+		Type:      ProxyMappingUpdateType_UPDATE_TYPE_MODIFIED,
+		Id:        "service-id",
+		AccountId: "account-id",
+		Domain:    "app.example.com",
+		Path: []*PathMapping{{
+			Path:   "/api",
+			Target: "https://10.0.0.10:8443",
+			Options: &PathTargetOptions{
+				SkipTlsVerify:      true,
+				RequestTimeout:     durationpb.New(5 * time.Second),
+				PathRewrite:        PathRewriteMode_PATH_REWRITE_PRESERVE,
+				CustomHeaders:      map[string]string{"X-Test": "yes"},
+				ProxyProtocol:      true,
+				SessionIdleTimeout: durationpb.New(30 * time.Second),
+				DirectUpstream:     true,
+			},
+		}},
+		AuthToken: "auth-token",
+		Auth: &Authentication{
+			SessionKey:           "session-key",
+			MaxSessionAgeSeconds: 3600,
+			Password:             true,
+			Pin:                  true,
+			Oidc:                 true,
+			HeaderAuths:          []*HeaderAuth{{Header: "Authorization", HashedValue: "hash"}},
+		},
+		PassHostHeader:   true,
+		RewriteRedirects: true,
+		Mode:             "http",
+		ListenPort:       8443,
+		AccessRestrictions: &AccessRestrictions{
+			AllowedCidrs:     []string{"10.0.0.0/8"},
+			BlockedCidrs:     []string{"192.0.2.0/24"},
+			AllowedCountries: []string{"AR"},
+			BlockedCountries: []string{"ZZ"},
+			CrowdsecMode:     "observe",
+		},
+		Private: true,
+	}
+
+	assertProtoRoundTrip(t, &GetMappingUpdateRequest{
+		ProxyId:   "proxy-id",
+		Version:   "v1",
+		StartedAt: timestamppb.New(time.Unix(600, 0)),
+		Address:   "proxy.example.com",
+		Capabilities: &ProxyCapabilities{
+			SupportsCustomPorts:    &trueValue,
+			RequireSubdomain:       &trueValue,
+			SupportsCrowdsec:       &trueValue,
+			Private:                &trueValue,
+			SupportsPrivateService: &trueValue,
+		},
+	}, &GetMappingUpdateRequest{})
+	assertProtoRoundTrip(t, &GetMappingUpdateResponse{Mapping: []*ProxyMapping{mapping}, InitialSyncComplete: true}, &GetMappingUpdateResponse{})
+	assertProtoRoundTrip(t, &SendAccessLogRequest{Log: &AccessLog{
+		Timestamp:     timestamppb.New(time.Unix(700, 0)),
+		LogId:         "log-id",
+		AccountId:     "account-id",
+		ServiceId:     "service-id",
+		Host:          "app.example.com",
+		Path:          "/api",
+		DurationMs:    123,
+		Method:        "GET",
+		ResponseCode:  200,
+		SourceIp:      "100.64.0.10",
+		AuthMechanism: "oidc",
+		UserId:        "user-id",
+		AuthSuccess:   true,
+		BytesUpload:   10,
+		BytesDownload: 20,
+		Protocol:      "https",
+		Metadata:      map[string]string{"verdict": "allow"},
+	}}, &SendAccessLogRequest{})
+	assertProtoRoundTrip(t, &SendAccessLogResponse{}, &SendAccessLogResponse{})
+
+	assertProtoRoundTrip(t, &AuthenticateRequest{
+		Id:        "service-id",
+		AccountId: "account-id",
+		Request:   &AuthenticateRequest_HeaderAuth{HeaderAuth: &HeaderAuthRequest{HeaderName: "Authorization", HeaderValue: "Bearer token"}},
+	}, &AuthenticateRequest{})
+	assertProtoRoundTrip(t, &AuthenticateResponse{Success: true, SessionToken: "session-token"}, &AuthenticateResponse{})
+	assertProtoRoundTrip(t, &SendStatusUpdateRequest{
+		ServiceId:         "service-id",
+		AccountId:         "account-id",
+		Status:            ProxyStatus_PROXY_STATUS_ACTIVE,
+		CertificateIssued: true,
+		ErrorMessage:      &errorMessage,
+		InboundListener:   &ProxyInboundListener{TunnelIp: "100.64.0.20", HttpsPort: 443, HttpPort: 80},
+	}, &SendStatusUpdateRequest{})
+	assertProtoRoundTrip(t, &SendStatusUpdateResponse{}, &SendStatusUpdateResponse{})
+	assertProtoRoundTrip(t, &CreateProxyPeerRequest{
+		ServiceId:          "service-id",
+		AccountId:          "account-id",
+		Token:              "token",
+		WireguardPublicKey: "wg",
+		Cluster:            "cluster",
+	}, &CreateProxyPeerRequest{})
+	assertProtoRoundTrip(t, &CreateProxyPeerResponse{Success: true, ErrorMessage: &errorMessage}, &CreateProxyPeerResponse{})
+	assertProtoRoundTrip(t, &GetOIDCURLRequest{Id: "service-id", AccountId: "account-id", RedirectUrl: "https://callback"}, &GetOIDCURLRequest{})
+	assertProtoRoundTrip(t, &GetOIDCURLResponse{Url: "https://oidc"}, &GetOIDCURLResponse{})
+	assertProtoRoundTrip(t, &ValidateSessionRequest{Domain: "app.example.com", SessionToken: "session-token"}, &ValidateSessionRequest{})
+	assertProtoRoundTrip(t, &ValidateSessionResponse{Valid: true, UserId: "user-id", UserEmail: "user@example.com", PeerGroupIds: []string{"group-id"}, PeerGroupNames: []string{"group"}}, &ValidateSessionResponse{})
+	assertProtoRoundTrip(t, &ValidateTunnelPeerRequest{TunnelIp: "100.64.0.10", Domain: "app.example.com"}, &ValidateTunnelPeerRequest{})
+	assertProtoRoundTrip(t, &ValidateTunnelPeerResponse{Valid: true, UserId: "user-id", UserEmail: "user@example.com", SessionToken: "session-token", PeerGroupIds: []string{"group-id"}, PeerGroupNames: []string{"group"}}, &ValidateTunnelPeerResponse{})
+	assertProtoRoundTrip(t, &SyncMappingsRequest{Msg: &SyncMappingsRequest_Init{Init: &SyncMappingsInit{
+		ProxyId:   "proxy-id",
+		Version:   "v1",
+		StartedAt: timestamppb.New(time.Unix(800, 0)),
+		Address:   "proxy.example.com",
+		Capabilities: &ProxyCapabilities{
+			Private: &trueValue,
+		},
+	}}}, &SyncMappingsRequest{})
+	assertProtoRoundTrip(t, &SyncMappingsRequest{Msg: &SyncMappingsRequest_Ack{Ack: &SyncMappingsAck{}}}, &SyncMappingsRequest{})
+	assertProtoRoundTrip(t, &SyncMappingsResponse{Mapping: []*ProxyMapping{mapping}, InitialSyncComplete: true}, &SyncMappingsResponse{})
+}
+
 func TestManagementAuthFlowFastPathRoundTrip(t *testing.T) {
 	assertProtoRoundTrip(t, &Empty{}, &Empty{})
 	assertProtoRoundTrip(t, &SyncRequest{Meta: &PeerSystemMeta{Hostname: "host"}}, &SyncRequest{})

@@ -13,29 +13,33 @@ import (
 type scalarKind string
 
 const (
-	kindString         scalarKind = "string"
-	kindBytes          scalarKind = "bytes"
-	kindBool           scalarKind = "bool"
-	kindInt32          scalarKind = "int32"
-	kindInt64          scalarKind = "int64"
-	kindUint32         scalarKind = "uint32"
-	kindUint64         scalarKind = "uint64"
-	kindEnum           scalarKind = "enum"
-	kindMessage        scalarKind = "message"
-	kindRepeatedUint32 scalarKind = "repeated_uint32"
-	kindRepeatedEnum   scalarKind = "repeated_enum"
-	kindRepeatedString scalarKind = "repeated_string"
-	kindRepeatedBytes  scalarKind = "repeated_bytes"
-	kindRepeatedMsg    scalarKind = "repeated_message"
-	kindMapStringMsg   scalarKind = "map_string_message"
-	kindPortInfoOneof  scalarKind = "port_info_oneof"
-	kindJobReqOneof    scalarKind = "job_request_oneof"
-	kindJobRespOneof   scalarKind = "job_response_oneof"
-	kindOptionalString scalarKind = "optional_string"
-	kindOptionalBytes  scalarKind = "optional_bytes"
-	kindOptionalBool   scalarKind = "optional_bool"
-	kindTimestamp      scalarKind = "timestamp"
-	kindDuration       scalarKind = "duration"
+	kindString          scalarKind = "string"
+	kindBytes           scalarKind = "bytes"
+	kindBool            scalarKind = "bool"
+	kindInt32           scalarKind = "int32"
+	kindInt64           scalarKind = "int64"
+	kindUint32          scalarKind = "uint32"
+	kindUint64          scalarKind = "uint64"
+	kindEnum            scalarKind = "enum"
+	kindMessage         scalarKind = "message"
+	kindRepeatedUint32  scalarKind = "repeated_uint32"
+	kindRepeatedEnum    scalarKind = "repeated_enum"
+	kindRepeatedString  scalarKind = "repeated_string"
+	kindRepeatedBytes   scalarKind = "repeated_bytes"
+	kindRepeatedMsg     scalarKind = "repeated_message"
+	kindMapStringMsg    scalarKind = "map_string_message"
+	kindMapStringString scalarKind = "map_string_string"
+	kindPortInfoOneof   scalarKind = "port_info_oneof"
+	kindJobReqOneof     scalarKind = "job_request_oneof"
+	kindJobRespOneof    scalarKind = "job_response_oneof"
+	kindFlowFieldsOneof scalarKind = "flow_fields_oneof"
+	kindAuthReqOneof    scalarKind = "authenticate_request_oneof"
+	kindSyncMapReqOneof scalarKind = "sync_mappings_request_oneof"
+	kindOptionalString  scalarKind = "optional_string"
+	kindOptionalBytes   scalarKind = "optional_bytes"
+	kindOptionalBool    scalarKind = "optional_bool"
+	kindTimestamp       scalarKind = "timestamp"
+	kindDuration        scalarKind = "duration"
 )
 
 type field struct {
@@ -52,14 +56,15 @@ type message struct {
 }
 
 type target struct {
-	Name       string
-	Package    string
-	Canary     string
-	Prefix     string
-	OutputDir  string
-	PBFile     string
-	Messages   []message
-	TestSource string
+	Name                string
+	Package             string
+	Canary              string
+	Prefix              string
+	OutputDir           string
+	PBFile              string
+	Messages            []message
+	TestSource          string
+	ReusePackageHelpers bool
 }
 
 var targets = map[string]target{
@@ -448,12 +453,249 @@ var targets = map[string]target{
 			{Name: "StopExposeResponse"},
 		},
 	},
+	"flow": {
+		Name:      "flow",
+		Package:   "proto",
+		Canary:    "flow proto fast-path",
+		Prefix:    "flow",
+		OutputDir: "flow/proto",
+		PBFile:    "flow.pb.go",
+		Messages: []message{
+			{Name: "FlowEvent", Fields: []field{
+				{Number: 1, Name: "EventId", Kind: kindBytes},
+				{Number: 2, Name: "Timestamp", Kind: kindTimestamp},
+				{Number: 3, Name: "PublicKey", Kind: kindBytes},
+				{Number: 4, Name: "FlowFields", Kind: kindMessage, MessageType: "FlowFields"},
+				{Number: 5, Name: "IsInitiator", Kind: kindBool},
+			}},
+			{Name: "FlowEventAck", Fields: []field{
+				{Number: 1, Name: "EventId", Kind: kindBytes},
+				{Number: 2, Name: "IsInitiator", Kind: kindBool},
+			}},
+			{Name: "FlowFields", Fields: []field{
+				{Number: 1, Name: "FlowId", Kind: kindBytes},
+				{Number: 2, Name: "Type", Kind: kindEnum, EnumType: "Type"},
+				{Number: 3, Name: "RuleId", Kind: kindBytes},
+				{Number: 4, Name: "Direction", Kind: kindEnum, EnumType: "Direction"},
+				{Number: 5, Name: "Protocol", Kind: kindUint32},
+				{Number: 6, Name: "SourceIp", Kind: kindBytes},
+				{Number: 7, Name: "DestIp", Kind: kindBytes},
+				{Number: 0, Name: "ConnectionInfo", Kind: kindFlowFieldsOneof},
+				{Number: 10, Name: "RxPackets", Kind: kindUint64},
+				{Number: 11, Name: "TxPackets", Kind: kindUint64},
+				{Number: 12, Name: "RxBytes", Kind: kindUint64},
+				{Number: 13, Name: "TxBytes", Kind: kindUint64},
+				{Number: 14, Name: "SourceResourceId", Kind: kindBytes},
+				{Number: 15, Name: "DestResourceId", Kind: kindBytes},
+			}},
+			{Name: "PortInfo", Fields: []field{
+				{Number: 1, Name: "SourcePort", Kind: kindUint32},
+				{Number: 2, Name: "DestPort", Kind: kindUint32},
+			}},
+			{Name: "ICMPInfo", Fields: []field{
+				{Number: 1, Name: "IcmpType", Kind: kindUint32},
+				{Number: 2, Name: "IcmpCode", Kind: kindUint32},
+			}},
+		},
+	},
+	"proxy_service": {
+		Name:                "proxy_service",
+		Package:             "proto",
+		Canary:              "proxy service proto fast-path",
+		Prefix:              "proxy_service",
+		OutputDir:           "shared/management/proto",
+		PBFile:              "proxy_service.pb.go",
+		ReusePackageHelpers: true,
+		Messages: []message{
+			{Name: "ProxyCapabilities", Fields: []field{
+				{Number: 1, Name: "SupportsCustomPorts", Kind: kindOptionalBool},
+				{Number: 2, Name: "RequireSubdomain", Kind: kindOptionalBool},
+				{Number: 3, Name: "SupportsCrowdsec", Kind: kindOptionalBool},
+				{Number: 4, Name: "Private", Kind: kindOptionalBool},
+				{Number: 5, Name: "SupportsPrivateService", Kind: kindOptionalBool},
+			}},
+			{Name: "GetMappingUpdateRequest", Fields: []field{
+				{Number: 1, Name: "ProxyId", Kind: kindString},
+				{Number: 2, Name: "Version", Kind: kindString},
+				{Number: 3, Name: "StartedAt", Kind: kindTimestamp},
+				{Number: 4, Name: "Address", Kind: kindString},
+				{Number: 5, Name: "Capabilities", Kind: kindMessage, MessageType: "ProxyCapabilities"},
+			}},
+			{Name: "GetMappingUpdateResponse", Fields: []field{
+				{Number: 1, Name: "Mapping", Kind: kindRepeatedMsg, MessageType: "ProxyMapping"},
+				{Number: 2, Name: "InitialSyncComplete", Kind: kindBool},
+			}},
+			{Name: "PathTargetOptions", Fields: []field{
+				{Number: 1, Name: "SkipTlsVerify", Kind: kindBool},
+				{Number: 2, Name: "RequestTimeout", Kind: kindDuration},
+				{Number: 3, Name: "PathRewrite", Kind: kindEnum, EnumType: "PathRewriteMode"},
+				{Number: 4, Name: "CustomHeaders", Kind: kindMapStringString},
+				{Number: 5, Name: "ProxyProtocol", Kind: kindBool},
+				{Number: 6, Name: "SessionIdleTimeout", Kind: kindDuration},
+				{Number: 7, Name: "DirectUpstream", Kind: kindBool},
+			}},
+			{Name: "PathMapping", Fields: []field{
+				{Number: 1, Name: "Path", Kind: kindString},
+				{Number: 2, Name: "Target", Kind: kindString},
+				{Number: 3, Name: "Options", Kind: kindMessage, MessageType: "PathTargetOptions"},
+			}},
+			{Name: "HeaderAuth", Fields: []field{
+				{Number: 1, Name: "Header", Kind: kindString},
+				{Number: 2, Name: "HashedValue", Kind: kindString},
+			}},
+			{Name: "Authentication", Fields: []field{
+				{Number: 1, Name: "SessionKey", Kind: kindString},
+				{Number: 2, Name: "MaxSessionAgeSeconds", Kind: kindInt64},
+				{Number: 3, Name: "Password", Kind: kindBool},
+				{Number: 4, Name: "Pin", Kind: kindBool},
+				{Number: 5, Name: "Oidc", Kind: kindBool},
+				{Number: 6, Name: "HeaderAuths", Kind: kindRepeatedMsg, MessageType: "HeaderAuth"},
+			}},
+			{Name: "AccessRestrictions", Fields: []field{
+				{Number: 1, Name: "AllowedCidrs", Kind: kindRepeatedString},
+				{Number: 2, Name: "BlockedCidrs", Kind: kindRepeatedString},
+				{Number: 3, Name: "AllowedCountries", Kind: kindRepeatedString},
+				{Number: 4, Name: "BlockedCountries", Kind: kindRepeatedString},
+				{Number: 5, Name: "CrowdsecMode", Kind: kindString},
+			}},
+			{Name: "ProxyMapping", Fields: []field{
+				{Number: 1, Name: "Type", Kind: kindEnum, EnumType: "ProxyMappingUpdateType"},
+				{Number: 2, Name: "Id", Kind: kindString},
+				{Number: 3, Name: "AccountId", Kind: kindString},
+				{Number: 4, Name: "Domain", Kind: kindString},
+				{Number: 5, Name: "Path", Kind: kindRepeatedMsg, MessageType: "PathMapping"},
+				{Number: 6, Name: "AuthToken", Kind: kindString},
+				{Number: 7, Name: "Auth", Kind: kindMessage, MessageType: "Authentication"},
+				{Number: 8, Name: "PassHostHeader", Kind: kindBool},
+				{Number: 9, Name: "RewriteRedirects", Kind: kindBool},
+				{Number: 10, Name: "Mode", Kind: kindString},
+				{Number: 11, Name: "ListenPort", Kind: kindInt32},
+				{Number: 12, Name: "AccessRestrictions", Kind: kindMessage, MessageType: "AccessRestrictions"},
+				{Number: 13, Name: "Private", Kind: kindBool},
+			}},
+			{Name: "SendAccessLogRequest", Fields: []field{
+				{Number: 1, Name: "Log", Kind: kindMessage, MessageType: "AccessLog"},
+			}},
+			{Name: "SendAccessLogResponse"},
+			{Name: "AccessLog", Fields: []field{
+				{Number: 1, Name: "Timestamp", Kind: kindTimestamp},
+				{Number: 2, Name: "LogId", Kind: kindString},
+				{Number: 3, Name: "AccountId", Kind: kindString},
+				{Number: 4, Name: "ServiceId", Kind: kindString},
+				{Number: 5, Name: "Host", Kind: kindString},
+				{Number: 6, Name: "Path", Kind: kindString},
+				{Number: 7, Name: "DurationMs", Kind: kindInt64},
+				{Number: 8, Name: "Method", Kind: kindString},
+				{Number: 9, Name: "ResponseCode", Kind: kindInt32},
+				{Number: 10, Name: "SourceIp", Kind: kindString},
+				{Number: 11, Name: "AuthMechanism", Kind: kindString},
+				{Number: 12, Name: "UserId", Kind: kindString},
+				{Number: 13, Name: "AuthSuccess", Kind: kindBool},
+				{Number: 14, Name: "BytesUpload", Kind: kindInt64},
+				{Number: 15, Name: "BytesDownload", Kind: kindInt64},
+				{Number: 16, Name: "Protocol", Kind: kindString},
+				{Number: 17, Name: "Metadata", Kind: kindMapStringString},
+			}},
+			{Name: "AuthenticateRequest", Fields: []field{
+				{Number: 1, Name: "Id", Kind: kindString},
+				{Number: 2, Name: "AccountId", Kind: kindString},
+				{Number: 0, Name: "Request", Kind: kindAuthReqOneof},
+			}},
+			{Name: "HeaderAuthRequest", Fields: []field{
+				{Number: 1, Name: "HeaderValue", Kind: kindString},
+				{Number: 2, Name: "HeaderName", Kind: kindString},
+			}},
+			{Name: "PasswordRequest", Fields: []field{
+				{Number: 1, Name: "Password", Kind: kindString},
+			}},
+			{Name: "PinRequest", Fields: []field{
+				{Number: 1, Name: "Pin", Kind: kindString},
+			}},
+			{Name: "AuthenticateResponse", Fields: []field{
+				{Number: 1, Name: "Success", Kind: kindBool},
+				{Number: 2, Name: "SessionToken", Kind: kindString},
+			}},
+			{Name: "SendStatusUpdateRequest", Fields: []field{
+				{Number: 1, Name: "ServiceId", Kind: kindString},
+				{Number: 2, Name: "AccountId", Kind: kindString},
+				{Number: 3, Name: "Status", Kind: kindEnum, EnumType: "ProxyStatus"},
+				{Number: 4, Name: "CertificateIssued", Kind: kindBool},
+				{Number: 5, Name: "ErrorMessage", Kind: kindOptionalString},
+				{Number: 50, Name: "InboundListener", Kind: kindMessage, MessageType: "ProxyInboundListener"},
+			}},
+			{Name: "ProxyInboundListener", Fields: []field{
+				{Number: 1, Name: "TunnelIp", Kind: kindString},
+				{Number: 2, Name: "HttpsPort", Kind: kindUint32},
+				{Number: 3, Name: "HttpPort", Kind: kindUint32},
+			}},
+			{Name: "SendStatusUpdateResponse"},
+			{Name: "CreateProxyPeerRequest", Fields: []field{
+				{Number: 1, Name: "ServiceId", Kind: kindString},
+				{Number: 2, Name: "AccountId", Kind: kindString},
+				{Number: 3, Name: "Token", Kind: kindString},
+				{Number: 4, Name: "WireguardPublicKey", Kind: kindString},
+				{Number: 5, Name: "Cluster", Kind: kindString},
+			}},
+			{Name: "CreateProxyPeerResponse", Fields: []field{
+				{Number: 1, Name: "Success", Kind: kindBool},
+				{Number: 2, Name: "ErrorMessage", Kind: kindOptionalString},
+			}},
+			{Name: "GetOIDCURLRequest", Fields: []field{
+				{Number: 1, Name: "Id", Kind: kindString},
+				{Number: 2, Name: "AccountId", Kind: kindString},
+				{Number: 3, Name: "RedirectUrl", Kind: kindString},
+			}},
+			{Name: "GetOIDCURLResponse", Fields: []field{
+				{Number: 1, Name: "Url", Kind: kindString},
+			}},
+			{Name: "ValidateSessionRequest", Fields: []field{
+				{Number: 1, Name: "Domain", Kind: kindString},
+				{Number: 2, Name: "SessionToken", Kind: kindString},
+			}},
+			{Name: "ValidateSessionResponse", Fields: []field{
+				{Number: 1, Name: "Valid", Kind: kindBool},
+				{Number: 2, Name: "UserId", Kind: kindString},
+				{Number: 3, Name: "UserEmail", Kind: kindString},
+				{Number: 4, Name: "DeniedReason", Kind: kindString},
+				{Number: 5, Name: "PeerGroupIds", Kind: kindRepeatedString},
+				{Number: 6, Name: "PeerGroupNames", Kind: kindRepeatedString},
+			}},
+			{Name: "ValidateTunnelPeerRequest", Fields: []field{
+				{Number: 1, Name: "TunnelIp", Kind: kindString},
+				{Number: 2, Name: "Domain", Kind: kindString},
+			}},
+			{Name: "ValidateTunnelPeerResponse", Fields: []field{
+				{Number: 1, Name: "Valid", Kind: kindBool},
+				{Number: 2, Name: "UserId", Kind: kindString},
+				{Number: 3, Name: "UserEmail", Kind: kindString},
+				{Number: 4, Name: "DeniedReason", Kind: kindString},
+				{Number: 5, Name: "SessionToken", Kind: kindString},
+				{Number: 6, Name: "PeerGroupIds", Kind: kindRepeatedString},
+				{Number: 7, Name: "PeerGroupNames", Kind: kindRepeatedString},
+			}},
+			{Name: "SyncMappingsRequest", Fields: []field{
+				{Number: 0, Name: "Msg", Kind: kindSyncMapReqOneof},
+			}},
+			{Name: "SyncMappingsInit", Fields: []field{
+				{Number: 1, Name: "ProxyId", Kind: kindString},
+				{Number: 2, Name: "Version", Kind: kindString},
+				{Number: 3, Name: "StartedAt", Kind: kindTimestamp},
+				{Number: 4, Name: "Address", Kind: kindString},
+				{Number: 5, Name: "Capabilities", Kind: kindMessage, MessageType: "ProxyCapabilities"},
+			}},
+			{Name: "SyncMappingsAck"},
+			{Name: "SyncMappingsResponse", Fields: []field{
+				{Number: 1, Name: "Mapping", Kind: kindRepeatedMsg, MessageType: "ProxyMapping"},
+				{Number: 2, Name: "InitialSyncComplete", Kind: kindBool},
+			}},
+		},
+	},
 }
 
 func main() {
 	var targetName string
 	var repoRoot string
-	flag.StringVar(&targetName, "target", "", "target proto package to generate: signal or management")
+	flag.StringVar(&targetName, "target", "", "target proto package to generate: signal, management, or flow")
 	flag.StringVar(&repoRoot, "repo-root", ".", "repository root")
 	flag.Parse()
 
@@ -559,7 +801,9 @@ func generateMethods(t target) []byte {
 	for _, m := range t.Messages {
 		fmt.Fprintf(&b, "type %sReflect struct{ m *%s }\n", lower(m.Name), m.Name)
 	}
-	fmt.Fprintf(&b, "\nfunc protoCanary(method string) string { return %q + method }\n\n", t.Canary+": unexpected protoreflect.Message.")
+	if !t.ReusePackageHelpers {
+		fmt.Fprintf(&b, "\nfunc protoCanary(method string) string { return %q + method }\n\n", t.Canary+": unexpected protoreflect.Message.")
+	}
 	for _, m := range t.Messages {
 		emitReflect(&b, m)
 	}
@@ -573,10 +817,10 @@ func generateMethods(t target) []byte {
 		emitMerge(&b, m)
 		emitEqual(&b, m)
 	}
-	if hasKind(t, kindTimestamp) {
+	if hasKind(t, kindTimestamp) && !t.ReusePackageHelpers {
 		emitWellKnown(&b, "Timestamp", "timestamppb.Timestamp")
 	}
-	if hasKind(t, kindDuration) {
+	if hasKind(t, kindDuration) && !t.ReusePackageHelpers {
 		emitWellKnown(&b, "Duration", "durationpb.Duration")
 	}
 	emitMapHelpers(&b, t)
@@ -588,6 +832,15 @@ func generateMethods(t target) []byte {
 	}
 	if hasKind(t, kindJobRespOneof) {
 		emitJobResponseWorkloadHelpers(&b)
+	}
+	if hasKind(t, kindFlowFieldsOneof) {
+		emitFlowFieldsConnectionInfoHelpers(&b)
+	}
+	if hasKind(t, kindAuthReqOneof) {
+		emitAuthenticateRequestHelpers(&b)
+	}
+	if hasKind(t, kindSyncMapReqOneof) {
+		emitSyncMappingsRequestHelpers(&b)
 	}
 	return b.Bytes()
 }
@@ -661,6 +914,8 @@ func emitSize(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tfor _, v := range m.%s { if v != nil { s := size%s(v); n += protowire.SizeTag(%d) + protowire.SizeBytes(s) } }\n", f.Name, f.MessageType, f.Number)
 		case kindMapStringMsg:
 			fmt.Fprintf(b, "\tfor k, v := range m.%s { entry := protowire.SizeTag(1) + protowire.SizeBytes(len(k)); if v != nil { s := size%s(v); entry += protowire.SizeTag(2) + protowire.SizeBytes(s) }; n += protowire.SizeTag(%d) + protowire.SizeBytes(entry) }\n", f.Name, f.MessageType, f.Number)
+		case kindMapStringString:
+			fmt.Fprintf(b, "\tfor k, v := range m.%s { entry := protowire.SizeTag(1) + protowire.SizeBytes(len(k)) + protowire.SizeTag(2) + protowire.SizeBytes(len(v)); n += protowire.SizeTag(%d) + protowire.SizeBytes(entry) }\n", f.Name, f.Number)
 		case kindPortInfoOneof:
 			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Port); ok { n += protowire.SizeTag(1) + protowire.SizeVarint(uint64(v.Port)) }")
 			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Range_); ok && v.Range != nil { s := sizePortInfo_Range(v.Range); n += protowire.SizeTag(2) + protowire.SizeBytes(s) }")
@@ -668,6 +923,16 @@ func emitSize(b *bytes.Buffer, m message) {
 			fmt.Fprintln(b, "\tif v, ok := m.WorkloadParameters.(*JobRequest_Bundle); ok && v.Bundle != nil { s := sizeBundleParameters(v.Bundle); n += protowire.SizeTag(10) + protowire.SizeBytes(s) }")
 		case kindJobRespOneof:
 			fmt.Fprintln(b, "\tif v, ok := m.WorkloadResults.(*JobResponse_Bundle); ok && v.Bundle != nil { s := sizeBundleResult(v.Bundle); n += protowire.SizeTag(10) + protowire.SizeBytes(s) }")
+		case kindFlowFieldsOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.ConnectionInfo.(*FlowFields_PortInfo); ok && v.PortInfo != nil { s := sizePortInfo(v.PortInfo); n += protowire.SizeTag(8) + protowire.SizeBytes(s) }")
+			fmt.Fprintln(b, "\tif v, ok := m.ConnectionInfo.(*FlowFields_IcmpInfo); ok && v.IcmpInfo != nil { s := sizeICMPInfo(v.IcmpInfo); n += protowire.SizeTag(9) + protowire.SizeBytes(s) }")
+		case kindAuthReqOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.Request.(*AuthenticateRequest_Password); ok && v.Password != nil { s := sizePasswordRequest(v.Password); n += protowire.SizeTag(3) + protowire.SizeBytes(s) }")
+			fmt.Fprintln(b, "\tif v, ok := m.Request.(*AuthenticateRequest_Pin); ok && v.Pin != nil { s := sizePinRequest(v.Pin); n += protowire.SizeTag(4) + protowire.SizeBytes(s) }")
+			fmt.Fprintln(b, "\tif v, ok := m.Request.(*AuthenticateRequest_HeaderAuth); ok && v.HeaderAuth != nil { s := sizeHeaderAuthRequest(v.HeaderAuth); n += protowire.SizeTag(5) + protowire.SizeBytes(s) }")
+		case kindSyncMapReqOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.Msg.(*SyncMappingsRequest_Init); ok && v.Init != nil { s := sizeSyncMappingsInit(v.Init); n += protowire.SizeTag(1) + protowire.SizeBytes(s) }")
+			fmt.Fprintln(b, "\tif v, ok := m.Msg.(*SyncMappingsRequest_Ack); ok && v.Ack != nil { s := sizeSyncMappingsAck(v.Ack); n += protowire.SizeTag(2) + protowire.SizeBytes(s) }")
 		case kindOptionalString:
 			fmt.Fprintf(b, "\tif m.%s != nil { n += protowire.SizeTag(%d) + protowire.SizeBytes(len(*m.%s)) }\n", f.Name, f.Number, f.Name)
 		case kindOptionalBytes:
@@ -710,6 +975,8 @@ func emitMarshal(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tfor _, v := range m.%s { if v != nil { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(size%s(v))); b = marshal%s(b, v) } }\n", f.Name, f.Number, f.MessageType, f.MessageType)
 		case kindMapStringMsg:
 			fmt.Fprintf(b, "\tfor k, v := range m.%s { entry := protowire.SizeTag(1) + protowire.SizeBytes(len(k)); if v != nil { s := size%s(v); entry += protowire.SizeTag(2) + protowire.SizeBytes(s) }; b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(entry)); b = protowire.AppendTag(b, 1, protowire.BytesType); b = protowire.AppendString(b, k); if v != nil { b = protowire.AppendTag(b, 2, protowire.BytesType); b = protowire.AppendVarint(b, uint64(size%s(v))); b = marshal%s(b, v) } }\n", f.Name, f.MessageType, f.Number, f.MessageType, f.MessageType)
+		case kindMapStringString:
+			fmt.Fprintf(b, "\tfor k, v := range m.%s { entry := protowire.SizeTag(1) + protowire.SizeBytes(len(k)) + protowire.SizeTag(2) + protowire.SizeBytes(len(v)); b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendVarint(b, uint64(entry)); b = protowire.AppendTag(b, 1, protowire.BytesType); b = protowire.AppendString(b, k); b = protowire.AppendTag(b, 2, protowire.BytesType); b = protowire.AppendString(b, v) }\n", f.Name, f.Number)
 		case kindPortInfoOneof:
 			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Port); ok { b = protowire.AppendTag(b, 1, protowire.VarintType); b = protowire.AppendVarint(b, uint64(v.Port)) }")
 			fmt.Fprintln(b, "\tif v, ok := m.PortSelection.(*PortInfo_Range_); ok && v.Range != nil { b = protowire.AppendTag(b, 2, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizePortInfo_Range(v.Range))); b = marshalPortInfo_Range(b, v.Range) }")
@@ -717,6 +984,16 @@ func emitMarshal(b *bytes.Buffer, m message) {
 			fmt.Fprintln(b, "\tif v, ok := m.WorkloadParameters.(*JobRequest_Bundle); ok && v.Bundle != nil { b = protowire.AppendTag(b, 10, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizeBundleParameters(v.Bundle))); b = marshalBundleParameters(b, v.Bundle) }")
 		case kindJobRespOneof:
 			fmt.Fprintln(b, "\tif v, ok := m.WorkloadResults.(*JobResponse_Bundle); ok && v.Bundle != nil { b = protowire.AppendTag(b, 10, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizeBundleResult(v.Bundle))); b = marshalBundleResult(b, v.Bundle) }")
+		case kindFlowFieldsOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.ConnectionInfo.(*FlowFields_PortInfo); ok && v.PortInfo != nil { b = protowire.AppendTag(b, 8, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizePortInfo(v.PortInfo))); b = marshalPortInfo(b, v.PortInfo) }")
+			fmt.Fprintln(b, "\tif v, ok := m.ConnectionInfo.(*FlowFields_IcmpInfo); ok && v.IcmpInfo != nil { b = protowire.AppendTag(b, 9, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizeICMPInfo(v.IcmpInfo))); b = marshalICMPInfo(b, v.IcmpInfo) }")
+		case kindAuthReqOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.Request.(*AuthenticateRequest_Password); ok && v.Password != nil { b = protowire.AppendTag(b, 3, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizePasswordRequest(v.Password))); b = marshalPasswordRequest(b, v.Password) }")
+			fmt.Fprintln(b, "\tif v, ok := m.Request.(*AuthenticateRequest_Pin); ok && v.Pin != nil { b = protowire.AppendTag(b, 4, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizePinRequest(v.Pin))); b = marshalPinRequest(b, v.Pin) }")
+			fmt.Fprintln(b, "\tif v, ok := m.Request.(*AuthenticateRequest_HeaderAuth); ok && v.HeaderAuth != nil { b = protowire.AppendTag(b, 5, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizeHeaderAuthRequest(v.HeaderAuth))); b = marshalHeaderAuthRequest(b, v.HeaderAuth) }")
+		case kindSyncMapReqOneof:
+			fmt.Fprintln(b, "\tif v, ok := m.Msg.(*SyncMappingsRequest_Init); ok && v.Init != nil { b = protowire.AppendTag(b, 1, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizeSyncMappingsInit(v.Init))); b = marshalSyncMappingsInit(b, v.Init) }")
+			fmt.Fprintln(b, "\tif v, ok := m.Msg.(*SyncMappingsRequest_Ack); ok && v.Ack != nil { b = protowire.AppendTag(b, 2, protowire.BytesType); b = protowire.AppendVarint(b, uint64(sizeSyncMappingsAck(v.Ack))); b = marshalSyncMappingsAck(b, v.Ack) }")
 		case kindOptionalString:
 			fmt.Fprintf(b, "\tif m.%s != nil { b = protowire.AppendTag(b, %d, protowire.BytesType); b = protowire.AppendString(b, *m.%s) }\n", f.Name, f.Number, f.Name)
 		case kindOptionalBytes:
@@ -782,6 +1059,8 @@ func emitUnmarshalCase(b *bytes.Buffer, f field) {
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &%s{}; if err := unmarshal%s(item, v); err != nil { return err }; m.%s = append(m.%s, item); b = b[n:]\n", f.Number, f.MessageType, f.MessageType, f.Name, f.Name)
 	case kindMapStringMsg:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; k, val, err := consumeString%sEntry(v); if err != nil { return err }; if m.%s == nil { m.%s = make(map[string]*%s) }; m.%s[k] = val; b = b[n:]\n", f.Number, f.MessageType, f.Name, f.Name, f.MessageType, f.Name)
+	case kindMapStringString:
+		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; k, val, err := consumeStringStringEntry(v); if err != nil { return err }; if m.%s == nil { m.%s = make(map[string]string) }; m.%s[k] = val; b = b[n:]\n", f.Number, f.Name, f.Name, f.Name)
 	case kindPortInfoOneof:
 		fmt.Fprintln(b, "\t\tcase num == 1 && typ == protowire.VarintType:")
 		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeVarint(b); if n < 0 { return protowire.ParseError(n) }; m.PortSelection = &PortInfo_Port{Port: uint32(v)}; b = b[n:]")
@@ -793,6 +1072,23 @@ func emitUnmarshalCase(b *bytes.Buffer, f field) {
 	case kindJobRespOneof:
 		fmt.Fprintln(b, "\t\tcase num == 10 && typ == protowire.BytesType:")
 		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &BundleResult{}; if err := unmarshalBundleResult(item, v); err != nil { return err }; m.WorkloadResults = &JobResponse_Bundle{Bundle: item}; b = b[n:]")
+	case kindFlowFieldsOneof:
+		fmt.Fprintln(b, "\t\tcase num == 8 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &PortInfo{}; if err := unmarshalPortInfo(item, v); err != nil { return err }; m.ConnectionInfo = &FlowFields_PortInfo{PortInfo: item}; b = b[n:]")
+		fmt.Fprintln(b, "\t\tcase num == 9 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &ICMPInfo{}; if err := unmarshalICMPInfo(item, v); err != nil { return err }; m.ConnectionInfo = &FlowFields_IcmpInfo{IcmpInfo: item}; b = b[n:]")
+	case kindAuthReqOneof:
+		fmt.Fprintln(b, "\t\tcase num == 3 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &PasswordRequest{}; if err := unmarshalPasswordRequest(item, v); err != nil { return err }; m.Request = &AuthenticateRequest_Password{Password: item}; b = b[n:]")
+		fmt.Fprintln(b, "\t\tcase num == 4 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &PinRequest{}; if err := unmarshalPinRequest(item, v); err != nil { return err }; m.Request = &AuthenticateRequest_Pin{Pin: item}; b = b[n:]")
+		fmt.Fprintln(b, "\t\tcase num == 5 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &HeaderAuthRequest{}; if err := unmarshalHeaderAuthRequest(item, v); err != nil { return err }; m.Request = &AuthenticateRequest_HeaderAuth{HeaderAuth: item}; b = b[n:]")
+	case kindSyncMapReqOneof:
+		fmt.Fprintln(b, "\t\tcase num == 1 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &SyncMappingsInit{}; if err := unmarshalSyncMappingsInit(item, v); err != nil { return err }; m.Msg = &SyncMappingsRequest_Init{Init: item}; b = b[n:]")
+		fmt.Fprintln(b, "\t\tcase num == 2 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeBytes(b); if n < 0 { return protowire.ParseError(n) }; item := &SyncMappingsAck{}; if err := unmarshalSyncMappingsAck(item, v); err != nil { return err }; m.Msg = &SyncMappingsRequest_Ack{Ack: item}; b = b[n:]")
 	case kindOptionalString:
 		fmt.Fprintf(b, "\t\tcase num == %d && typ == protowire.BytesType:\n\t\t\tv, n := protowire.ConsumeString(b); if n < 0 { return protowire.ParseError(n) }; m.%s = &v; b = b[n:]\n", f.Number, f.Name)
 	case kindOptionalBytes:
@@ -830,6 +1126,8 @@ func emitMerge(b *bytes.Buffer, m message) {
 			fmt.Fprintf(b, "\tif len(src.%s) > 0 { for _, v := range src.%s { if v != nil { cp := &%s{}; merge%s(cp, v); dst.%s = append(dst.%s, cp) } } }\n", f.Name, f.Name, f.MessageType, f.MessageType, f.Name, f.Name)
 		case kindMapStringMsg:
 			fmt.Fprintf(b, "\tif len(src.%s) > 0 { if dst.%s == nil { dst.%s = make(map[string]*%s) }; for k, v := range src.%s { if v != nil { cp := &%s{}; merge%s(cp, v); dst.%s[k] = cp } else { dst.%s[k] = nil } } }\n", f.Name, f.Name, f.Name, f.MessageType, f.Name, f.MessageType, f.MessageType, f.Name, f.Name)
+		case kindMapStringString:
+			fmt.Fprintf(b, "\tif len(src.%s) > 0 { if dst.%s == nil { dst.%s = make(map[string]string) }; for k, v := range src.%s { dst.%s[k] = v } }\n", f.Name, f.Name, f.Name, f.Name, f.Name)
 		case kindPortInfoOneof:
 			fmt.Fprintln(b, "\tswitch v := src.PortSelection.(type) {")
 			fmt.Fprintln(b, "\tcase *PortInfo_Port:")
@@ -846,6 +1144,29 @@ func emitMerge(b *bytes.Buffer, m message) {
 			fmt.Fprintln(b, "\tswitch v := src.WorkloadResults.(type) {")
 			fmt.Fprintln(b, "\tcase *JobResponse_Bundle:")
 			fmt.Fprintln(b, "\t\tif v.Bundle != nil { cp := &BundleResult{}; mergeBundleResult(cp, v.Bundle); dst.WorkloadResults = &JobResponse_Bundle{Bundle: cp} }")
+			fmt.Fprintln(b, "\t}")
+		case kindFlowFieldsOneof:
+			fmt.Fprintln(b, "\tswitch v := src.ConnectionInfo.(type) {")
+			fmt.Fprintln(b, "\tcase *FlowFields_PortInfo:")
+			fmt.Fprintln(b, "\t\tif v.PortInfo != nil { cp := &PortInfo{}; mergePortInfo(cp, v.PortInfo); dst.ConnectionInfo = &FlowFields_PortInfo{PortInfo: cp} }")
+			fmt.Fprintln(b, "\tcase *FlowFields_IcmpInfo:")
+			fmt.Fprintln(b, "\t\tif v.IcmpInfo != nil { cp := &ICMPInfo{}; mergeICMPInfo(cp, v.IcmpInfo); dst.ConnectionInfo = &FlowFields_IcmpInfo{IcmpInfo: cp} }")
+			fmt.Fprintln(b, "\t}")
+		case kindAuthReqOneof:
+			fmt.Fprintln(b, "\tswitch v := src.Request.(type) {")
+			fmt.Fprintln(b, "\tcase *AuthenticateRequest_Password:")
+			fmt.Fprintln(b, "\t\tif v.Password != nil { cp := &PasswordRequest{}; mergePasswordRequest(cp, v.Password); dst.Request = &AuthenticateRequest_Password{Password: cp} }")
+			fmt.Fprintln(b, "\tcase *AuthenticateRequest_Pin:")
+			fmt.Fprintln(b, "\t\tif v.Pin != nil { cp := &PinRequest{}; mergePinRequest(cp, v.Pin); dst.Request = &AuthenticateRequest_Pin{Pin: cp} }")
+			fmt.Fprintln(b, "\tcase *AuthenticateRequest_HeaderAuth:")
+			fmt.Fprintln(b, "\t\tif v.HeaderAuth != nil { cp := &HeaderAuthRequest{}; mergeHeaderAuthRequest(cp, v.HeaderAuth); dst.Request = &AuthenticateRequest_HeaderAuth{HeaderAuth: cp} }")
+			fmt.Fprintln(b, "\t}")
+		case kindSyncMapReqOneof:
+			fmt.Fprintln(b, "\tswitch v := src.Msg.(type) {")
+			fmt.Fprintln(b, "\tcase *SyncMappingsRequest_Init:")
+			fmt.Fprintln(b, "\t\tif v.Init != nil { cp := &SyncMappingsInit{}; mergeSyncMappingsInit(cp, v.Init); dst.Msg = &SyncMappingsRequest_Init{Init: cp} }")
+			fmt.Fprintln(b, "\tcase *SyncMappingsRequest_Ack:")
+			fmt.Fprintln(b, "\t\tif v.Ack != nil { cp := &SyncMappingsAck{}; mergeSyncMappingsAck(cp, v.Ack); dst.Msg = &SyncMappingsRequest_Ack{Ack: cp} }")
 			fmt.Fprintln(b, "\t}")
 		case kindOptionalString, kindOptionalBool:
 			fmt.Fprintf(b, "\tif src.%s != nil { v := *src.%s; dst.%s = &v }\n", f.Name, f.Name, f.Name)
@@ -887,12 +1208,21 @@ func emitEqual(b *bytes.Buffer, m message) {
 		case kindMapStringMsg:
 			fmt.Fprintf(b, "\tif len(a.%s) != len(b.%s) { return false }\n", f.Name, f.Name)
 			fmt.Fprintf(b, "\tfor k, av := range a.%s { bv, ok := b.%s[k]; if !ok { return false }; if (av == nil) != (bv == nil) { return false }; if av != nil && !equal%s(av, bv) { return false } }\n", f.Name, f.Name, f.MessageType)
+		case kindMapStringString:
+			fmt.Fprintf(b, "\tif len(a.%s) != len(b.%s) { return false }\n", f.Name, f.Name)
+			fmt.Fprintf(b, "\tfor k, av := range a.%s { bv, ok := b.%s[k]; if !ok || av != bv { return false } }\n", f.Name, f.Name)
 		case kindPortInfoOneof:
 			fmt.Fprintln(b, "\tif !equalPortInfoSelection(a.PortSelection, b.PortSelection) { return false }")
 		case kindJobReqOneof:
 			fmt.Fprintln(b, "\tif !equalJobRequestWorkloadParameters(a.WorkloadParameters, b.WorkloadParameters) { return false }")
 		case kindJobRespOneof:
 			fmt.Fprintln(b, "\tif !equalJobResponseWorkloadResults(a.WorkloadResults, b.WorkloadResults) { return false }")
+		case kindFlowFieldsOneof:
+			fmt.Fprintln(b, "\tif !equalFlowFieldsConnectionInfo(a.ConnectionInfo, b.ConnectionInfo) { return false }")
+		case kindAuthReqOneof:
+			fmt.Fprintln(b, "\tif !equalAuthenticateRequestRequest(a.Request, b.Request) { return false }")
+		case kindSyncMapReqOneof:
+			fmt.Fprintln(b, "\tif !equalSyncMappingsRequestMsg(a.Msg, b.Msg) { return false }")
 		case kindOptionalString, kindOptionalBool:
 			fmt.Fprintf(b, "\tif (a.%s == nil) != (b.%s == nil) { return false }\n", f.Name, f.Name)
 			fmt.Fprintf(b, "\tif a.%s != nil && *a.%s != *b.%s { return false }\n", f.Name, f.Name, f.Name)
@@ -966,8 +1296,12 @@ func emitWellKnown(b *bytes.Buffer, name, typ string) {
 
 func emitMapHelpers(b *bytes.Buffer, t target) {
 	seen := make(map[string]bool)
+	needsStringString := false
 	for _, m := range t.Messages {
 		for _, f := range m.Fields {
+			if f.Kind == kindMapStringString {
+				needsStringString = true
+			}
 			if f.Kind != kindMapStringMsg || seen[f.MessageType] {
 				continue
 			}
@@ -990,6 +1324,26 @@ func emitMapHelpers(b *bytes.Buffer, t target) {
 			fmt.Fprintln(b, "\treturn key, val, nil")
 			fmt.Fprintln(b, "}\n")
 		}
+	}
+	if needsStringString {
+		fmt.Fprintln(b, "func consumeStringStringEntry(b []byte) (string, string, error) {")
+		fmt.Fprintln(b, "\tvar key string")
+		fmt.Fprintln(b, "\tvar val string")
+		fmt.Fprintln(b, "\tfor len(b) > 0 {")
+		fmt.Fprintln(b, "\t\tnum, typ, n := protowire.ConsumeTag(b)")
+		fmt.Fprintln(b, "\t\tif n < 0 { return \"\", \"\", protowire.ParseError(n) }")
+		fmt.Fprintln(b, "\t\tb = b[n:]")
+		fmt.Fprintln(b, "\t\tswitch {")
+		fmt.Fprintln(b, "\t\tcase num == 1 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeString(b); if n < 0 { return \"\", \"\", protowire.ParseError(n) }; key = v; b = b[n:]")
+		fmt.Fprintln(b, "\t\tcase num == 2 && typ == protowire.BytesType:")
+		fmt.Fprintln(b, "\t\t\tv, n := protowire.ConsumeString(b); if n < 0 { return \"\", \"\", protowire.ParseError(n) }; val = v; b = b[n:]")
+		fmt.Fprintln(b, "\t\tdefault:")
+		fmt.Fprintln(b, "\t\t\tskip := protowire.ConsumeFieldValue(num, typ, b); if skip < 0 { return \"\", \"\", protowire.ParseError(skip) }; b = b[skip:]")
+		fmt.Fprintln(b, "\t\t}")
+		fmt.Fprintln(b, "\t}")
+		fmt.Fprintln(b, "\treturn key, val, nil")
+		fmt.Fprintln(b, "}\n")
 	}
 }
 
@@ -1028,6 +1382,53 @@ func emitJobResponseWorkloadHelpers(b *bytes.Buffer) {
 	fmt.Fprintln(b, "\t\treturn b == nil")
 	fmt.Fprintln(b, "\tcase *JobResponse_Bundle:")
 	fmt.Fprintln(b, "\t\tbv, ok := b.(*JobResponse_Bundle); return ok && equalBundleResult(av.Bundle, bv.Bundle)")
+	fmt.Fprintln(b, "\tdefault:")
+	fmt.Fprintln(b, "\t\treturn false")
+	fmt.Fprintln(b, "\t}")
+	fmt.Fprintln(b, "}\n")
+}
+
+func emitFlowFieldsConnectionInfoHelpers(b *bytes.Buffer) {
+	fmt.Fprintln(b, "func equalFlowFieldsConnectionInfo(a, b isFlowFields_ConnectionInfo) bool {")
+	fmt.Fprintln(b, "\tswitch av := a.(type) {")
+	fmt.Fprintln(b, "\tcase nil:")
+	fmt.Fprintln(b, "\t\treturn b == nil")
+	fmt.Fprintln(b, "\tcase *FlowFields_PortInfo:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*FlowFields_PortInfo); return ok && equalPortInfo(av.PortInfo, bv.PortInfo)")
+	fmt.Fprintln(b, "\tcase *FlowFields_IcmpInfo:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*FlowFields_IcmpInfo); return ok && equalICMPInfo(av.IcmpInfo, bv.IcmpInfo)")
+	fmt.Fprintln(b, "\tdefault:")
+	fmt.Fprintln(b, "\t\treturn false")
+	fmt.Fprintln(b, "\t}")
+	fmt.Fprintln(b, "}\n")
+}
+
+func emitAuthenticateRequestHelpers(b *bytes.Buffer) {
+	fmt.Fprintln(b, "func equalAuthenticateRequestRequest(a, b isAuthenticateRequest_Request) bool {")
+	fmt.Fprintln(b, "\tswitch av := a.(type) {")
+	fmt.Fprintln(b, "\tcase nil:")
+	fmt.Fprintln(b, "\t\treturn b == nil")
+	fmt.Fprintln(b, "\tcase *AuthenticateRequest_Password:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*AuthenticateRequest_Password); return ok && equalPasswordRequest(av.Password, bv.Password)")
+	fmt.Fprintln(b, "\tcase *AuthenticateRequest_Pin:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*AuthenticateRequest_Pin); return ok && equalPinRequest(av.Pin, bv.Pin)")
+	fmt.Fprintln(b, "\tcase *AuthenticateRequest_HeaderAuth:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*AuthenticateRequest_HeaderAuth); return ok && equalHeaderAuthRequest(av.HeaderAuth, bv.HeaderAuth)")
+	fmt.Fprintln(b, "\tdefault:")
+	fmt.Fprintln(b, "\t\treturn false")
+	fmt.Fprintln(b, "\t}")
+	fmt.Fprintln(b, "}\n")
+}
+
+func emitSyncMappingsRequestHelpers(b *bytes.Buffer) {
+	fmt.Fprintln(b, "func equalSyncMappingsRequestMsg(a, b isSyncMappingsRequest_Msg) bool {")
+	fmt.Fprintln(b, "\tswitch av := a.(type) {")
+	fmt.Fprintln(b, "\tcase nil:")
+	fmt.Fprintln(b, "\t\treturn b == nil")
+	fmt.Fprintln(b, "\tcase *SyncMappingsRequest_Init:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*SyncMappingsRequest_Init); return ok && equalSyncMappingsInit(av.Init, bv.Init)")
+	fmt.Fprintln(b, "\tcase *SyncMappingsRequest_Ack:")
+	fmt.Fprintln(b, "\t\tbv, ok := b.(*SyncMappingsRequest_Ack); return ok && equalSyncMappingsAck(av.Ack, bv.Ack)")
 	fmt.Fprintln(b, "\tdefault:")
 	fmt.Fprintln(b, "\t\treturn false")
 	fmt.Fprintln(b, "\t}")
