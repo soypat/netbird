@@ -111,6 +111,11 @@ func (x *EncryptedMessage) String() string {
 func (*EncryptedMessage) ProtoMessage() {}
 
 func (x *EncryptedMessage) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := encryptedMessageProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_signalexchange_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -177,6 +182,11 @@ func (x *Message) String() string {
 func (*Message) ProtoMessage() {}
 
 func (x *Message) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := messageProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_signalexchange_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -257,6 +267,11 @@ func (x *Body) String() string {
 func (*Body) ProtoMessage() {}
 
 func (x *Body) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := bodyProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_signalexchange_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -368,6 +383,11 @@ func (x *Mode) String() string {
 func (*Mode) ProtoMessage() {}
 
 func (x *Mode) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := modeProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_signalexchange_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -417,6 +437,11 @@ func (x *RosenpassConfig) String() string {
 func (*RosenpassConfig) ProtoMessage() {}
 
 func (x *RosenpassConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := rosenpassConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_signalexchange_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))

@@ -348,9 +348,18 @@ func (d *DefaultManager) getPeerRuleID(
 
 // getRuleGroupingSelector takes all rule properties except IP address to build selector
 func (d *DefaultManager) getRuleGroupingSelector(rule *mgmProto.FirewallRule) string {
-	return fmt.Sprintf("%v:%v:%v:%s:%v", strconv.Itoa(int(rule.Direction)), rule.Action, rule.Protocol, rule.Port, rule.PortInfo)
+	return fmt.Sprintf("%v:%v:%v:%s:%s", strconv.Itoa(int(rule.Direction)), rule.Action, rule.Protocol, rule.Port, portInfoSelector(rule.PortInfo))
 }
 
+func portInfoSelector(portInfo *mgmProto.PortInfo) string {
+	if portInfo == nil {
+		return ""
+	}
+	if r := portInfo.GetRange(); r != nil {
+		return fmt.Sprintf("range:%d-%d", r.Start, r.End)
+	}
+	return fmt.Sprintf("port:%d", portInfo.GetPort())
+}
 
 // extractRuleIP extracts the peer IP from a firewall rule.
 // If sourcePrefixes is populated (new management), decode the first entry and use its address.

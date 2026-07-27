@@ -42,3 +42,6 @@ management/netbird-mgmt
 **/netbird.wasm
 **/wasm_exec.js
 **/size-report.html
+**/*_fastpath_default.go
+**/*_fastpath_tinygo.go
+**/*_fastpath_methods_tinygo.go

@@ -456,6 +456,11 @@ func (x *EncryptedMessage) String() string {
 func (*EncryptedMessage) ProtoMessage() {}
 
 func (x *EncryptedMessage) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := encryptedMessageProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -521,6 +526,11 @@ func (x *JobRequest) String() string {
 func (*JobRequest) ProtoMessage() {}
 
 func (x *JobRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := jobRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -598,6 +608,11 @@ func (x *JobResponse) String() string {
 func (*JobResponse) ProtoMessage() {}
 
 func (x *JobResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := jobResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -686,6 +701,11 @@ func (x *BundleParameters) String() string {
 func (*BundleParameters) ProtoMessage() {}
 
 func (x *BundleParameters) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := bundleParametersProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -754,6 +774,11 @@ func (x *BundleResult) String() string {
 func (*BundleResult) ProtoMessage() {}
 
 func (x *BundleResult) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := bundleResultProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -802,6 +827,11 @@ func (x *SyncRequest) String() string {
 func (*SyncRequest) ProtoMessage() {}
 
 func (x *SyncRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := syncRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -866,6 +896,11 @@ func (x *SyncResponse) String() string {
 func (*SyncResponse) ProtoMessage() {}
 
 func (x *SyncResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := syncResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -956,6 +991,11 @@ func (x *SyncMetaRequest) String() string {
 func (*SyncMetaRequest) ProtoMessage() {}
 
 func (x *SyncMetaRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := syncMetaRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1011,6 +1051,11 @@ func (x *LoginRequest) String() string {
 func (*LoginRequest) ProtoMessage() {}
 
 func (x *LoginRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := loginRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1091,6 +1136,11 @@ func (x *PeerKeys) String() string {
 func (*PeerKeys) ProtoMessage() {}
 
 func (x *PeerKeys) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := peerKeysProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1149,6 +1199,11 @@ func (x *Environment) String() string {
 func (*Environment) ProtoMessage() {}
 
 func (x *Environment) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := environmentProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1209,6 +1264,11 @@ func (x *File) String() string {
 func (*File) ProtoMessage() {}
 
 func (x *File) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := fileProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1285,6 +1345,11 @@ func (x *Flags) String() string {
 func (*Flags) ProtoMessage() {}
 
 func (x *Flags) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := flagsProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1455,6 +1520,11 @@ func (x *PeerSystemMeta) String() string {
 func (*PeerSystemMeta) ProtoMessage() {}
 
 func (x *PeerSystemMeta) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := peerSystemMetaProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1629,6 +1699,11 @@ func (x *LoginResponse) String() string {
 func (*LoginResponse) ProtoMessage() {}
 
 func (x *LoginResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := loginResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1703,6 +1778,11 @@ func (x *ExtendAuthSessionRequest) String() string {
 func (*ExtendAuthSessionRequest) ProtoMessage() {}
 
 func (x *ExtendAuthSessionRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := extendAuthSessionRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1759,6 +1839,11 @@ func (x *ExtendAuthSessionResponse) String() string {
 func (*ExtendAuthSessionResponse) ProtoMessage() {}
 
 func (x *ExtendAuthSessionResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := extendAuthSessionResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1811,6 +1896,11 @@ func (x *ServerKeyResponse) String() string {
 func (*ServerKeyResponse) ProtoMessage() {}
 
 func (x *ServerKeyResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := serverKeyResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1870,6 +1960,11 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := emptyProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1918,6 +2013,11 @@ func (x *NetbirdConfig) String() string {
 func (*NetbirdConfig) ProtoMessage() {}
 
 func (x *NetbirdConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := netbirdConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1996,6 +2096,11 @@ func (x *HostConfig) String() string {
 func (*HostConfig) ProtoMessage() {}
 
 func (x *HostConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := hostConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2052,6 +2157,11 @@ func (x *RelayConfig) String() string {
 func (*RelayConfig) ProtoMessage() {}
 
 func (x *RelayConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := relayConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2123,6 +2233,11 @@ func (x *FlowConfig) String() string {
 func (*FlowConfig) ProtoMessage() {}
 
 func (x *FlowConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := flowConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2227,6 +2342,11 @@ func (x *JWTConfig) String() string {
 func (*JWTConfig) ProtoMessage() {}
 
 func (x *JWTConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := jWTConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2306,6 +2426,11 @@ func (x *ProtectedHostConfig) String() string {
 func (*ProtectedHostConfig) ProtoMessage() {}
 
 func (x *ProtectedHostConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := protectedHostConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2383,6 +2508,11 @@ func (x *PeerConfig) String() string {
 func (*PeerConfig) ProtoMessage() {}
 
 func (x *PeerConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := peerConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2489,6 +2619,11 @@ func (x *AutoUpdateSettings) String() string {
 func (*AutoUpdateSettings) ProtoMessage() {}
 
 func (x *AutoUpdateSettings) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := autoUpdateSettingsProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2570,6 +2705,11 @@ func (x *NetworkMap) String() string {
 func (*NetworkMap) ProtoMessage() {}
 
 func (x *NetworkMap) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := networkMapProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2706,6 +2846,11 @@ func (x *SSHAuth) String() string {
 func (*SSHAuth) ProtoMessage() {}
 
 func (x *SSHAuth) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := sSHAuthProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2767,6 +2912,11 @@ func (x *MachineUserIndexes) String() string {
 func (*MachineUserIndexes) ProtoMessage() {}
 
 func (x *MachineUserIndexes) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := machineUserIndexesProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2824,6 +2974,11 @@ func (x *RemotePeerConfig) String() string {
 func (*RemotePeerConfig) ProtoMessage() {}
 
 func (x *RemotePeerConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := remotePeerConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2905,6 +3060,11 @@ func (x *SSHConfig) String() string {
 func (*SSHConfig) ProtoMessage() {}
 
 func (x *SSHConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := sSHConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2965,6 +3125,11 @@ func (x *DeviceAuthorizationFlowRequest) String() string {
 func (*DeviceAuthorizationFlowRequest) ProtoMessage() {}
 
 func (x *DeviceAuthorizationFlowRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := deviceAuthorizationFlowRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3010,6 +3175,11 @@ func (x *DeviceAuthorizationFlow) String() string {
 func (*DeviceAuthorizationFlow) ProtoMessage() {}
 
 func (x *DeviceAuthorizationFlow) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := deviceAuthorizationFlowProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3063,6 +3233,11 @@ func (x *PKCEAuthorizationFlowRequest) String() string {
 func (*PKCEAuthorizationFlowRequest) ProtoMessage() {}
 
 func (x *PKCEAuthorizationFlowRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := pKCEAuthorizationFlowRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3106,6 +3281,11 @@ func (x *PKCEAuthorizationFlow) String() string {
 func (*PKCEAuthorizationFlow) ProtoMessage() {}
 
 func (x *PKCEAuthorizationFlow) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := pKCEAuthorizationFlowProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3180,6 +3360,11 @@ func (x *ProviderConfig) String() string {
 func (*ProviderConfig) ProtoMessage() {}
 
 func (x *ProviderConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := providerConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3315,6 +3500,11 @@ func (x *Route) String() string {
 func (*Route) ProtoMessage() {}
 
 func (x *Route) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := routeProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3430,6 +3620,11 @@ func (x *DNSConfig) String() string {
 func (*DNSConfig) ProtoMessage() {}
 
 func (x *DNSConfig) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := dNSConfigProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3505,6 +3700,11 @@ func (x *CustomZone) String() string {
 func (*CustomZone) ProtoMessage() {}
 
 func (x *CustomZone) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := customZoneProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3578,6 +3778,11 @@ func (x *SimpleRecord) String() string {
 func (*SimpleRecord) ProtoMessage() {}
 
 func (x *SimpleRecord) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := simpleRecordProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3657,6 +3862,11 @@ func (x *NameServerGroup) String() string {
 func (*NameServerGroup) ProtoMessage() {}
 
 func (x *NameServerGroup) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := nameServerGroupProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3728,6 +3938,11 @@ func (x *NameServer) String() string {
 func (*NameServer) ProtoMessage() {}
 
 func (x *NameServer) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := nameServerProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3805,6 +4020,11 @@ func (x *FirewallRule) String() string {
 func (*FirewallRule) ProtoMessage() {}
 
 func (x *FirewallRule) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := firewallRuleProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3910,6 +4130,11 @@ func (x *NetworkAddress) String() string {
 func (*NetworkAddress) ProtoMessage() {}
 
 func (x *NetworkAddress) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := networkAddressProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3964,6 +4189,11 @@ func (x *Checks) String() string {
 func (*Checks) ProtoMessage() {}
 
 func (x *Checks) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := checksProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4015,6 +4245,11 @@ func (x *PortInfo) String() string {
 func (*PortInfo) ProtoMessage() {}
 
 func (x *PortInfo) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := portInfoProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4112,6 +4347,11 @@ func (x *RouteFirewallRule) String() string {
 func (*RouteFirewallRule) ProtoMessage() {}
 
 func (x *RouteFirewallRule) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := routeFirewallRuleProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[47]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4229,6 +4469,11 @@ func (x *ForwardingRule) String() string {
 func (*ForwardingRule) ProtoMessage() {}
 
 func (x *ForwardingRule) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := forwardingRuleProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[48]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4304,6 +4549,11 @@ func (x *ExposeServiceRequest) String() string {
 func (*ExposeServiceRequest) ProtoMessage() {}
 
 func (x *ExposeServiceRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := exposeServiceRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[49]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4403,6 +4653,11 @@ func (x *ExposeServiceResponse) String() string {
 func (*ExposeServiceResponse) ProtoMessage() {}
 
 func (x *ExposeServiceResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := exposeServiceResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[50]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4471,6 +4726,11 @@ func (x *RenewExposeRequest) String() string {
 func (*RenewExposeRequest) ProtoMessage() {}
 
 func (x *RenewExposeRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := renewExposeRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4516,6 +4776,11 @@ func (x *RenewExposeResponse) String() string {
 func (*RenewExposeResponse) ProtoMessage() {}
 
 func (x *RenewExposeResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := renewExposeResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4556,6 +4821,11 @@ func (x *StopExposeRequest) String() string {
 func (*StopExposeRequest) ProtoMessage() {}
 
 func (x *StopExposeRequest) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := stopExposeRequestProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[53]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4601,6 +4871,11 @@ func (x *StopExposeResponse) String() string {
 func (*StopExposeResponse) ProtoMessage() {}
 
 func (x *StopExposeResponse) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := stopExposeResponseProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[54]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4642,6 +4917,11 @@ func (x *PortInfo_Range) String() string {
 func (*PortInfo_Range) ProtoMessage() {}
 
 func (x *PortInfo_Range) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := portInfo_RangeProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_management_proto_msgTypes[56]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))

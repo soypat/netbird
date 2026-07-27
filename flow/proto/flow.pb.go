@@ -155,6 +155,11 @@ func (x *FlowEvent) String() string {
 func (*FlowEvent) ProtoMessage() {}
 
 func (x *FlowEvent) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := flowEventProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_flow_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -232,6 +237,11 @@ func (x *FlowEventAck) String() string {
 func (*FlowEventAck) ProtoMessage() {}
 
 func (x *FlowEventAck) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := flowEventAckProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_flow_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -315,6 +325,11 @@ func (x *FlowFields) String() string {
 func (*FlowFields) ProtoMessage() {}
 
 func (x *FlowFields) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := flowFieldsProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_flow_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -487,6 +502,11 @@ func (x *PortInfo) String() string {
 func (*PortInfo) ProtoMessage() {}
 
 func (x *PortInfo) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := portInfoProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_flow_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -543,6 +563,11 @@ func (x *ICMPInfo) String() string {
 func (*ICMPInfo) ProtoMessage() {}
 
 func (x *ICMPInfo) ProtoReflect() protoreflect.Message {
+	if x != nil {
+		if m := iCMPInfoProtoReflect(x); m != nil {
+			return m
+		}
+	}
 	mi := &file_flow_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))

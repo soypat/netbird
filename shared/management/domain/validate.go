@@ -2,13 +2,10 @@ package domain
 
 import (
 	"fmt"
-	"regexp"
 	"strings"
 )
 
 const maxDomains = 32
-
-var domainRegex = regexp.MustCompile(`^(?:\*\.)?(?:(?:xn--)?[a-zA-Z0-9_](?:[a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?\.)*(?:xn--)?[a-zA-Z0-9](?:[a-zA-Z0-9-_]{0,61}[a-zA-Z0-9])?$`)
 
 // IsValidDomain checks if a single domain string is valid.
 // Does not convert unicode to punycode - domain must already be ASCII/punycode.
@@ -17,7 +14,7 @@ func IsValidDomain(domain string) bool {
 	if domain == "" {
 		return false
 	}
-	return domainRegex.MatchString(strings.ToLower(domain))
+	return isValidDomainName(strings.ToLower(domain), true)
 }
 
 // IsValidDomainNoWildcard checks if a single domain string is valid without wildcard prefix.
@@ -29,7 +26,7 @@ func IsValidDomainNoWildcard(domain string) bool {
 	if strings.HasPrefix(domain, "*.") {
 		return false
 	}
-	return domainRegex.MatchString(strings.ToLower(domain))
+	return isValidDomainName(strings.ToLower(domain), false)
 }
 
 // ValidateDomains validates domains and converts unicode to punycode.
@@ -51,7 +48,7 @@ func ValidateDomains(domains []string) (List, error) {
 			return domainList, fmt.Errorf("convert domain to punycode: %s: %w", d, err)
 		}
 
-		if !domainRegex.MatchString(string(punycode)) {
+		if !isValidDomainName(string(punycode), true) {
 			return domainList, fmt.Errorf("invalid domain format: %s", d)
 		}
 
@@ -74,9 +71,52 @@ func ValidateDomainsList(domains []string) error {
 
 	for _, d := range domains {
 		d := strings.ToLower(d)
-		if !domainRegex.MatchString(d) {
+		if !isValidDomainName(d, true) {
 			return fmt.Errorf("invalid domain format: %s", d)
 		}
 	}
 	return nil
+}
+
+func isValidDomainName(domain string, allowWildcard bool) bool {
+	if domain == "" || len(domain) > 253 {
+		return false
+	}
+
+	if strings.HasPrefix(domain, "*.") {
+		if !allowWildcard {
+			return false
+		}
+		domain = strings.TrimPrefix(domain, "*.")
+		if domain == "" {
+			return false
+		}
+	} else if strings.Contains(domain, "*") {
+		return false
+	}
+
+	labels := strings.Split(domain, ".")
+	for _, label := range labels {
+		if !isValidDomainLabel(label) {
+			return false
+		}
+	}
+	return true
+}
+
+func isValidDomainLabel(label string) bool {
+	if label == "" || len(label) > 63 {
+		return false
+	}
+	if label[0] == '-' || label[len(label)-1] == '-' {
+		return false
+	}
+	for i := 0; i < len(label); i++ {
+		c := label[i]
+		if (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '-' || c == '_' {
+			continue
+		}
+		return false
+	}
+	return true
 }
