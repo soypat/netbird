@@ -692,18 +692,65 @@ var targets = map[string]target{
 	},
 }
 
+var targetOrder = []string{
+	"signal",
+	"management",
+	"proxy_service",
+	"flow",
+}
+
 func main() {
-	var targetName string
+	var targetNames string
 	var repoRoot string
-	flag.StringVar(&targetName, "target", "", "target proto package to generate: signal, management, or flow")
+	flag.StringVar(&targetNames, "target", "", "target proto package to generate: signal, management, proxy_service, flow, all, or a comma-separated list")
 	flag.StringVar(&repoRoot, "repo-root", ".", "repository root")
 	flag.Parse()
 
-	t, ok := targets[targetName]
-	if !ok {
-		failf("unknown -target %q", targetName)
+	selected := parseTargets(targetNames)
+	for _, t := range selected {
+		generateTarget(repoRoot, t)
 	}
+}
 
+func parseTargets(targetNames string) []target {
+	if targetNames == "" {
+		failf("missing required -target")
+	}
+	names := strings.Split(targetNames, ",")
+	var selected []target
+	seen := make(map[string]bool)
+	for _, name := range names {
+		name = strings.TrimSpace(name)
+		if name == "" {
+			continue
+		}
+		if name == "all" {
+			for _, orderedName := range targetOrder {
+				if seen[orderedName] {
+					continue
+				}
+				selected = append(selected, targets[orderedName])
+				seen[orderedName] = true
+			}
+			continue
+		}
+		t, ok := targets[name]
+		if !ok {
+			failf("unknown -target %q", name)
+		}
+		if seen[name] {
+			continue
+		}
+		selected = append(selected, t)
+		seen[name] = true
+	}
+	if len(selected) == 0 {
+		failf("no targets selected")
+	}
+	return selected
+}
+
+func generateTarget(repoRoot string, t target) {
 	outDir := filepath.Join(repoRoot, t.OutputDir)
 	writeGo(filepath.Join(outDir, t.Prefix+"_fastpath_default.go"), generateDefault(t))
 	writeGo(filepath.Join(outDir, t.Prefix+"_fastpath_tinygo.go"), generateTinyGoHook(t))
